@@ -10,11 +10,12 @@
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
+            --sidebar-bg: #f8f9fa;
+            --sidebar-width: 260px;
             --accent-color: #00766c;
             --text-color: #1a1a1a;
-            --secondary-text: #666;
+            --border-color: rgba(0, 0, 0, 0.08);
             --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         body {
@@ -23,34 +24,132 @@
             margin: 0;
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             color: var(--text-color);
             overflow: hidden;
         }
 
-        /* Center Content Container */
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .new-chat-btn {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+        }
+
+        .new-chat-btn:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .chat-item {
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .chat-item:hover {
+            background: #e9ecef;
+        }
+
+        .chat-item.active {
+            background: #e0e7ff;
+            color: #00766c;
+            font-weight: 500;
+        }
+
+        .chat-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+
+        .delete-btn {
+            opacity: 0;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .chat-item:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .delete-btn:hover {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
         .main-container {
             flex: 1;
             width: 100%;
             max-width: 900px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* Centers content vertically */
             align-items: center;
             padding: 20px;
             box-sizing: border-box;
             transition: all 0.5s ease;
         }
 
-        /* When chat starts, move to top */
         .main-container.chat-active {
             justify-content: flex-start;
             padding-top: 40px;
         }
 
-        /* Logo & Header */
+        /* Original Styles... */
         .header-section {
             text-align: center;
             margin-bottom: 40px;
@@ -60,6 +159,9 @@
         .main-container.chat-active .header-section {
             margin-bottom: 20px;
             transform: scale(0.8);
+            display: none;
+            /* Hide header completely when chatting to save space? Or just shrink. Let's shrink */
+            margin-top: -20px;
         }
 
         .logo-icon {
@@ -78,13 +180,11 @@
             color: #333;
         }
 
-        /* Chat Messages Area - Initially hidden */
         .messages-area {
             width: 100%;
             flex: 1;
             overflow-y: auto;
             display: none;
-            /* Hidden until first message */
             flex-direction: column;
             gap: 20px;
             padding: 20px 0;
@@ -117,11 +217,10 @@
             align-self: flex-start;
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
-            border: var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-bottom-left-radius: 4px;
         }
 
-        /* Suggestion Chips */
         .suggestions-label {
             font-size: 14px;
             font-weight: 600;
@@ -145,7 +244,6 @@
         .main-container.chat-active .suggestions-row,
         .main-container.chat-active .suggestions-label {
             display: none;
-            /* Hide suggestions after chat starts */
         }
 
         .suggestion-chip {
@@ -159,7 +257,6 @@
             transition: all 0.2s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
             flex: 1 1 200px;
-            /* Responsive flex */
             max-width: 300px;
             text-align: left;
         }
@@ -171,12 +268,11 @@
             border-color: rgba(0, 118, 108, 0.3);
         }
 
-        /* Input Bar */
         .input-container {
             width: 100%;
             max-width: 800px;
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .input-box {
@@ -222,7 +318,6 @@
             transform: rotate(45deg);
         }
 
-        /* Loading Indicator */
         .typing-indicator {
             display: none;
             font-style: italic;
@@ -232,7 +327,6 @@
             text-align: center;
         }
 
-        /* Markdown Styles */
         table {
             border-collapse: collapse;
             width: 100%;
@@ -285,48 +379,77 @@
                 transform: translateY(0);
             }
         }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                transform: translateX(-100%);
+                height: 100%;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="main-container" id="mainContainer">
-        <!-- Header -->
-        <div class="header-section">
-            <div class="logo-icon">✨</div>
-            <h1>Ask KFUPM Advisor</h1>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <button class="new-chat-btn" onclick="startNewChat()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14" />
+            </svg>
+            New Chat
+        </button>
+        <div class="chat-list" id="chatList">
+            <!-- Chat items inserted here -->
         </div>
+    </div>
 
-        <!-- Chat Area (Hidden initially) -->
-        <div class="messages-area" id="messages">
-            <!-- Messages go here -->
-        </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="main-container" id="mainContainer">
+            <!-- Header -->
+            <div class="header-section">
+                <div class="logo-icon">✨</div>
+                <h1>Ask KFUPM Advisor</h1>
+            </div>
 
-        <!-- Suggestions (Hidden when chat starts) -->
-        <div class="suggestions-label" id="suggestionsLabel">Suggestions on what to ask</div>
-        <div class="suggestions-row" id="suggestions">
-            <div class="suggestion-chip" onclick="askQuestion('What are the freshman courses for SWE?')">
-                What are the freshman courses for Software Engineering?
+            <!-- Chat Area -->
+            <div class="messages-area" id="messages">
+                <!-- Messages -->
             </div>
-            <div class="suggestion-chip" onclick="askQuestion('Show me the Chemical Engineering degree plan')">
-                Show me the Chemical Engineering degree plan
-            </div>
-            <div class="suggestion-chip" onclick="askQuestion('Are there any AI concentrations?')">
-                Are there any Artificial Intelligence concentrations?
-            </div>
-        </div>
 
-        <!-- Input Area -->
-        <div class="input-container">
-            <form id="chat-form">
-                <input type="text" class="input-box" id="user-input"
-                    placeholder="Ask me anything about courses, plans, or departments..." autocomplete="off">
-                <button type="submit" class="send-btn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                    </svg>
-                </button>
-            </form>
-            <div class="typing-indicator" id="typing">Thinking...</div>
+            <!-- Suggestions -->
+            <div class="suggestions-label" id="suggestionsLabel">Suggestions on what to ask</div>
+            <div class="suggestions-row" id="suggestions">
+                <div class="suggestion-chip" onclick="askQuestion('What are the freshman courses for SWE?')">
+                    What are the freshman courses for Software Engineering?
+                </div>
+                <div class="suggestion-chip" onclick="askQuestion('Show me the Chemical Engineering degree plan')">
+                    Show me the Chemical Engineering degree plan
+                </div>
+                <div class="suggestion-chip" onclick="askQuestion('Are there any AI concentrations?')">
+                    Are there any Artificial Intelligence concentrations?
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <form id="chat-form">
+                    <input type="text" class="input-box" id="user-input" placeholder="Ask anything about courses..."
+                        autocomplete="off">
+                    <button type="submit" class="send-btn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                        </svg>
+                    </button>
+                </form>
+                <div class="typing-indicator" id="typing">Thinking...</div>
+            </div>
         </div>
     </div>
 
@@ -336,7 +459,103 @@
         const messages = document.getElementById('messages');
         const typing = document.getElementById('typing');
         const mainContainer = document.getElementById('mainContainer');
-        let history = [];
+        const chatList = document.getElementById('chatList');
+
+        // Chat State
+        let currentChatId = null;
+        let chats = JSON.parse(localStorage.getItem('chats') || '{}');
+
+        // Initialize
+        function init() {
+            renderChatList();
+            // Start new chat by default if no chats
+            if (Object.keys(chats).length === 0) {
+                startNewChat();
+            } else {
+                // Determine most recent chat
+                const recentId = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp)[0];
+                loadChat(recentId);
+            }
+        }
+
+        function startNewChat() {
+            currentChatId = Date.now().toString();
+            chats[currentChatId] = {
+                id: currentChatId,
+                title: 'New Chat',
+                messages: [],
+                timestamp: Date.now()
+            };
+            saveChats();
+            renderChatList();
+            clearMessages();
+            resetUI();
+        }
+
+        function loadChat(id) {
+            if (!chats[id]) return;
+            currentChatId = id;
+            clearMessages();
+
+            // Re-render messages
+            const chatMessages = chats[id].messages;
+            if (chatMessages.length > 0) {
+                mainContainer.classList.add('chat-active');
+                chatMessages.forEach(msg => {
+                    addMessage(msg.isHtml ? msg.content : msg.content,
+                        msg.role === 'user' ? 'user-msg' : 'bot-msg',
+                        msg.isHtml);
+                });
+            } else {
+                resetUI();
+            }
+            renderChatList();
+        }
+
+        function deleteChat(e, id) {
+            e.stopPropagation();
+            delete chats[id];
+            saveChats();
+            if (currentChatId === id) {
+                startNewChat();
+            } else {
+                renderChatList();
+            }
+        }
+
+        function saveChats() {
+            localStorage.setItem('chats', JSON.stringify(chats));
+        }
+
+        function renderChatList() {
+            chatList.innerHTML = '';
+            // Sort by new
+            const sortedIds = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp);
+
+            sortedIds.forEach(id => {
+                const chat = chats[id];
+                const div = document.createElement('div');
+                div.className = `chat-item ${id === currentChatId ? 'active' : ''}`;
+                div.onclick = () => loadChat(id);
+                div.innerHTML = `
+                    <span class="chat-title">${chat.title}</span>
+                    <button class="delete-btn" onclick="deleteChat(event, '${id}')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                        </svg>
+                    </button>
+                `;
+                chatList.appendChild(div);
+            });
+        }
+
+        function clearMessages() {
+            messages.innerHTML = '';
+        }
+
+        function resetUI() {
+            mainContainer.classList.remove('chat-active');
+        }
 
         function askQuestion(text) {
             input.value = text;
@@ -348,16 +567,32 @@
             const query = input.value.trim();
             if (!query) return;
 
-            // UI Transition: Move to chat mode
+            // First message? Update title
+            if (chats[currentChatId].messages.length === 0) {
+                chats[currentChatId].title = query.substring(0, 30) + (query.length > 30 ? '...' : '');
+                saveChats();
+                renderChatList();
+            }
+
+            // UI Transition
             mainContainer.classList.add('chat-active');
 
             // Add user message
             addMessage(query, 'user-msg');
+            chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
+            saveChats();
+
             input.value = '';
             input.disabled = true;
             typing.style.display = 'block';
 
             try {
+                // Get history for context
+                const history = chats[currentChatId].messages.map(m => ({
+                    role: m.role,
+                    content: m.content
+                }));
+
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -365,13 +600,12 @@
                 });
 
                 const data = await response.json();
+                const botResponse = marked.parse(data.response);
 
                 // Add bot message
-                addMessage(marked.parse(data.response), 'bot-msg', true);
-
-                // Update history
-                history.push({ role: 'user', content: query });
-                history.push({ role: 'assistant', content: data.response });
+                addMessage(botResponse, 'bot-msg', true);
+                chats[currentChatId].messages.push({ role: 'assistant', content: botResponse, isHtml: true });
+                saveChats();
 
             } catch (error) {
                 addMessage("⚠️ Error connecting to the agent. " + error.message, 'bot-msg');
@@ -391,11 +625,11 @@
                 div.textContent = text;
             }
             messages.appendChild(div);
-            // Smooth scroll to bottom
-            setTimeout(() => {
-                messages.scrollTop = messages.scrollHeight;
-            }, 10);
+            messages.scrollTop = messages.scrollHeight;
         }
+
+        // Start
+        init();
     </script>
 </body>
 
