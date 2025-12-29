@@ -1,0 +1,4858 @@
+[
+  {
+    "program_id": "124",
+    "name": "Master of Science in Aerospace Engineering",
+    "slug": "master-of-science-in-aerospace-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=124&title=master-of-science-in-aerospace-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The minimum requirements for possible admission in Master programs in engineering or sciences are as below:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "AE",
+    "application_dates": {},
+    "requirements": "The minimum requirements for possible admission in Master programs in engineering or sciences are as below:",
+    "curriculum": [
+      {
+        "year": "Aerodynamics of Compressible Flow",
+        "semester": "",
+        "course": "AE 520"
+      },
+      {
+        "year": "Flight Dynamics and Control",
+        "semester": "",
+        "course": "AE 540"
+      },
+      {
+        "year": "Mathematical Methods for Engineers/Advanced Mathematical Methods /Linear Algebra",
+        "semester": "",
+        "course": "MATH 513/514/550"
+      },
+      {
+        "year": "M.S Thesis",
+        "semester": "",
+        "course": "AE 610"
+      },
+      {
+        "year": "AE 520",
+        "semester": "",
+        "course": "Aerodynamics of Compressible Flow"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Advanced Mathematics"
+      },
+      {
+        "year": "AE xxx",
+        "semester": "",
+        "course": "AE Elective I"
+      },
+      {
+        "year": "AE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "AE 540",
+        "semester": "",
+        "course": "Flight Dynamics and Control"
+      },
+      {
+        "year": "AE 5xx",
+        "semester": "",
+        "course": "AE Elective II"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical"
+      },
+      {
+        "year": "AE 610",
+        "semester": "",
+        "course": "M.S Thesis"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "XX 5xx",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "AE 610",
+        "semester": "",
+        "course": "M.S Thesis"
+      },
+      {
+        "year": "AE 520",
+        "semester": "",
+        "course": "Aerodynamics of Compressible Flow"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Advanced Mathematics"
+      },
+      {
+        "year": "AE xxx",
+        "semester": "",
+        "course": "AE Elective I"
+      },
+      {
+        "year": "AE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "AE 540",
+        "semester": "",
+        "course": "Flight Dynamics and Control"
+      },
+      {
+        "year": "AE 5xx",
+        "semester": "",
+        "course": "AE Elective II"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical"
+      }
+    ]
+  },
+  {
+    "program_id": "1147",
+    "name": "Doctor of Philosophy in Aerospace Engineering",
+    "slug": "doctor-of-philosophy-in-aerospace-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1147&title=doctor-of-philosophy-in-aerospace-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "AE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "132",
+    "name": "Master of Science in Applied Statistics",
+    "slug": "master-of-science-in-applied-statistics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=132&title=master-of-science-in-applied-statistics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "For admission to the MS program in Applied Statistics, an undergraduate degree in Mathematics or Statistics is not necessary. An applicant, however, must have the equivalent of Calculus I, Calculus II, Calculus III and Introductory Statistics.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "MATH",
+    "application_dates": {},
+    "requirements": "For admission to the MS program in Applied Statistics, an undergraduate degree in Mathematics or Statistics is not necessary. An applicant, however, must have the equivalent of Calculus I, Calculus II, Calculus III and Introductory Statistics.",
+    "curriculum": []
+  },
+  {
+    "program_id": "139",
+    "name": "Master of Science in Architectural Engineering",
+    "slug": "master-of-science-in-architectural-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=139&title=master-of-science-in-architectural-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "AECM",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "158",
+    "name": "Master of Science in Architecture (Thesis Option)",
+    "slug": "master-of-science-in-architecture-(thesis-option)",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=158&title=master-of-science-in-architecture-(thesis-option)",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Admission to the program requires fulfilling all KFUPM and College of Graduate and Interdisciplinary Studies requirements. In addition, the applicant should have the first professional degree in Architecture (BS Arch) or a BS in Architecture from a program equivalent in length, content and quality to BS Arch Program at KFUPM, with a Grade-Point Average (GPA) of 3.00 or higher on a scale of 4.00 or equivalent, and a GPA of 3.00 or higher in Architecture major.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ACD",
+    "application_dates": {},
+    "requirements": "Admission to the program requires fulfilling all KFUPM and College of Graduate and Interdisciplinary Studies requirements. In addition, the applicant should have the first professional degree in Architecture (BS Arch) or a BS in Architecture from a program equivalent in length, content and quality to BS Arch Program at KFUPM, with a Grade-Point Average (GPA) of 3.00 or higher on a scale of 4.00 or equivalent, and a GPA of 3.00 or higher in Architecture major.",
+    "curriculum": []
+  },
+  {
+    "program_id": "1156",
+    "name": "Doctor of Philosophy in Bioengineering",
+    "slug": "doctor-of-philosophy-in-bioengineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1156&title=doctor-of-philosophy-in-bioengineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The general requirements set by the College of Graduate and Interdisciplinary Studies:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "LS",
+    "application_dates": {},
+    "requirements": "The general requirements set by the College of Graduate and Interdisciplinary Studies:",
+    "curriculum": []
+  },
+  {
+    "program_id": "1129",
+    "name": "Executive Master of Business Administration",
+    "slug": "executive-master-of-business-administration",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1129&title=executive-master-of-business-administration",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1131",
+    "name": "Master of Science in Business Studies - Accounting",
+    "slug": "master-of-science-in-business-studies---accounting",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1131&title=master-of-science-in-business-studies---accounting",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1133",
+    "name": "Master of Science in Business Studies - Finance",
+    "slug": "master-of-science-in-business-studies---finance",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1133&title=master-of-science-in-business-studies---finance",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1134",
+    "name": "Master of Science in Business Studies - Management",
+    "slug": "master-of-science-in-business-studies---management",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1134&title=master-of-science-in-business-studies---management",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1136",
+    "name": "Master of Science in Business Studies - Management Information System",
+    "slug": "master-of-science-in-business-studies---management-information-system",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1136&title=master-of-science-in-business-studies---management-information-system",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1135",
+    "name": "Master of Science in Business Studies - Marketing",
+    "slug": "master-of-science-in-business-studies---marketing",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1135&title=master-of-science-in-business-studies---marketing",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1137",
+    "name": "Master of Science in Business Studies - Operations Management",
+    "slug": "master-of-science-in-business-studies---operations-management",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1137&title=master-of-science-in-business-studies---operations-management",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ADGP",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "1121",
+    "name": "Master of Science in Chemical Engineering",
+    "slug": "master-of-science-in-chemical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1121&title=master-of-science-in-chemical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Applicants who have a Bachelor’s degree in engineering or science from an institution whose undergraduate programs are substantially equivalent in length, content and quality to those of King Fahd University of Petroleum & Minerals, are invited to apply for admission as regular graduate students in the Department of Chemical Engineering at King Fahd University of Petroleum & Minerals. Applicants should also satisfy the general admission requirements of the Graduate School",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CHE",
+    "application_dates": {},
+    "requirements": "Applicants who have a Bachelor’s degree in engineering or science from an institution whose undergraduate programs are substantially equivalent in length, content and quality to those of King Fahd University of Petroleum & Minerals, are invited to apply for admission as regular graduate students in the Department of Chemical Engineering at King Fahd University of Petroleum & Minerals. Applicants should also satisfy the general admission requirements of the Graduate School",
+    "curriculum": [
+      {
+        "year": "Mathematical Methods for Engineers",
+        "semester": "",
+        "course": "MATH 513"
+      },
+      {
+        "year": "Advanced Thermodynamics",
+        "semester": "",
+        "course": "CHE 513"
+      },
+      {
+        "year": "Advanced Reaction Engineering",
+        "semester": "",
+        "course": "CHE 530"
+      },
+      {
+        "year": "Transport Phenomena",
+        "semester": "",
+        "course": "CHE 501"
+      },
+      {
+        "year": "Numerical Methods in Chemical Engineering",
+        "semester": "",
+        "course": "CHE 560"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CHE 599"
+      },
+      {
+        "year": "M.S. Thesis",
+        "semester": "",
+        "course": "CHE 610"
+      },
+      {
+        "year": "CHE Elective",
+        "semester": "",
+        "course": "CHE XXX"
+      },
+      {
+        "year": "Non-CHE Technical Elective",
+        "semester": "",
+        "course": "XXX xxx"
+      },
+      {
+        "year": "MATH 513",
+        "semester": "",
+        "course": "Mathematical Methods for Engineers"
+      },
+      {
+        "year": "CHE 513",
+        "semester": "",
+        "course": "Advanced Thermodynamics"
+      },
+      {
+        "year": "CHE 530",
+        "semester": "",
+        "course": "Advanced Reaction Engineering"
+      },
+      {
+        "year": "CHE 501",
+        "semester": "",
+        "course": "Transport Phenomena"
+      },
+      {
+        "year": "CHE 560",
+        "semester": "",
+        "course": "Numerical Methods in Chemical Engineering"
+      },
+      {
+        "year": "CHE XXX",
+        "semester": "",
+        "course": "Elective I - CHE"
+      },
+      {
+        "year": "CHE XXX",
+        "semester": "",
+        "course": "Elective II - CHE"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Elective III – Non-CHE Technical Elective"
+      },
+      {
+        "year": "CHE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CHE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "CHE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "MATH 513",
+        "semester": "",
+        "course": "Mathematical Methods for Engineers"
+      },
+      {
+        "year": "CHE 513",
+        "semester": "",
+        "course": "Advanced Thermodynamics"
+      },
+      {
+        "year": "CHE 530",
+        "semester": "",
+        "course": "Advanced Reaction Engineering"
+      },
+      {
+        "year": "CHE 501",
+        "semester": "",
+        "course": "Transport Phenomena"
+      },
+      {
+        "year": "CHE 560",
+        "semester": "",
+        "course": "Numerical Methods in Chemical Engineering"
+      },
+      {
+        "year": "CHE XXX",
+        "semester": "",
+        "course": "Elective I - CHE"
+      },
+      {
+        "year": "CHE XXX",
+        "semester": "",
+        "course": "Elective II - CHE"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Elective III – Non-CHE Technical Elective"
+      },
+      {
+        "year": "CHE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CHE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "CHE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "1124",
+    "name": "Doctor of Philosophy in Chemical Engineering",
+    "slug": "doctor-of-philosophy-in-chemical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1124&title=doctor-of-philosophy-in-chemical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Applicants who hold an MS/equivalent degree in Chemical Engineering from a university of recognized standing may be admitted to the doctoral program, provided they satisfy the Graduate School’s requirements for Ph.D. admission. Applicants should provide evidence of a suitable scientific background to enter the proposed field and should make up any deficiencies in their prior program within two semester of enrollment.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CHE",
+    "application_dates": {},
+    "requirements": "Applicants who hold an MS/equivalent degree in Chemical Engineering from a university of recognized standing may be admitted to the doctoral program, provided they satisfy the Graduate School’s requirements for Ph.D. admission. Applicants should provide evidence of a suitable scientific background to enter the proposed field and should make up any deficiencies in their prior program within two semester of enrollment.",
+    "curriculum": [
+      {
+        "year": "Chemical Engineering Courses (Major Area)",
+        "semester": "",
+        "course": "CHE xxx"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CHE 699"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "CHE 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "CHE 712"
+      },
+      {
+        "year": "CHE Elective",
+        "semester": "",
+        "course": "CHE xxx"
+      },
+      {
+        "year": "Course from Applied Mathematics",
+        "semester": "",
+        "course": "MATH xxx"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Applied Mathematics"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Elective I"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Elective II"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Elective II"
+      },
+      {
+        "year": "XXX XXX",
+        "semester": "",
+        "course": "Elective IV"
+      },
+      {
+        "year": "CHE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CHE 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "XXX XXX",
+        "semester": "",
+        "course": "Elective V"
+      },
+      {
+        "year": "CHE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Applied Mathematics"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Elective I"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Elective II"
+      },
+      {
+        "year": "CHE xxx",
+        "semester": "",
+        "course": "Elective II"
+      },
+      {
+        "year": "XXX XXX",
+        "semester": "",
+        "course": "Elective IV"
+      },
+      {
+        "year": "CHE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CHE 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "XXX XXX",
+        "semester": "",
+        "course": "Elective V"
+      },
+      {
+        "year": "CHE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "1122",
+    "name": "Master of Science in Chemistry",
+    "slug": "master-of-science-in-chemistry",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1122&title=master-of-science-in-chemistry",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CHEM",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "Physical Chemistry: A Molecular Approach",
+        "semester": "",
+        "course": "CHEM 501"
+      },
+      {
+        "year": "Advanced Analytical Chemistry",
+        "semester": "",
+        "course": "CHEM 504"
+      },
+      {
+        "year": "Chemistry of Coordination Compounds",
+        "semester": "",
+        "course": "CHEM 502"
+      },
+      {
+        "year": "Organic Reactions: Mechanism and Reactivity",
+        "semester": "",
+        "course": "CHEM 503"
+      },
+      {
+        "year": "Chemistry Elective",
+        "semester": "",
+        "course": "(500 or 600 level)"
+      },
+      {
+        "year": "Graduate (M.S.) Seminar",
+        "semester": "",
+        "course": "CHEM 599"
+      },
+      {
+        "year": "M.S. Thesis",
+        "semester": "",
+        "course": "CHEM 610"
+      },
+      {
+        "year": "Free electives",
+        "semester": "",
+        "course": "(500 or 600 level)"
+      },
+      {
+        "year": "CHEM 501",
+        "semester": "",
+        "course": "Physical Chemistry: A Molecular Approach"
+      },
+      {
+        "year": "CHEM 504",
+        "semester": "",
+        "course": "Advanced Analytical Chemistry"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "Elective 1"
+      },
+      {
+        "year": "CHEM 502",
+        "semester": "",
+        "course": "Chemistry of Coordination Compounds"
+      },
+      {
+        "year": "CHEM 503",
+        "semester": "",
+        "course": "Organic Reactions: Mechanism and Reactivity"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "Elective 2"
+      },
+      {
+        "year": "CHEM 599",
+        "semester": "",
+        "course": "Graduate (M.S.) Seminar"
+      },
+      {
+        "year": "CHEM 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "Chemistry Elective 2"
+      },
+      {
+        "year": "XXX 5xx/6x",
+        "semester": "",
+        "course": "Chemistry Elective 1"
+      },
+      {
+        "year": "CHEM 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "CHEM 501",
+        "semester": "",
+        "course": "Physical Chemistry: A Molecular Approach"
+      },
+      {
+        "year": "CHEM 504",
+        "semester": "",
+        "course": "Advanced Analytical Chemistry"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "Elective 1"
+      },
+      {
+        "year": "CHEM 502",
+        "semester": "",
+        "course": "Chemistry of Coordination Compounds"
+      },
+      {
+        "year": "CHEM 503",
+        "semester": "",
+        "course": "Organic Reactions: Mechanism and Reactivity"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "Elective 2"
+      },
+      {
+        "year": "CHEM 599",
+        "semester": "",
+        "course": "Graduate (M.S.) Seminar"
+      },
+      {
+        "year": "CHEM 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "Chemistry Elective 2"
+      },
+      {
+        "year": "XXX 5xx/6x",
+        "semester": "",
+        "course": "Chemistry Elective 1"
+      },
+      {
+        "year": "CHEM 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "1128",
+    "name": "Doctor of Philosophy in Chemistry",
+    "slug": "doctor-of-philosophy-in-chemistry",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1128&title=doctor-of-philosophy-in-chemistry",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CHEM",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "CHEM Courses",
+        "semester": "",
+        "course": "CHEM 5xx/6xx"
+      },
+      {
+        "year": "CHEM 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "CHEM 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "CHEM 712"
+      },
+      {
+        "year": "Elective Courses",
+        "semester": "",
+        "course": "XXX 5xx/6xx"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 1"
+      },
+      {
+        "year": "CHEM xxx",
+        "semester": "",
+        "course": "CHEM Elective 2"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 3"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 4"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 5"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "CHEM Elective 6"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 7"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 8"
+      },
+      {
+        "year": "XXX 5/6xx",
+        "semester": "",
+        "course": "Elective"
+      },
+      {
+        "year": "CHEM 699",
+        "semester": "",
+        "course": "Graduate (Ph.D.) Seminar"
+      },
+      {
+        "year": "XXX 5/6xx",
+        "semester": "",
+        "course": "Elective"
+      },
+      {
+        "year": "CHEM 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 1"
+      },
+      {
+        "year": "CHEM xxx",
+        "semester": "",
+        "course": "CHEM Elective 2"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 3"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 4"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 5"
+      },
+      {
+        "year": "CHEM 5xx/6",
+        "semester": "",
+        "course": "CHEM Elective 6"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 7"
+      },
+      {
+        "year": "CHEM 5/6xx",
+        "semester": "",
+        "course": "CHEM Elective 8"
+      },
+      {
+        "year": "XXX 5/6xx",
+        "semester": "",
+        "course": "Elective"
+      },
+      {
+        "year": "CHEM 699",
+        "semester": "",
+        "course": "Graduate (Ph.D.) Seminar"
+      },
+      {
+        "year": "XXX 5/6xx",
+        "semester": "",
+        "course": "Elective"
+      },
+      {
+        "year": "CHEM 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CHEM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "151",
+    "name": "Doctor of Philosophy in Civil Engineering",
+    "slug": "doctor-of-philosophy-in-civil-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=151&title=doctor-of-philosophy-in-civil-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CE 699"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "CE 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "CE 712"
+      },
+      {
+        "year": "Six CE Core Elective Courses",
+        "semester": "",
+        "course": "CE 5xx"
+      },
+      {
+        "year": "Two Technical Non-CE Elective Courses",
+        "semester": "",
+        "course": "XXX 5xx"
+      },
+      {
+        "year": "Two Free Elective Courses",
+        "semester": "",
+        "course": "XXX 6xx"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective III"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective IV"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective V"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective VI"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective I"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "XXX 6xx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "XXX 6xx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "CE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "CE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective III"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective IV"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective V"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Core Elective VI"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective I"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "XXX 6xx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "XXX 6xx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "CE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "CE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "CE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "1141",
+    "name": "Master of Science in Civil Engineering - Geotechnical Engineering",
+    "slug": "master-of-science-in-civil-engineering---geotechnical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1141&title=master-of-science-in-civil-engineering---geotechnical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "Nature and Behavior of Soils",
+        "semester": "",
+        "course": "CE 550"
+      },
+      {
+        "year": "Foundation Engineering",
+        "semester": "",
+        "course": "CE 552"
+      },
+      {
+        "year": "Advanced Soil Mechanics",
+        "semester": "",
+        "course": "CE 561"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CE 599"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "CE 610"
+      },
+      {
+        "year": "Two Geotechnical Elective Courses",
+        "semester": "",
+        "course": "CE 5xx"
+      },
+      {
+        "year": "One CE Elective Course",
+        "semester": "",
+        "course": "CE 5xx"
+      },
+      {
+        "year": "Technical Elective",
+        "semester": "",
+        "course": "XXX 5xx"
+      },
+      {
+        "year": "Mathematics",
+        "semester": "",
+        "course": "MATH 513 or MATH 560"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Math Elective"
+      },
+      {
+        "year": "CE 550",
+        "semester": "",
+        "course": "Nature and Behavior of Soils"
+      },
+      {
+        "year": "CE 561",
+        "semester": "",
+        "course": "Advanced Soil Mechanics"
+      },
+      {
+        "year": "CE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 552",
+        "semester": "",
+        "course": "Foundation Engineering"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Geotechnical Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Geotechnical Elective II"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "CE Elective"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Math Elective"
+      },
+      {
+        "year": "CE 550",
+        "semester": "",
+        "course": "Nature and Behavior of Soils"
+      },
+      {
+        "year": "CE 561",
+        "semester": "",
+        "course": "Advanced Soil Mechanics"
+      },
+      {
+        "year": "CE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 552",
+        "semester": "",
+        "course": "Foundation Engineering"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Geotechnical Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Geotechnical Elective II"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "CE Elective"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      }
+    ]
+  },
+  {
+    "program_id": "1139",
+    "name": "Master of Science in Civil Engineering - Structures and Civil Engineering Materials",
+    "slug": "master-of-science-in-civil-engineering---structures-and-civil-engineering-materials",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1139&title=master-of-science-in-civil-engineering---structures-and-civil-engineering-materials",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Admission to the graduate programs requires fulfilling all requirements of the College of Graduate and Interdisciplinary Studies. Graduates in engineering and science from recognized institutions are eligible to apply for admission as regular students in the Master’s program.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CE",
+    "application_dates": {},
+    "requirements": "Admission to the graduate programs requires fulfilling all requirements of the College of Graduate and Interdisciplinary Studies. Graduates in engineering and science from recognized institutions are eligible to apply for admission as regular students in the Master’s program.",
+    "curriculum": [
+      {
+        "year": "Concrete Materials",
+        "semester": "",
+        "course": "CE 501"
+      },
+      {
+        "year": "Advanced Structural Analysis and Vibrations",
+        "semester": "",
+        "course": "CE 511"
+      },
+      {
+        "year": "Advanced Structural Mechanics",
+        "semester": "",
+        "course": "CE 510"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CE 599"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "CE 610"
+      },
+      {
+        "year": "CE Option Elective I",
+        "semester": "",
+        "course": "One of CE 521, 522, 523"
+      },
+      {
+        "year": "CE Option Elective II",
+        "semester": "",
+        "course": "From Structural Design / Mechanics / Materials"
+      },
+      {
+        "year": "Option Elective III",
+        "semester": "",
+        "course": "CE 517 (Structures Option) / CHE 501 or CE 5xx (Materials Option)"
+      },
+      {
+        "year": "Math Elective",
+        "semester": "",
+        "course": "MATH 513 (Structures Option) / MATH 560 (Materials Option)"
+      },
+      {
+        "year": "Technical Elective",
+        "semester": "",
+        "course": "XXX 5xx"
+      },
+      {
+        "year": "CE 501",
+        "semester": "",
+        "course": "Concrete Materials"
+      },
+      {
+        "year": "CE 511",
+        "semester": "",
+        "course": "Advanced Structural Analysis and Vibrations"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Mathematics elective"
+      },
+      {
+        "year": "CE 510",
+        "semester": "",
+        "course": "Advanced Structural Mechanics"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "CE Option Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "CE Option Elective II"
+      },
+      {
+        "year": "CE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "CE Option Elective III"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "CE 501",
+        "semester": "",
+        "course": "Concrete Materials"
+      },
+      {
+        "year": "CE 511",
+        "semester": "",
+        "course": "Advanced Structural Analysis and Vibrations"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Mathematics elective"
+      },
+      {
+        "year": "CE 510",
+        "semester": "",
+        "course": "Advanced Structural Mechanics"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "CE Option Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "CE Option Elective II"
+      },
+      {
+        "year": "CE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "CE Option Elective III"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      }
+    ]
+  },
+  {
+    "program_id": "1140",
+    "name": "Master of Science in Civil Engineering - Transportation Engineering",
+    "slug": "master-of-science-in-civil-engineering---transportation-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1140&title=master-of-science-in-civil-engineering---transportation-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "Applied Regression and Experimental Design",
+        "semester": "",
+        "course": "MATH 560"
+      },
+      {
+        "year": "Transportation Core I",
+        "semester": "",
+        "course": "CE 574 (Pavement Engg Option) / 571 (Transportation Engg Option)"
+      },
+      {
+        "year": "Transportation Core II",
+        "semester": "",
+        "course": "CE 579 (Pavement Engg Option) / 582 (Transportation Engg Option)"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CE 599"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "CE 610"
+      },
+      {
+        "year": "Three Transportation Elective Courses",
+        "semester": "",
+        "course": "CE 5xx"
+      },
+      {
+        "year": "One CE Elective Course",
+        "semester": "",
+        "course": "CE xxx"
+      },
+      {
+        "year": "One Technical Elective Course",
+        "semester": "",
+        "course": "XXX 5xx"
+      },
+      {
+        "year": "MATH 560",
+        "semester": "",
+        "course": "Applied Regression and Experimental Design"
+      },
+      {
+        "year": "MATH 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Core I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Core II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Elective II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Elective III"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CE xxx",
+        "semester": "",
+        "course": "CE Elective"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "MATH 560",
+        "semester": "",
+        "course": "Applied Regression and Experimental Design"
+      },
+      {
+        "year": "MATH 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Core I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Core II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Elective I"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Elective II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Transportation Elective III"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CE xxx",
+        "semester": "",
+        "course": "CE Elective"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      }
+    ]
+  },
+  {
+    "program_id": "1142",
+    "name": "Master of Science in Civil Engineering - Water Resources and Environmental Engineering",
+    "slug": "master-of-science-in-civil-engineering---water-resources-and-environmental-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1142&title=master-of-science-in-civil-engineering---water-resources-and-environmental-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "Groundwater Flow and Contaminant Transport",
+        "semester": "",
+        "course": "CE 533"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "CE 599"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "CE 610"
+      },
+      {
+        "year": "Option Elective I",
+        "semester": "",
+        "course": "CE 531 or CE 541"
+      },
+      {
+        "year": "Two Option Elective Courses",
+        "semester": "",
+        "course": "CE 5xx"
+      },
+      {
+        "year": "Two CE Elective Courses",
+        "semester": "",
+        "course": "CE xxx"
+      },
+      {
+        "year": "Technical Elective",
+        "semester": "",
+        "course": "XXX 5xx"
+      },
+      {
+        "year": "Mathematics",
+        "semester": "",
+        "course": "MATH 513 or MATH 560"
+      },
+      {
+        "year": "CE 533",
+        "semester": "",
+        "course": "Groundwater Flow and Contaminant Transport"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Math Elective"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Option Elective I"
+      },
+      {
+        "year": "CE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Option Elective II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Option Elective III"
+      },
+      {
+        "year": "CE xxx",
+        "semester": "",
+        "course": "CE Elective I"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CE xxx",
+        "semester": "",
+        "course": "CE Elective II"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "CE 533",
+        "semester": "",
+        "course": "Groundwater Flow and Contaminant Transport"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Math Elective"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Option Elective I"
+      },
+      {
+        "year": "CE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Option Elective II"
+      },
+      {
+        "year": "CE 5xx",
+        "semester": "",
+        "course": "Option Elective III"
+      },
+      {
+        "year": "CE xxx",
+        "semester": "",
+        "course": "CE Elective I"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CE xxx",
+        "semester": "",
+        "course": "CE Elective II"
+      },
+      {
+        "year": "CE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Technical Elective"
+      }
+    ]
+  },
+  {
+    "program_id": "135",
+    "name": "Doctor of Philosophy in Computer Engineering",
+    "slug": "doctor-of-philosophy-in-computer-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=135&title=doctor-of-philosophy-in-computer-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "COE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "COE Course in Major Area (Depth)",
+        "semester": "",
+        "course": "COE 5xx/COE 6xx"
+      },
+      {
+        "year": "Other COE Major Areas (Breadth)",
+        "semester": "",
+        "course": "COE 5xx/COE 6xx (from COE but not from the same COE major area)"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "COE 699"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "COE 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "COE 712"
+      },
+      {
+        "year": "Elective Course",
+        "semester": "",
+        "course": "COE 701, COE 702 or courses from other departments: ICS, EE, SE and MATH"
+      }
+    ]
+  },
+  {
+    "program_id": "136",
+    "name": "Master of Science in Computer Engineering",
+    "slug": "master-of-science-in-computer-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=136&title=master-of-science-in-computer-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "DepartmentComputer Engineering Department",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "COE",
+    "application_dates": {},
+    "requirements": "Graduates of universities accredited by ABET in computer science and engineering or related fields.\nApplicants should have a GPA of at least 3.0 on a 4-point scale in both BSc. degree.\nAll applicants have to submit a GRE score acceptable to the College of Graduate and Interdisciplinary Studies.\nAll applicants have to submit a TOEFL score acceptable to the College of Graduate and Interdisciplinary Studies.\nAll applicants have to pass an interview with the graduate committee.",
+    "curriculum": []
+  },
+  {
+    "program_id": "142",
+    "name": "Master of Science in Computer Science",
+    "slug": "master-of-science-in-computer-science",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=142&title=master-of-science-in-computer-science",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The admission process starts with an application to the College of Graduate and Interdisciplinary Studies. The applicant must fill out all related forms, which can be obtained from the College of Graduate and Interdisciplinary Studies office or website. The applicant must also submit the following:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ICS",
+    "application_dates": {},
+    "requirements": "The admission process starts with an application to the College of Graduate and Interdisciplinary Studies. The applicant must fill out all related forms, which can be obtained from the College of Graduate and Interdisciplinary Studies office or website. The applicant must also submit the following:",
+    "curriculum": [
+      {
+        "year": "Design and Theory of Algorithms (Core)",
+        "semester": "",
+        "course": "ICS 553"
+      },
+      {
+        "year": "Research Methods & Experiment Design in Computing",
+        "semester": "",
+        "course": "ICS 500"
+      },
+      {
+        "year": "Design and Implementation of Programming Languages",
+        "semester": "",
+        "course": "ICS 535"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "ICS 599"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "ICS 610"
+      },
+      {
+        "year": "Two ICS Courses in Major Are",
+        "semester": "",
+        "course": "ICS xxx"
+      },
+      {
+        "year": "Three General Elective Courses",
+        "semester": "",
+        "course": "XXX xxx"
+      },
+      {
+        "year": "ICS 553",
+        "semester": "",
+        "course": "Design and Theory of Algorithms (Core)"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective I"
+      },
+      {
+        "year": "ICS 500",
+        "semester": "",
+        "course": "Research Methods & Experiment Design in Computing"
+      },
+      {
+        "year": "ICS 535",
+        "semester": "",
+        "course": "Design and Implementation of Programming Languages"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective III"
+      },
+      {
+        "year": "ICS 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ICS 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "ICS 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "ICS 553",
+        "semester": "",
+        "course": "Design and Theory of Algorithms (Core)"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective I"
+      },
+      {
+        "year": "ICS 500",
+        "semester": "",
+        "course": "Research Methods & Experiment Design in Computing"
+      },
+      {
+        "year": "ICS 535",
+        "semester": "",
+        "course": "Design and Implementation of Programming Languages"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective III"
+      },
+      {
+        "year": "ICS 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ICS 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "ICS 610",
+        "semester": "",
+        "course": "Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "143",
+    "name": "Doctor of Philosophy in Computer Science",
+    "slug": "doctor-of-philosophy-in-computer-science",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=143&title=doctor-of-philosophy-in-computer-science",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The admission process starts with an application to the College of Graduate and Interdisciplinary Studies. A student can apply for one of the following statuses:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ICS",
+    "application_dates": {},
+    "requirements": "The admission process starts with an application to the College of Graduate and Interdisciplinary Studies. A student can apply for one of the following statuses:",
+    "curriculum": [
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "ICS 599"
+      },
+      {
+        "year": "PhD Pre-Dissertation",
+        "semester": "",
+        "course": "ICS 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "ICS 712"
+      },
+      {
+        "year": "Three ICS Courses in Major Area",
+        "semester": "",
+        "course": "ICS xxx"
+      },
+      {
+        "year": "Three ICS Courses in Breadth Area",
+        "semester": "",
+        "course": "ICS xxx"
+      },
+      {
+        "year": "One ICS Elective Course",
+        "semester": "",
+        "course": "ICS xxx"
+      },
+      {
+        "year": "Three General Elective Courses",
+        "semester": "",
+        "course": "XXX xxx"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective I"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Breadth Area Elective I"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Breadth Area Elective II"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective II"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Breadth Area Elective III"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "CS Elective"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective III"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective III"
+      },
+      {
+        "year": "ICS 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ICS 711",
+        "semester": "",
+        "course": "PhD Pre-Dissertation"
+      },
+      {
+        "year": "ICS 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ICS 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective I"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Breadth Area Elective I"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Breadth Area Elective II"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective II"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Breadth Area Elective III"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "CS Elective"
+      },
+      {
+        "year": "ICS xxx",
+        "semester": "",
+        "course": "Major Area Elective III"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "General Elective III"
+      },
+      {
+        "year": "ICS 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ICS 711",
+        "semester": "",
+        "course": "PhD Pre-Dissertation"
+      },
+      {
+        "year": "ICS 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ICS 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "141",
+    "name": "Master of Science in Construction Engineering and Management",
+    "slug": "master-of-science-in-construction-engineering-and-management",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=141&title=master-of-science-in-construction-engineering-and-management",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Admission to the program requires fulfilling all of KFUPM’s and College of Graduate and Interdisciplinary Studies’ requirements. In addition, the applicant should meet the following CEM department requirements:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "AECM",
+    "application_dates": {},
+    "requirements": "Admission to the program requires fulfilling all of KFUPM’s and College of Graduate and Interdisciplinary Studies’ requirements. In addition, the applicant should meet the following CEM department requirements:",
+    "curriculum": [
+      {
+        "year": "Project Planning and Control",
+        "semester": "",
+        "course": "CEM 510"
+      },
+      {
+        "year": "Cost Engineering and Machine Learning Applications",
+        "semester": "",
+        "course": "CEM 511"
+      },
+      {
+        "year": "Construction Contracting & Leadership",
+        "semester": "",
+        "course": "CEM 520"
+      },
+      {
+        "year": "Construction Robotics and Autonomous Systems",
+        "semester": "",
+        "course": "CEM 530"
+      },
+      {
+        "year": "Research Seminar",
+        "semester": "",
+        "course": "CEM 599"
+      },
+      {
+        "year": "Statistical Analysis in Planning",
+        "semester": "",
+        "course": "CRP 505"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "CEM 610"
+      },
+      {
+        "year": "CEM Elective",
+        "semester": "",
+        "course": "CEM 5xx"
+      },
+      {
+        "year": "Approved Elective",
+        "semester": "",
+        "course": "XXX 5XX"
+      },
+      {
+        "year": "CEM 520",
+        "semester": "",
+        "course": "Construction Contracting & Leadership"
+      },
+      {
+        "year": "CEM 5xx",
+        "semester": "",
+        "course": "CEM Elective"
+      },
+      {
+        "year": "CEM 510",
+        "semester": "",
+        "course": "Project Planning and Control"
+      },
+      {
+        "year": "CRP 505",
+        "semester": "",
+        "course": "Statistical Analysis in Planning"
+      },
+      {
+        "year": "CEM 511",
+        "semester": "",
+        "course": "Cost Engineering and Machine Learning Applications"
+      },
+      {
+        "year": "CEM 5xx",
+        "semester": "",
+        "course": "CEM Elective"
+      },
+      {
+        "year": "CEM 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CEM 599",
+        "semester": "",
+        "course": "Research Seminar"
+      },
+      {
+        "year": "CEM 530",
+        "semester": "",
+        "course": "Construction Robotics and Autonomous Systems"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Elective"
+      },
+      {
+        "year": "CEM 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CEM 520",
+        "semester": "",
+        "course": "Construction Contracting & Leadership"
+      },
+      {
+        "year": "CEM 5xx",
+        "semester": "",
+        "course": "CEM Elective"
+      },
+      {
+        "year": "CEM 510",
+        "semester": "",
+        "course": "Project Planning and Control"
+      },
+      {
+        "year": "CRP 505",
+        "semester": "",
+        "course": "Statistical Analysis in Planning"
+      },
+      {
+        "year": "CEM 511",
+        "semester": "",
+        "course": "Cost Engineering and Machine Learning Applications"
+      },
+      {
+        "year": "CEM 5xx",
+        "semester": "",
+        "course": "CEM Elective"
+      },
+      {
+        "year": "CEM 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "CEM 599",
+        "semester": "",
+        "course": "Research Seminar"
+      },
+      {
+        "year": "CEM 530",
+        "semester": "",
+        "course": "Construction Robotics and Autonomous Systems"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Elective"
+      },
+      {
+        "year": "CEM 610",
+        "semester": "",
+        "course": "Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "1158",
+    "name": "Doctor of Philosophy in Construction and Building Engineering",
+    "slug": "doctor-of-philosophy-in-construction-and-building-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1158&title=doctor-of-philosophy-in-construction-and-building-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The PhD program is designed for students who are expected to engage in scholarly work on a full-time basis. The program consists of 42 credit hours: 30 are for coursework (beyond the MS degree), and 12 are for the dissertation. The maximum load for the PhD student is 12 graduate credit hours per semester, and all the credited courses should be taken from the 500 and 600 levels. Thus, the coursework will require one and a half years, and the dissertation will require an additional year. Normal period to complete the PhD. The program is4 years(with a maximum of 6 years, per KFUPM regulations).",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "AECM",
+    "application_dates": {},
+    "requirements": "The PhD program is designed for students who are expected to engage in scholarly work on a full-time basis. The program consists of 42 credit hours: 30 are for coursework (beyond the MS degree), and 12 are for the dissertation. The maximum load for the PhD student is 12 graduate credit hours per semester, and all the credited courses should be taken from the 500 and 600 levels. Thus, the coursework will require one and a half years, and the dissertation will require an additional year. Normal period to complete the PhD. The program is4 years(with a maximum of 6 years, per KFUPM regulations).",
+    "curriculum": [
+      {
+        "year": "Building Science",
+        "semester": "",
+        "course": "ARE 530"
+      },
+      {
+        "year": "Design of Experiments and Engineering Simulation",
+        "semester": "",
+        "course": "EM 621"
+      },
+      {
+        "year": "Sustainable Construction and Carbon Management",
+        "semester": "",
+        "course": "CEM 519"
+      },
+      {
+        "year": "Integrated Building Systems",
+        "semester": "",
+        "course": "ARE 632"
+      },
+      {
+        "year": "BIM, Lean Construction & Digital Transformation",
+        "semester": "",
+        "course": "CEM 547"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "AECM 699"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "AECM 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "AECM 712"
+      },
+      {
+        "year": "AECM Elective",
+        "semester": "",
+        "course": "XXX 5XX/6XX"
+      },
+      {
+        "year": "Free Elective",
+        "semester": "",
+        "course": "XXX 5XX/6XX"
+      },
+      {
+        "year": "ARE 530",
+        "semester": "",
+        "course": "Building Science"
+      },
+      {
+        "year": "EM 621",
+        "semester": "",
+        "course": "Design of Experiments and Engineering Simulation"
+      },
+      {
+        "year": "CEM 519",
+        "semester": "",
+        "course": "Sustainable Construction and Carbon Management"
+      },
+      {
+        "year": "ARE 632",
+        "semester": "",
+        "course": "Integrated Building Systems"
+      },
+      {
+        "year": "CEM 547",
+        "semester": "",
+        "course": "BIM, Lean Construction & Digital Transformation"
+      },
+      {
+        "year": "XXX 5XX/6XX",
+        "semester": "",
+        "course": "AECM Elective"
+      },
+      {
+        "year": "XXX 5XX/6XX",
+        "semester": "",
+        "course": "AECM Elective"
+      },
+      {
+        "year": "XXX 5XX/6XX",
+        "semester": "",
+        "course": "AECM Elective"
+      },
+      {
+        "year": "XXX 5XX/6XX",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "AECM 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XXX 6XX/7XX",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "AECM 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "AECM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "AECM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "AECM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "AECM 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ARE 530",
+        "semester": "",
+        "course": "Building Science"
+      },
+      {
+        "year": "EM 621",
+        "semester": "",
+        "course": "Design of Experiments and Engineering Simulation"
+      },
+      {
+        "year": "CEM 519",
+        "semester": "",
+        "course": "Sustainable Construction and Carbon Management"
+      },
+      {
+        "year": "ARE 632",
+        "semester": "",
+        "course": "Integrated Building Systems"
+      },
+      {
+        "year": "CEM 547",
+        "semester": "",
+        "course": "BIM, Lean Construction & Digital Transformation"
+      },
+      {
+        "year": "XXX 5XX/6XX",
+        "semester": "",
+        "course": "AECM Elective"
+      }
+    ]
+  },
+  {
+    "program_id": "1127",
+    "name": "Doctor of Philosophy in Electrical Engineering",
+    "slug": "doctor-of-philosophy-in-electrical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1127&title=doctor-of-philosophy-in-electrical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Applicants to the Ph.D. program in EE must hold an M.S. degree in electrical engineering or related fields from an accredited university, with a GPA not less than 3.00 / 4.00 or equivalent, in addition to the general requirements set by the College of Graduate and Interdisciplinary Studies.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "EE",
+    "application_dates": {},
+    "requirements": "Applicants to the Ph.D. program in EE must hold an M.S. degree in electrical engineering or related fields from an accredited university, with a GPA not less than 3.00 / 4.00 or equivalent, in addition to the general requirements set by the College of Graduate and Interdisciplinary Studies.",
+    "curriculum": [
+      {
+        "year": "Courses in the Area of Specialization",
+        "semester": "",
+        "course": "EE xxx"
+      },
+      {
+        "year": "Course in the Major Area",
+        "semester": "",
+        "course": "EE xxx"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "EE 699"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "EE 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "EE 712"
+      },
+      {
+        "year": "Non-EE Technical Elective",
+        "semester": "",
+        "course": "XX xxx"
+      },
+      {
+        "year": "Free Elective",
+        "semester": "",
+        "course": "XX xxx"
+      },
+      {
+        "year": "Non-EE Technical Elective",
+        "semester": "",
+        "course": "XX xxx"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Major area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Major area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Minor area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Major area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Minor Area"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Non-EE Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Non-EE Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "EE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "EE 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "EE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "EE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Major area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Major area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Minor area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Major area"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "Course in the Minor Area"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Non-EE Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Non-EE Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "EE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "EE 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "EE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "EE 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "1123",
+    "name": "Master of Science in Electrical Engineering",
+    "slug": "master-of-science-in-electrical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1123&title=master-of-science-in-electrical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "EE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "EE Course in Area of Specialization",
+        "semester": "",
+        "course": "EE xxx"
+      },
+      {
+        "year": "Courses in Other Area(s) within EE",
+        "semester": "",
+        "course": "EE xxx"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "EE 599"
+      },
+      {
+        "year": "M.S. Thesis",
+        "semester": "",
+        "course": "EE 610"
+      },
+      {
+        "year": "Technical Elective Courses",
+        "semester": "",
+        "course": "XXX xxx"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area of Depth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area of Depth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area(s) of Breadth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area of Depth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area(s) of Breadth"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "EE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area of Depth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area of Depth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area(s) of Breadth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area of Depth"
+      },
+      {
+        "year": "EE xxx",
+        "semester": "",
+        "course": "EE Course in Area(s) of Breadth"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "EE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Free Technical Elective"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "155",
+    "name": "Master of Science in Environmental Sciences",
+    "slug": "master-of-science-in-environmental-sciences",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=155&title=master-of-science-in-environmental-sciences",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "153",
+    "name": "Master in Geology",
+    "slug": "master-in-geology",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=153&title=master-in-geology",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "156",
+    "name": "Doctor of Philosophy in Geology",
+    "slug": "doctor-of-philosophy-in-geology",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=156&title=doctor-of-philosophy-in-geology",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The minimum requirements for possible admission to the PhD Programs as a regular graduate student in engineering or sciences are as follows:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": "The minimum requirements for possible admission to the PhD Programs as a regular graduate student in engineering or sciences are as follows:",
+    "curriculum": []
+  },
+  {
+    "program_id": "152",
+    "name": "Master of Science in Geology (Thesis Option)",
+    "slug": "master-of-science-in-geology-(thesis-option)",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=152&title=master-of-science-in-geology-(thesis-option)",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "161",
+    "name": "Master in Geophysics",
+    "slug": "master-in-geophysics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=161&title=master-in-geophysics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The minimum requirements for possible admission in Master programs in engineering or sciences are as below:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": "The minimum requirements for possible admission in Master programs in engineering or sciences are as below:",
+    "curriculum": [
+      {
+        "year": "GEOP 501",
+        "semester": "",
+        "course": "Reflection Seismology"
+      },
+      {
+        "year": "GEOP 502",
+        "semester": "",
+        "course": "Potential Theory Methods"
+      },
+      {
+        "year": "GEOP 503",
+        "semester": "",
+        "course": "Solid Earth Geophysics"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective I"
+      },
+      {
+        "year": "GEOP 509",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Graduate Mathematics Course"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective III"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "XXX 5xx",
+        "semester": "",
+        "course": "Non-Tehnical Elective (Must be chosen from CIM or EM major )"
+      },
+      {
+        "year": "GEOP 600",
+        "semester": "",
+        "course": "Master Report"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Graduate Mathematics Course"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective III"
+      }
+    ]
+  },
+  {
+    "program_id": "157",
+    "name": "Doctor of Philosophy in Geophysics",
+    "slug": "doctor-of-philosophy-in-geophysics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=157&title=doctor-of-philosophy-in-geophysics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The minimum requirements for possible admission to the PhD Programs as a regular graduate student in engineering or sciences are as follows:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": "The minimum requirements for possible admission to the PhD Programs as a regular graduate student in engineering or sciences are as follows:",
+    "curriculum": [
+      {
+        "year": "GEOP 602",
+        "semester": "",
+        "course": "Geophysical Wave Propagation"
+      },
+      {
+        "year": "GEOP 603",
+        "semester": "",
+        "course": "Numerical Modeling in Geophysics"
+      },
+      {
+        "year": "GEOP 604",
+        "semester": "",
+        "course": "Geophysical Signal Analysis"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Mathematics elective"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics elective I"
+      },
+      {
+        "year": "GEOP 701",
+        "semester": "",
+        "course": "Direcred Research I"
+      },
+      {
+        "year": "GEOP 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics elective II"
+      },
+      {
+        "year": "GEOP 702",
+        "semester": "",
+        "course": "Directed Research II"
+      },
+      {
+        "year": "GEOP 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "GEOP 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "GEOP 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "GEOP 602",
+        "semester": "",
+        "course": "Geophysical Wave Propagation"
+      },
+      {
+        "year": "GEOP 603",
+        "semester": "",
+        "course": "Numerical Modeling in Geophysics"
+      },
+      {
+        "year": "GEOP 604",
+        "semester": "",
+        "course": "Geophysical Signal Analysis"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Mathematics elective"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics elective I"
+      }
+    ]
+  },
+  {
+    "program_id": "154",
+    "name": "Master of Science in Geophysics (Thesis Option)",
+    "slug": "master-of-science-in-geophysics-(thesis-option)",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=154&title=master-of-science-in-geophysics-(thesis-option)",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ERTH",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "GEOP 501",
+        "semester": "",
+        "course": "Reflection Seismology"
+      },
+      {
+        "year": "GEOP 502",
+        "semester": "",
+        "course": "Potential Theory Methods"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective I"
+      },
+      {
+        "year": "GEOP 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "GEOP 503",
+        "semester": "",
+        "course": "Solid Earth Geophysics"
+      },
+      {
+        "year": "GEOP xxx",
+        "semester": "",
+        "course": "Geophysics Elective II"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Graduate Mathematics Course"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "GEOP 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "Graduate Mathematics Course"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "GEOP 610",
+        "semester": "",
+        "course": "Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "129",
+    "name": "Master of Science in Industrial and Systems Engineering",
+    "slug": "master-of-science-in-industrial-and-systems-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=129&title=master-of-science-in-industrial-and-systems-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Graduates in Engineering, computer science, mathematics and related areas are eligible to apply for admission to the mater programs provided they satisfy the graduate college admission requirements. All students joining the master programs must have sufficient background in the following area:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ISE",
+    "application_dates": {},
+    "requirements": "Graduates in Engineering, computer science, mathematics and related areas are eligible to apply for admission to the mater programs provided they satisfy the graduate college admission requirements. All students joining the master programs must have sufficient background in the following area:",
+    "curriculum": [
+      {
+        "year": "Linear Programming and Applications - I",
+        "semester": "",
+        "course": "ISE 503"
+      },
+      {
+        "year": "Probabilistic Modelling in ISE",
+        "semester": "",
+        "course": "ISE 502"
+      },
+      {
+        "year": "Advanced Production Systems & Inventory Control",
+        "semester": "",
+        "course": "ISE 508"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "ISE 610"
+      },
+      {
+        "year": "ISE courses",
+        "semester": "",
+        "course": "ISE 512, ISE 521,ISE 534, ISE 535, ISE 536, ISE 543"
+      },
+      {
+        "year": "Technical Electives",
+        "semester": "",
+        "course": "SCE 5XX, ME 5XX,MSE 5XX ,CHE 5XX, EE 5XX,CE 5XX,MATH 5XX, STAT 5XX, CHEM 5XX, ICS 5XX, SWE 5XX, COE 5XX, PETE 5XX"
+      }
+    ]
+  },
+  {
+    "program_id": "138",
+    "name": "Doctor of Philosophy in Industrial and Systems Engineering",
+    "slug": "doctor-of-philosophy-in-industrial-and-systems-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=138&title=doctor-of-philosophy-in-industrial-and-systems-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ISE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": []
+  },
+  {
+    "program_id": "162",
+    "name": "Master of Science in Life Sciences",
+    "slug": "master-of-science-in-life-sciences",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=162&title=master-of-science-in-life-sciences",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The general requirements for admission to the program, in addition to any requirements enforced by KFUPM regulations, are:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "LS",
+    "application_dates": {},
+    "requirements": "The general requirements for admission to the program, in addition to any requirements enforced by KFUPM regulations, are:",
+    "curriculum": []
+  },
+  {
+    "program_id": "159",
+    "name": "Master of Science in Materials Science and Engineering",
+    "slug": "master-of-science-in-materials-science-and-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=159&title=master-of-science-in-materials-science-and-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The following requirements are to be met for admission into the MS Program",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "MSE",
+    "application_dates": {},
+    "requirements": "The following requirements are to be met for admission into the MS Program",
+    "curriculum": [
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "MSE 599"
+      },
+      {
+        "year": "MSE 610",
+        "semester": "",
+        "course": "Independent Thesis Research"
+      },
+      {
+        "year": "MSE Technical Elective Courses",
+        "semester": "",
+        "course": "Chem 514/515/537/560/615/617; CE 501/504; EE 546; CHE 540/541/542/543/544/545; ME 575/576/577/578/579/585/588/597/675/697"
+      }
+    ]
+  },
+  {
+    "program_id": "133",
+    "name": "Doctor of Philosophy in Mathematics",
+    "slug": "doctor-of-philosophy-in-mathematics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=133&title=doctor-of-philosophy-in-mathematics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Applicants must have aBachelor’s degreein mathematics or a related field with aminimum GPA of 3.5 out of 4from an institution of acceptable standing according to the criteria defined by the Deanship of Graduate Studies at KFUPM (A master degree will no longer be required for admission to the Ph.D. program).",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "MATH",
+    "application_dates": {},
+    "requirements": "Applicants must have aBachelor’s degreein mathematics or a related field with aminimum GPA of 3.5 out of 4from an institution of acceptable standing according to the criteria defined by the Deanship of Graduate Studies at KFUPM (A master degree will no longer be required for admission to the Ph.D. program).",
+    "curriculum": [
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "MATH 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "MATH 712"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "MATH 699"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Minor Area I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Minor Area II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area IV"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area III"
+      },
+      {
+        "year": "MATH 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective III"
+      },
+      {
+        "year": "MATH 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Minor Area I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Minor Area II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area IV"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area III"
+      },
+      {
+        "year": "MATH 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective III"
+      },
+      {
+        "year": "MATH 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "Course from Major Area"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "MATH 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "131",
+    "name": "Master of Science in Mathematics",
+    "slug": "master-of-science-in-mathematics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=131&title=master-of-science-in-mathematics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Applicants to the MS Program in Mathematics must have a Bachelor’s degree in Mathematics or a related field with minimum GPA of 3 out of 4 from an institution of acceptable standing according to the criteria defined by the Deanship of Admissions and Registration at KFUPM. Applicants should also meet the standards of performance in any requirement by the College of Graduate and Interdisciplinary Studies, for example IELTS/TOEFL. An applicant with deficiency may be admitted, with the understanding that the course work taken to remove the deficiency will not be credited towards the degree.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "MATH",
+    "application_dates": {},
+    "requirements": "Applicants to the MS Program in Mathematics must have a Bachelor’s degree in Mathematics or a related field with minimum GPA of 3 out of 4 from an institution of acceptable standing according to the criteria defined by the Deanship of Admissions and Registration at KFUPM. Applicants should also meet the standards of performance in any requirement by the College of Graduate and Interdisciplinary Studies, for example IELTS/TOEFL. An applicant with deficiency may be admitted, with the understanding that the course work taken to remove the deficiency will not be credited towards the degree.",
+    "curriculum": [
+      {
+        "year": "Mathematics Courses",
+        "semester": "",
+        "course": "Of the 18 credit hours, student must pass at least three courses of MATH 521/531/533/550/551"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "MATH 599"
+      },
+      {
+        "year": "M.S. Thesis",
+        "semester": "",
+        "course": "MATH 610"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Elective I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Requirement II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Requirement I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Elective II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Requirement III"
+      },
+      {
+        "year": "MATH 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Elective III"
+      },
+      {
+        "year": "MATH 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "MATH 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Elective I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Requirement II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Requirement I"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Elective II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Requirement III"
+      },
+      {
+        "year": "MATH 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "MATH xxx",
+        "semester": "",
+        "course": "MATH Elective III"
+      },
+      {
+        "year": "MATH 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "MATH 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "149",
+    "name": "Master of Science in Mechanical Engineering",
+    "slug": "master-of-science-in-mechanical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=149&title=master-of-science-in-mechanical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The minimum requirements for possible admission to the Master of Science program in the College of Graduate and Interdisciplinary Studies as a regular graduate student with full standing in Mechanical Engineering are:",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ME",
+    "application_dates": {},
+    "requirements": "The minimum requirements for possible admission to the Master of Science program in the College of Graduate and Interdisciplinary Studies as a regular graduate student with full standing in Mechanical Engineering are:",
+    "curriculum": [
+      {
+        "year": "Math course",
+        "semester": "",
+        "course": "500 level"
+      },
+      {
+        "year": "Technical Graduate Courses",
+        "semester": "",
+        "course": "at 500 or 600 levels"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "ME 599"
+      },
+      {
+        "year": "M.S. Thesis",
+        "semester": "",
+        "course": "ME 610"
+      },
+      {
+        "year": "ME elective courses",
+        "semester": "",
+        "course": "ME courses at 500 or 600 levels (one course can be at 400 level)"
+      },
+      {
+        "year": "ME 5xx",
+        "semester": "",
+        "course": "Core I"
+      },
+      {
+        "year": "ME 5xx",
+        "semester": "",
+        "course": "ME Elective I"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "MATH Course"
+      },
+      {
+        "year": "ME 5xx",
+        "semester": "",
+        "course": "Core II"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective II"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective I"
+      },
+      {
+        "year": "ME 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective III"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "ME 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "ME 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "ME 5xx",
+        "semester": "",
+        "course": "Core I"
+      },
+      {
+        "year": "ME 5xx",
+        "semester": "",
+        "course": "ME Elective I"
+      },
+      {
+        "year": "MATH 5xx",
+        "semester": "",
+        "course": "MATH Course"
+      },
+      {
+        "year": "ME 5xx",
+        "semester": "",
+        "course": "Core II"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective II"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective I"
+      },
+      {
+        "year": "ME 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective III"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "ME 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "ME 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "150",
+    "name": "Doctor of Philosophy in Mechanical Engineering",
+    "slug": "doctor-of-philosophy-in-mechanical-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=150&title=doctor-of-philosophy-in-mechanical-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The PhD program is designed for full/part-time student who is expected to engage in scholarly work on a full-time basis. The program consists of 30 graduate credit-hours of course work (beyond MS degree) in addition to the dissertation and seminar requirements. The maximum load for the PhD student is 12 graduate credit-hours per semester and all the credited courses should be taken from 500 and 600 levels. Thus, the course work will require one and a half years, and the dissertation will require an additional year and a half. The maximum period allowed for obtaining the PhD degree is five years.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ME",
+    "application_dates": {},
+    "requirements": "The PhD program is designed for full/part-time student who is expected to engage in scholarly work on a full-time basis. The program consists of 30 graduate credit-hours of course work (beyond MS degree) in addition to the dissertation and seminar requirements. The maximum load for the PhD student is 12 graduate credit-hours per semester and all the credited courses should be taken from 500 and 600 levels. Thus, the course work will require one and a half years, and the dissertation will require an additional year and a half. The maximum period allowed for obtaining the PhD degree is five years.",
+    "curriculum": [
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "ME 699"
+      },
+      {
+        "year": "PhD. Pre-Dissertation",
+        "semester": "",
+        "course": "ME 711"
+      },
+      {
+        "year": "PhD. Dissertation",
+        "semester": "",
+        "course": "ME 712"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective I"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective II"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective III"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective IV"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective V"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective VI"
+      },
+      {
+        "year": "ME 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective VII"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective I"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective III"
+      },
+      {
+        "year": "ME 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "ME 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ME 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective I"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective II"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective III"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective IV"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective V"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective VI"
+      },
+      {
+        "year": "ME 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "ME 5xx/6xx",
+        "semester": "",
+        "course": "ME Elective VII"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective I"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective II"
+      },
+      {
+        "year": "XX 5xx/6xx",
+        "semester": "",
+        "course": "Technical Elective III"
+      },
+      {
+        "year": "ME 711",
+        "semester": "",
+        "course": "PhD. Pre-Dissertation"
+      },
+      {
+        "year": "ME 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      },
+      {
+        "year": "ME 712",
+        "semester": "",
+        "course": "PhD. Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "130",
+    "name": "Doctor of Philosophy in Petroleum Engineering",
+    "slug": "doctor-of-philosophy-in-petroleum-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=130&title=doctor-of-philosophy-in-petroleum-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "All applicants for admission to the department must satisfy the general admission requirements of the College of Graduate and Interdisciplinary Studies. In particular, applicants must hold a BS degree in Petroleum Engineering equivalent to KFUPM current program, when applying for a Master’s degree. Applicants for the PhD must hold a Master’s degree with minimum cumulative GPA of 3.2. Applicants with a degree in other engineering or closely related engineering sciences will, upon admission, be required to take deficiency courses with no graduate credit.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "PETE",
+    "application_dates": {},
+    "requirements": "All applicants for admission to the department must satisfy the general admission requirements of the College of Graduate and Interdisciplinary Studies. In particular, applicants must hold a BS degree in Petroleum Engineering equivalent to KFUPM current program, when applying for a Master’s degree. Applicants for the PhD must hold a Master’s degree with minimum cumulative GPA of 3.2. Applicants with a degree in other engineering or closely related engineering sciences will, upon admission, be required to take deficiency courses with no graduate credit.",
+    "curriculum": []
+  },
+  {
+    "program_id": "128",
+    "name": "Master of Science in Petroleum Engineering",
+    "slug": "master-of-science-in-petroleum-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=128&title=master-of-science-in-petroleum-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "All applicants for admission to the department must satisfy the general admission requirements of the College of Graduate and Interdisciplinary Studies. In particular, applicants must hold a BS degree in Petroleum Engineering equivalent to KFUPM current program, when applying for a Master’s degree. Applicants with a degree in other engineering or closely related engineering sciences will, upon admission, be required to take deficiency courses with no graduate credit.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "PETE",
+    "application_dates": {},
+    "requirements": "All applicants for admission to the department must satisfy the general admission requirements of the College of Graduate and Interdisciplinary Studies. In particular, applicants must hold a BS degree in Petroleum Engineering equivalent to KFUPM current program, when applying for a Master’s degree. Applicants with a degree in other engineering or closely related engineering sciences will, upon admission, be required to take deficiency courses with no graduate credit.",
+    "curriculum": []
+  },
+  {
+    "program_id": "126",
+    "name": "Doctor of Philosophy in Physics",
+    "slug": "doctor-of-philosophy-in-physics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=126&title=doctor-of-philosophy-in-physics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The applicant must fulfill KFUPM admission requirements set by the College of Graduate and Interdisciplinary Studies. The applicant should have a Masters’ degree in Physics or related field from an institution of acceptable standing. The Department might ask the applicant to submit his score in the GRE Subject Test in Physics.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "PHYS",
+    "application_dates": {},
+    "requirements": "The applicant must fulfill KFUPM admission requirements set by the College of Graduate and Interdisciplinary Studies. The applicant should have a Masters’ degree in Physics or related field from an institution of acceptable standing. The Department might ask the applicant to submit his score in the GRE Subject Test in Physics.",
+    "curriculum": []
+  },
+  {
+    "program_id": "125",
+    "name": "Master of Science in Physics",
+    "slug": "master-of-science-in-physics",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=125&title=master-of-science-in-physics",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "The Master of Science program in Physics is available to students who meet the requirements for admission to the University with a BS in Physics or equivalent from an institution of acceptable standing. The Department might ask the applicant to submit his score in GRE subject test in Physics.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "PHYS",
+    "application_dates": {},
+    "requirements": "The Master of Science program in Physics is available to students who meet the requirements for admission to the University with a BS in Physics or equivalent from an institution of acceptable standing. The Department might ask the applicant to submit his score in GRE subject test in Physics.",
+    "curriculum": []
+  },
+  {
+    "program_id": "145",
+    "name": "Master of Science in Security and Information Assurance",
+    "slug": "master-of-science-in-security-and-information-assurance",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=145&title=master-of-science-in-security-and-information-assurance",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "1) Applicants must satisfy KFUPM General Requirement",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "ICS",
+    "application_dates": {},
+    "requirements": "1) Applicants must satisfy KFUPM General Requirement",
+    "curriculum": [
+      {
+        "year": "SEC 511",
+        "semester": "",
+        "course": "Principles of Information Assurance & Security"
+      },
+      {
+        "year": "ICS 555",
+        "semester": "",
+        "course": "Data Security and Encryption"
+      },
+      {
+        "year": "SEC 5/6xx",
+        "semester": "",
+        "course": "SEC Elective I"
+      },
+      {
+        "year": "SEC 521",
+        "semester": "",
+        "course": "Network Security"
+      },
+      {
+        "year": "SEC 5/6xx",
+        "semester": "",
+        "course": "SEC Elective II"
+      },
+      {
+        "year": "SEC 5/6xx",
+        "semester": "",
+        "course": "SEC Elective III"
+      },
+      {
+        "year": "SEC 599",
+        "semester": "",
+        "course": "Graduate Seminar"
+      },
+      {
+        "year": "XXX 5/6xx",
+        "semester": "",
+        "course": "Free Elective I"
+      },
+      {
+        "year": "XXX 5/6xx",
+        "semester": "",
+        "course": "Free Elective II"
+      },
+      {
+        "year": "SEC 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "SEC 511",
+        "semester": "",
+        "course": "Principles of Information Assurance & Security"
+      },
+      {
+        "year": "ICS 555",
+        "semester": "",
+        "course": "Data Security and Encryption"
+      },
+      {
+        "year": "SEC 5/6xx",
+        "semester": "",
+        "course": "SEC Elective I"
+      },
+      {
+        "year": "SEC 521",
+        "semester": "",
+        "course": "Network Security"
+      },
+      {
+        "year": "SEC 5/6xx",
+        "semester": "",
+        "course": "SEC Elective II"
+      },
+      {
+        "year": "SEC 5/6xx",
+        "semester": "",
+        "course": "SEC Elective III"
+      },
+      {
+        "year": "SEC 599",
+        "semester": "",
+        "course": "Graduate Seminar"
+      }
+    ]
+  },
+  {
+    "program_id": "147",
+    "name": "Doctor of Philosophy in Systems and Control Engineering",
+    "slug": "doctor-of-philosophy-in-systems-and-control-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=147&title=doctor-of-philosophy-in-systems-and-control-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Applicants for the SCE PhD from the SCE program are required to have completed the MS degree with thesis option and to have a cumulative GPA in the MS courses of 3.0 or above. Applicants from other majors are required to have completed an MS degree thesis option in an engineering field with close relevance to the Systems and Control major, and to have a cumulative GPA in the MS courses of 3.0 or better. In addition, their course work should contain the equivalence of the SCE MS core courses, otherwise remedial courses and/or an entrance exam may be required to be taken and the student must score 'B' or better in each of these courses to be officially admitted into the SCE PhD program.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CIE",
+    "application_dates": {},
+    "requirements": "Applicants for the SCE PhD from the SCE program are required to have completed the MS degree with thesis option and to have a cumulative GPA in the MS courses of 3.0 or above. Applicants from other majors are required to have completed an MS degree thesis option in an engineering field with close relevance to the Systems and Control major, and to have a cumulative GPA in the MS courses of 3.0 or better. In addition, their course work should contain the equivalence of the SCE MS core courses, otherwise remedial courses and/or an entrance exam may be required to be taken and the student must score 'B' or better in each of these courses to be officially admitted into the SCE PhD program.",
+    "curriculum": [
+      {
+        "year": "Major Elective",
+        "semester": "",
+        "course": "SCE XXX; Taken from the 500/600 level courses with at least two of the courses from 600/700 level courses"
+      },
+      {
+        "year": "Directed Research/Major Elective",
+        "semester": "",
+        "course": "SCE 701/xxx"
+      },
+      {
+        "year": "PhD Dissertation",
+        "semester": "",
+        "course": "SCE 710"
+      },
+      {
+        "year": "Major/Free Elective",
+        "semester": "",
+        "course": "SCE/XX xxx"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major/Free Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE 701/xx",
+        "semester": "",
+        "course": "Directed Research/Major Elective"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major/Free Elective"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major/Free Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "SCE 70x/XX",
+        "semester": "",
+        "course": "Directed Research/Major Elective"
+      },
+      {
+        "year": "SCE 710",
+        "semester": "",
+        "course": "PhD Dissertation"
+      },
+      {
+        "year": "SCE 710",
+        "semester": "",
+        "course": "PhD Dissertation"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major/Free Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE 701/xx",
+        "semester": "",
+        "course": "Directed Research/Major Elective"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major/Free Elective"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major/Free Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective"
+      },
+      {
+        "year": "SCE 699",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "SCE 70x/XX",
+        "semester": "",
+        "course": "Directed Research/Major Elective"
+      },
+      {
+        "year": "SCE 710",
+        "semester": "",
+        "course": "PhD Dissertation"
+      },
+      {
+        "year": "SCE 710",
+        "semester": "",
+        "course": "PhD Dissertation"
+      }
+    ]
+  },
+  {
+    "program_id": "144",
+    "name": "Master of Science in Systems and Control Engineering (Thesis option)",
+    "slug": "master-of-science-in-systems-and-control-engineering-(thesis-option)",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=144&title=master-of-science-in-systems-and-control-engineering-(thesis-option)",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": "Graduates from Engineering, Computer Science and Mathematics from recognized institutions are eligible to apply for admission for the Master programs provided they satisfy the requirements set by the College of Graduate and Interdisciplinary Studies at KFUPM.",
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "CIE",
+    "application_dates": {},
+    "requirements": "Graduates from Engineering, Computer Science and Mathematics from recognized institutions are eligible to apply for admission for the Master programs provided they satisfy the requirements set by the College of Graduate and Interdisciplinary Studies at KFUPM.",
+    "curriculum": [
+      {
+        "year": "Linear Multivariable Control",
+        "semester": "",
+        "course": "SCE 507"
+      },
+      {
+        "year": "System Identification",
+        "semester": "",
+        "course": "SCE 513"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "SCE 599"
+      },
+      {
+        "year": "Core Courses",
+        "semester": "",
+        "course": "SCE 5xx"
+      },
+      {
+        "year": "Thesis",
+        "semester": "",
+        "course": "SCE 610"
+      },
+      {
+        "year": "Major/Free Elective",
+        "semester": "",
+        "course": "SCE/XX xxx"
+      },
+      {
+        "year": "Major Elective/Independent Research Course",
+        "semester": "",
+        "course": "SCE 606/XXX"
+      },
+      {
+        "year": "Free Elective Courses",
+        "semester": "",
+        "course": "XX xxx"
+      },
+      {
+        "year": "SCE 507",
+        "semester": "",
+        "course": "Linear Multivariable Control"
+      },
+      {
+        "year": "SCE 513",
+        "semester": "",
+        "course": "System Identification"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major Elective/Free Elective"
+      },
+      {
+        "year": "SCE 5xx",
+        "semester": "",
+        "course": "Core Course"
+      },
+      {
+        "year": "SCE 5xx",
+        "semester": "",
+        "course": "Core Course"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "SCE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective/Independent Research"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major Elective/Free Elective"
+      },
+      {
+        "year": "SCE 610",
+        "semester": "",
+        "course": "Thesis"
+      },
+      {
+        "year": "SCE 507",
+        "semester": "",
+        "course": "Linear Multivariable Control"
+      },
+      {
+        "year": "SCE 513",
+        "semester": "",
+        "course": "System Identification"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major Elective/Free Elective"
+      },
+      {
+        "year": "SCE 5xx",
+        "semester": "",
+        "course": "Core Course"
+      },
+      {
+        "year": "SCE 5xx",
+        "semester": "",
+        "course": "Core Course"
+      },
+      {
+        "year": "XXX xxx",
+        "semester": "",
+        "course": "Free Elective"
+      },
+      {
+        "year": "SCE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "SCE xxx",
+        "semester": "",
+        "course": "Major Elective/Independent Research"
+      },
+      {
+        "year": "SCE/xx XXX",
+        "semester": "",
+        "course": "Major Elective/Free Elective"
+      },
+      {
+        "year": "SCE 610",
+        "semester": "",
+        "course": "Thesis"
+      }
+    ]
+  },
+  {
+    "program_id": "1126",
+    "name": "Master of Science in Telecommunication Engineering",
+    "slug": "master-of-science-in-telecommunication-engineering",
+    "url": "https://bulletin.kfupm.edu.sa/program?program_id=1126&title=master-of-science-in-telecommunication-engineering",
+    "type": "Standard",
+    "degree_awarded": null,
+    "duration": null,
+    "description": null,
+    "objectives": [],
+    "student_outcomes": [],
+    "sdg_goals": [],
+    "department_code": "EE",
+    "application_dates": {},
+    "requirements": null,
+    "curriculum": [
+      {
+        "year": "Stochastic Processes",
+        "semester": "",
+        "course": "EE 570"
+      },
+      {
+        "year": "Digital Communications I",
+        "semester": "",
+        "course": "EE 571"
+      },
+      {
+        "year": "Digital Communication II OR Wireless Communications",
+        "semester": "",
+        "course": "EE 573 or EE 577"
+      },
+      {
+        "year": "Computer Networks",
+        "semester": "",
+        "course": "COE 540"
+      },
+      {
+        "year": "Seminar",
+        "semester": "",
+        "course": "EE 599"
+      },
+      {
+        "year": "M.S. Thesis",
+        "semester": "",
+        "course": "EE 610"
+      },
+      {
+        "year": "Technical Elective",
+        "semester": "",
+        "course": "XXX xxx"
+      },
+      {
+        "year": "Elective from MIS Dept",
+        "semester": "",
+        "course": "MIS 5xx"
+      },
+      {
+        "year": "EE 570",
+        "semester": "",
+        "course": "Stochastic Processes"
+      },
+      {
+        "year": "EE 571",
+        "semester": "",
+        "course": "Digital Communications I"
+      },
+      {
+        "year": "COE 540",
+        "semester": "",
+        "course": "Computer Networks"
+      },
+      {
+        "year": "EE 573/577",
+        "semester": "",
+        "course": "Digital Communications II /  Wireless and Personal Communications"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "EE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "MIS 5xx",
+        "semester": "",
+        "course": "Elective from MIS Dept"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "EE 570",
+        "semester": "",
+        "course": "Stochastic Processes"
+      },
+      {
+        "year": "EE 571",
+        "semester": "",
+        "course": "Digital Communications I"
+      },
+      {
+        "year": "COE 540",
+        "semester": "",
+        "course": "Computer Networks"
+      },
+      {
+        "year": "EE 573/577",
+        "semester": "",
+        "course": "Digital Communications II /  Wireless and Personal Communications"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "EE 599",
+        "semester": "",
+        "course": "Seminar"
+      },
+      {
+        "year": "XX xxx",
+        "semester": "",
+        "course": "Technical Elective"
+      },
+      {
+        "year": "MIS 5xx",
+        "semester": "",
+        "course": "Elective from MIS Dept"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      },
+      {
+        "year": "EE 610",
+        "semester": "",
+        "course": "M.S. Thesis"
+      }
+    ]
+  }
+]

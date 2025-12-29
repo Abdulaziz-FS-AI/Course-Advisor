@@ -1,0 +1,786 @@
+id,department_id,year_level,semester,course_code,course_title,lecture_hours,lab_hours,credits,plan_option
+1,17,Graduate,N/A,AE 520,Aerodynamics of Compressible Flow,0,0,0,0
+2,17,Graduate,N/A,AE 540,Flight Dynamics and Control,0,0,0,0
+3,17,Graduate,N/A,MATH 513/514/550,Mathematical Methods for Engineers/Advanced Mathematical Methods /Linear Algebra,0,0,0,0
+4,17,Graduate,N/A,AE 610,M.S Thesis,0,0,0,0
+5,17,Graduate,N/A,Aerodynamics of Compressible Flow,AE 520,0,0,0,0
+6,17,Graduate,N/A,Advanced Mathematics,MATH 5xx,0,0,0,0
+7,17,Graduate,N/A,AE Elective I,AE xxx,0,0,0,0
+8,17,Graduate,N/A,Seminar,AE 599,0,0,0,0
+9,17,Graduate,N/A,Flight Dynamics and Control,AE 540,0,0,0,0
+10,17,Graduate,N/A,AE Elective II,AE 5xx,0,0,0,0
+11,17,Graduate,N/A,Technical,XX xxx,0,0,0,0
+12,17,Graduate,N/A,M.S Thesis,AE 610,0,0,0,0
+13,17,Graduate,N/A,Technical Elective II,XX xxx,0,0,0,0
+14,17,Graduate,N/A,Free Elective,XX 5xx,0,0,0,0
+15,17,Graduate,N/A,M.S Thesis,AE 610,0,0,0,0
+16,17,Graduate,N/A,Aerodynamics of Compressible Flow,AE 520,0,0,0,0
+17,17,Graduate,N/A,Advanced Mathematics,MATH 5xx,0,0,0,0
+18,17,Graduate,N/A,AE Elective I,AE xxx,0,0,0,0
+19,17,Graduate,N/A,Seminar,AE 599,0,0,0,0
+20,17,Graduate,N/A,Flight Dynamics and Control,AE 540,0,0,0,0
+21,17,Graduate,N/A,AE Elective II,AE 5xx,0,0,0,0
+22,17,Graduate,N/A,Technical,XX xxx,0,0,0,0
+23,27,Graduate,N/A,MATH 513,Mathematical Methods for Engineers,0,0,0,0
+24,27,Graduate,N/A,CHE 513,Advanced Thermodynamics,0,0,0,0
+25,27,Graduate,N/A,CHE 530,Advanced Reaction Engineering,0,0,0,0
+26,27,Graduate,N/A,CHE 501,Transport Phenomena,0,0,0,0
+27,27,Graduate,N/A,CHE 560,Numerical Methods in Chemical Engineering,0,0,0,0
+28,27,Graduate,N/A,CHE 599,Seminar,0,0,0,0
+29,27,Graduate,N/A,CHE 610,M.S. Thesis,0,0,0,0
+30,27,Graduate,N/A,CHE XXX,CHE Elective,0,0,0,0
+31,27,Graduate,N/A,XXX xxx,Non-CHE Technical Elective,0,0,0,0
+32,27,Graduate,N/A,Mathematical Methods for Engineers,MATH 513,0,0,0,0
+33,27,Graduate,N/A,Advanced Thermodynamics,CHE 513,0,0,0,0
+34,27,Graduate,N/A,Advanced Reaction Engineering,CHE 530,0,0,0,0
+35,27,Graduate,N/A,Transport Phenomena,CHE 501,0,0,0,0
+36,27,Graduate,N/A,Numerical Methods in Chemical Engineering,CHE 560,0,0,0,0
+37,27,Graduate,N/A,Elective I - CHE,CHE XXX,0,0,0,0
+38,27,Graduate,N/A,Elective II - CHE,CHE XXX,0,0,0,0
+39,27,Graduate,N/A,Elective III – Non-CHE Technical Elective,XXX xxx,0,0,0,0
+40,27,Graduate,N/A,Seminar,CHE 599,0,0,0,0
+41,27,Graduate,N/A,M.S. Thesis,CHE 610,0,0,0,0
+42,27,Graduate,N/A,M.S. Thesis,CHE 610,0,0,0,0
+43,27,Graduate,N/A,Mathematical Methods for Engineers,MATH 513,0,0,0,0
+44,27,Graduate,N/A,Advanced Thermodynamics,CHE 513,0,0,0,0
+45,27,Graduate,N/A,Advanced Reaction Engineering,CHE 530,0,0,0,0
+46,27,Graduate,N/A,Transport Phenomena,CHE 501,0,0,0,0
+47,27,Graduate,N/A,Numerical Methods in Chemical Engineering,CHE 560,0,0,0,0
+48,27,Graduate,N/A,Elective I - CHE,CHE XXX,0,0,0,0
+49,27,Graduate,N/A,Elective II - CHE,CHE XXX,0,0,0,0
+50,27,Graduate,N/A,Elective III – Non-CHE Technical Elective,XXX xxx,0,0,0,0
+51,27,Graduate,N/A,Seminar,CHE 599,0,0,0,0
+52,27,Graduate,N/A,M.S. Thesis,CHE 610,0,0,0,0
+53,27,Graduate,N/A,M.S. Thesis,CHE 610,0,0,0,0
+54,27,Graduate,N/A,CHE xxx,Chemical Engineering Courses (Major Area),0,0,0,0
+55,27,Graduate,N/A,CHE 699,Seminar,0,0,0,0
+56,27,Graduate,N/A,CHE 711,PhD. Pre-Dissertation,0,0,0,0
+57,27,Graduate,N/A,CHE 712,PhD. Dissertation,0,0,0,0
+58,27,Graduate,N/A,CHE xxx,CHE Elective,0,0,0,0
+59,27,Graduate,N/A,MATH xxx,Course from Applied Mathematics,0,0,0,0
+60,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+61,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+62,27,Graduate,N/A,Course from Applied Mathematics,MATH xxx,0,0,0,0
+63,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+64,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+65,27,Graduate,N/A,Elective I,CHE xxx,0,0,0,0
+66,27,Graduate,N/A,Elective II,CHE xxx,0,0,0,0
+67,27,Graduate,N/A,Elective II,CHE xxx,0,0,0,0
+68,27,Graduate,N/A,Elective IV,XXX XXX,0,0,0,0
+69,27,Graduate,N/A,Seminar,CHE 699,0,0,0,0
+70,27,Graduate,N/A,PhD. Pre-Dissertation,CHE 711,0,0,0,0
+71,27,Graduate,N/A,Elective V,XXX XXX,0,0,0,0
+72,27,Graduate,N/A,PhD. Dissertation,CHE 712,0,0,0,0
+73,27,Graduate,N/A,PhD. Dissertation,CHE 712,0,0,0,0
+74,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+75,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+76,27,Graduate,N/A,Course from Applied Mathematics,MATH xxx,0,0,0,0
+77,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+78,27,Graduate,N/A,Course from Major Area,CHE xxx,0,0,0,0
+79,27,Graduate,N/A,Elective I,CHE xxx,0,0,0,0
+80,27,Graduate,N/A,Elective II,CHE xxx,0,0,0,0
+81,27,Graduate,N/A,Elective II,CHE xxx,0,0,0,0
+82,27,Graduate,N/A,Elective IV,XXX XXX,0,0,0,0
+83,27,Graduate,N/A,Seminar,CHE 699,0,0,0,0
+84,27,Graduate,N/A,PhD. Pre-Dissertation,CHE 711,0,0,0,0
+85,27,Graduate,N/A,Elective V,XXX XXX,0,0,0,0
+86,27,Graduate,N/A,PhD. Dissertation,CHE 712,0,0,0,0
+87,27,Graduate,N/A,PhD. Dissertation,CHE 712,0,0,0,0
+88,28,Graduate,N/A,CHEM 501,Physical Chemistry: A Molecular Approach,0,0,0,0
+89,28,Graduate,N/A,CHEM 504,Advanced Analytical Chemistry,0,0,0,0
+90,28,Graduate,N/A,CHEM 502,Chemistry of Coordination Compounds,0,0,0,0
+91,28,Graduate,N/A,CHEM 503,Organic Reactions: Mechanism and Reactivity,0,0,0,0
+92,28,Graduate,N/A,(500 or 600 level),Chemistry Elective,0,0,0,0
+93,28,Graduate,N/A,CHEM 599,Graduate (M.S.) Seminar,0,0,0,0
+94,28,Graduate,N/A,CHEM 610,M.S. Thesis,0,0,0,0
+95,28,Graduate,N/A,(500 or 600 level),Free electives,0,0,0,0
+96,28,Graduate,N/A,Physical Chemistry: A Molecular Approach,CHEM 501,0,0,0,0
+97,28,Graduate,N/A,Advanced Analytical Chemistry,CHEM 504,0,0,0,0
+98,28,Graduate,N/A,Elective 1,CHEM 5xx/6,0,0,0,0
+99,28,Graduate,N/A,Chemistry of Coordination Compounds,CHEM 502,0,0,0,0
+100,28,Graduate,N/A,Organic Reactions: Mechanism and Reactivity,CHEM 503,0,0,0,0
+101,28,Graduate,N/A,Elective 2,CHEM 5xx/6,0,0,0,0
+102,28,Graduate,N/A,Graduate (M.S.) Seminar,CHEM 599,0,0,0,0
+103,28,Graduate,N/A,M.S. Thesis,CHEM 610,0,0,0,0
+104,28,Graduate,N/A,Chemistry Elective 2,CHEM 5xx/6,0,0,0,0
+105,28,Graduate,N/A,Chemistry Elective 1,XXX 5xx/6x,0,0,0,0
+106,28,Graduate,N/A,M.S. Thesis,CHEM 610,0,0,0,0
+107,28,Graduate,N/A,Physical Chemistry: A Molecular Approach,CHEM 501,0,0,0,0
+108,28,Graduate,N/A,Advanced Analytical Chemistry,CHEM 504,0,0,0,0
+109,28,Graduate,N/A,Elective 1,CHEM 5xx/6,0,0,0,0
+110,28,Graduate,N/A,Chemistry of Coordination Compounds,CHEM 502,0,0,0,0
+111,28,Graduate,N/A,Organic Reactions: Mechanism and Reactivity,CHEM 503,0,0,0,0
+112,28,Graduate,N/A,Elective 2,CHEM 5xx/6,0,0,0,0
+113,28,Graduate,N/A,Graduate (M.S.) Seminar,CHEM 599,0,0,0,0
+114,28,Graduate,N/A,M.S. Thesis,CHEM 610,0,0,0,0
+115,28,Graduate,N/A,Chemistry Elective 2,CHEM 5xx/6,0,0,0,0
+116,28,Graduate,N/A,Chemistry Elective 1,XXX 5xx/6x,0,0,0,0
+117,28,Graduate,N/A,M.S. Thesis,CHEM 610,0,0,0,0
+118,28,Graduate,N/A,CHEM 5xx/6xx,CHEM Courses,0,0,0,0
+119,28,Graduate,N/A,Seminar,CHEM 699,0,0,0,0
+120,28,Graduate,N/A,CHEM 711,PhD. Pre-Dissertation,0,0,0,0
+121,28,Graduate,N/A,CHEM 712,PhD. Dissertation,0,0,0,0
+122,28,Graduate,N/A,XXX 5xx/6xx,Elective Courses,0,0,0,0
+123,28,Graduate,N/A,CHEM Elective 1,CHEM 5/6xx,0,0,0,0
+124,28,Graduate,N/A,CHEM Elective 2,CHEM xxx,0,0,0,0
+125,28,Graduate,N/A,CHEM Elective 3,CHEM 5/6xx,0,0,0,0
+126,28,Graduate,N/A,CHEM Elective 4,CHEM 5/6xx,0,0,0,0
+127,28,Graduate,N/A,CHEM Elective 5,CHEM 5/6xx,0,0,0,0
+128,28,Graduate,N/A,CHEM Elective 6,CHEM 5xx/6,0,0,0,0
+129,28,Graduate,N/A,CHEM Elective 7,CHEM 5/6xx,0,0,0,0
+130,28,Graduate,N/A,CHEM Elective 8,CHEM 5/6xx,0,0,0,0
+131,28,Graduate,N/A,Elective,XXX 5/6xx,0,0,0,0
+132,28,Graduate,N/A,Graduate (Ph.D.) Seminar,CHEM 699,0,0,0,0
+133,28,Graduate,N/A,Elective,XXX 5/6xx,0,0,0,0
+134,28,Graduate,N/A,PhD. Pre-Dissertation,CHEM 711,0,0,0,0
+135,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+136,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+137,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+138,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+139,28,Graduate,N/A,CHEM Elective 1,CHEM 5/6xx,0,0,0,0
+140,28,Graduate,N/A,CHEM Elective 2,CHEM xxx,0,0,0,0
+141,28,Graduate,N/A,CHEM Elective 3,CHEM 5/6xx,0,0,0,0
+142,28,Graduate,N/A,CHEM Elective 4,CHEM 5/6xx,0,0,0,0
+143,28,Graduate,N/A,CHEM Elective 5,CHEM 5/6xx,0,0,0,0
+144,28,Graduate,N/A,CHEM Elective 6,CHEM 5xx/6,0,0,0,0
+145,28,Graduate,N/A,CHEM Elective 7,CHEM 5/6xx,0,0,0,0
+146,28,Graduate,N/A,CHEM Elective 8,CHEM 5/6xx,0,0,0,0
+147,28,Graduate,N/A,Elective,XXX 5/6xx,0,0,0,0
+148,28,Graduate,N/A,Graduate (Ph.D.) Seminar,CHEM 699,0,0,0,0
+149,28,Graduate,N/A,Elective,XXX 5/6xx,0,0,0,0
+150,28,Graduate,N/A,PhD. Pre-Dissertation,CHEM 711,0,0,0,0
+151,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+152,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+153,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+154,28,Graduate,N/A,PhD. Dissertation,CHEM 712,0,0,0,0
+155,8,Graduate,N/A,CE 699,Seminar,0,0,0,0
+156,8,Graduate,N/A,CE 711,PhD. Pre-Dissertation,0,0,0,0
+157,8,Graduate,N/A,CE 712,PhD. Dissertation,0,0,0,0
+158,8,Graduate,N/A,CE 5xx,Six CE Core Elective Courses,0,0,0,0
+159,8,Graduate,N/A,XXX 5xx,Two Technical Non-CE Elective Courses,0,0,0,0
+160,8,Graduate,N/A,XXX 6xx,Two Free Elective Courses,0,0,0,0
+161,8,Graduate,N/A,Core Elective I,CE 5xx,0,0,0,0
+162,8,Graduate,N/A,Core Elective II,CE 5xx,0,0,0,0
+163,8,Graduate,N/A,Core Elective III,CE 5xx,0,0,0,0
+164,8,Graduate,N/A,Core Elective IV,CE 5xx,0,0,0,0
+165,8,Graduate,N/A,Core Elective V,CE 5xx,0,0,0,0
+166,8,Graduate,N/A,Core Elective VI,CE 5xx,0,0,0,0
+167,8,Graduate,N/A,Technical Elective I,XXX 5xx,0,0,0,0
+168,8,Graduate,N/A,Technical Elective II,XXX 5xx,0,0,0,0
+169,8,Graduate,N/A,Free Elective I,XXX 6xx,0,0,0,0
+170,8,Graduate,N/A,Free Elective II,XXX 6xx,0,0,0,0
+171,8,Graduate,N/A,Seminar,CE 699,0,0,0,0
+172,8,Graduate,N/A,PhD. Pre-Dissertation,CE 711,0,0,0,0
+173,8,Graduate,N/A,PhD. Dissertation,CE 712,0,0,0,0
+174,8,Graduate,N/A,PhD. Dissertation,CE 712,0,0,0,0
+175,8,Graduate,N/A,Core Elective I,CE 5xx,0,0,0,0
+176,8,Graduate,N/A,Core Elective II,CE 5xx,0,0,0,0
+177,8,Graduate,N/A,Core Elective III,CE 5xx,0,0,0,0
+178,8,Graduate,N/A,Core Elective IV,CE 5xx,0,0,0,0
+179,8,Graduate,N/A,Core Elective V,CE 5xx,0,0,0,0
+180,8,Graduate,N/A,Core Elective VI,CE 5xx,0,0,0,0
+181,8,Graduate,N/A,Technical Elective I,XXX 5xx,0,0,0,0
+182,8,Graduate,N/A,Technical Elective II,XXX 5xx,0,0,0,0
+183,8,Graduate,N/A,Free Elective I,XXX 6xx,0,0,0,0
+184,8,Graduate,N/A,Free Elective II,XXX 6xx,0,0,0,0
+185,8,Graduate,N/A,Seminar,CE 699,0,0,0,0
+186,8,Graduate,N/A,PhD. Pre-Dissertation,CE 711,0,0,0,0
+187,8,Graduate,N/A,PhD. Dissertation,CE 712,0,0,0,0
+188,8,Graduate,N/A,PhD. Dissertation,CE 712,0,0,0,0
+189,8,Graduate,N/A,CE 550,Nature and Behavior of Soils,0,0,0,0
+190,8,Graduate,N/A,CE 552,Foundation Engineering,0,0,0,0
+191,8,Graduate,N/A,CE 561,Advanced Soil Mechanics,0,0,0,0
+192,8,Graduate,N/A,CE 599,Seminar,0,0,0,0
+193,8,Graduate,N/A,CE 610,Thesis,0,0,0,0
+194,8,Graduate,N/A,CE 5xx,Two Geotechnical Elective Courses,0,0,0,0
+195,8,Graduate,N/A,CE 5xx,One CE Elective Course,0,0,0,0
+196,8,Graduate,N/A,XXX 5xx,Technical Elective,0,0,0,0
+197,8,Graduate,N/A,MATH 513 or MATH 560,Mathematics,0,0,0,0
+198,8,Graduate,N/A,Math Elective,MATH 5xx,0,0,0,0
+199,8,Graduate,N/A,Nature and Behavior of Soils,CE 550,0,0,0,0
+200,8,Graduate,N/A,Advanced Soil Mechanics,CE 561,0,0,0,0
+201,8,Graduate,N/A,Seminar,CE 599,0,0,0,0
+202,8,Graduate,N/A,Foundation Engineering,CE 552,0,0,0,0
+203,8,Graduate,N/A,Geotechnical Elective I,CE 5xx,0,0,0,0
+204,8,Graduate,N/A,Geotechnical Elective II,CE 5xx,0,0,0,0
+205,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+206,8,Graduate,N/A,CE Elective,CE 5xx,0,0,0,0
+207,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+208,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+209,8,Graduate,N/A,Math Elective,MATH 5xx,0,0,0,0
+210,8,Graduate,N/A,Nature and Behavior of Soils,CE 550,0,0,0,0
+211,8,Graduate,N/A,Advanced Soil Mechanics,CE 561,0,0,0,0
+212,8,Graduate,N/A,Seminar,CE 599,0,0,0,0
+213,8,Graduate,N/A,Foundation Engineering,CE 552,0,0,0,0
+214,8,Graduate,N/A,Geotechnical Elective I,CE 5xx,0,0,0,0
+215,8,Graduate,N/A,Geotechnical Elective II,CE 5xx,0,0,0,0
+216,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+217,8,Graduate,N/A,CE Elective,CE 5xx,0,0,0,0
+218,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+219,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+220,8,Graduate,N/A,CE 501,Concrete Materials,0,0,0,0
+221,8,Graduate,N/A,CE 511,Advanced Structural Analysis and Vibrations,0,0,0,0
+222,8,Graduate,N/A,CE 510,Advanced Structural Mechanics,0,0,0,0
+223,8,Graduate,N/A,CE 599,Seminar,0,0,0,0
+224,8,Graduate,N/A,CE 610,Thesis,0,0,0,0
+225,8,Graduate,N/A,"One of CE 521, 522, 523",CE Option Elective I,0,0,0,0
+226,8,Graduate,N/A,From Structural Design / Mechanics / Materials,CE Option Elective II,0,0,0,0
+227,8,Graduate,N/A,CE 517 (Structures Option) / CHE 501 or CE 5xx (Materials Option),Option Elective III,0,0,0,0
+228,8,Graduate,N/A,MATH 513 (Structures Option) / MATH 560 (Materials Option),Math Elective,0,0,0,0
+229,8,Graduate,N/A,XXX 5xx,Technical Elective,0,0,0,0
+230,8,Graduate,N/A,Concrete Materials,CE 501,0,0,0,0
+231,8,Graduate,N/A,Advanced Structural Analysis and Vibrations,CE 511,0,0,0,0
+232,8,Graduate,N/A,Mathematics elective,MATH xxx,0,0,0,0
+233,8,Graduate,N/A,Advanced Structural Mechanics,CE 510,0,0,0,0
+234,8,Graduate,N/A,CE Option Elective I,CE 5xx,0,0,0,0
+235,8,Graduate,N/A,CE Option Elective II,CE 5xx,0,0,0,0
+236,8,Graduate,N/A,Seminar,CE 599,0,0,0,0
+237,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+238,8,Graduate,N/A,CE Option Elective III,XXX 5xx,0,0,0,0
+239,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+240,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+241,8,Graduate,N/A,Concrete Materials,CE 501,0,0,0,0
+242,8,Graduate,N/A,Advanced Structural Analysis and Vibrations,CE 511,0,0,0,0
+243,8,Graduate,N/A,Mathematics elective,MATH xxx,0,0,0,0
+244,8,Graduate,N/A,Advanced Structural Mechanics,CE 510,0,0,0,0
+245,8,Graduate,N/A,CE Option Elective I,CE 5xx,0,0,0,0
+246,8,Graduate,N/A,CE Option Elective II,CE 5xx,0,0,0,0
+247,8,Graduate,N/A,Seminar,CE 599,0,0,0,0
+248,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+249,8,Graduate,N/A,CE Option Elective III,XXX 5xx,0,0,0,0
+250,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+251,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+252,8,Graduate,N/A,MATH 560,Applied Regression and Experimental Design,0,0,0,0
+253,8,Graduate,N/A,CE 574 (Pavement Engg Option) / 571 (Transportation Engg Option),Transportation Core I,0,0,0,0
+254,8,Graduate,N/A,CE 579 (Pavement Engg Option) / 582 (Transportation Engg Option),Transportation Core II,0,0,0,0
+255,8,Graduate,N/A,CE 599,Seminar,0,0,0,0
+256,8,Graduate,N/A,CE 610,Thesis,0,0,0,0
+257,8,Graduate,N/A,CE 5xx,Three Transportation Elective Courses,0,0,0,0
+258,8,Graduate,N/A,CE xxx,One CE Elective Course,0,0,0,0
+259,8,Graduate,N/A,XXX 5xx,One Technical Elective Course,0,0,0,0
+260,8,Graduate,N/A,Applied Regression and Experimental Design,MATH 560,0,0,0,0
+261,8,Graduate,N/A,Seminar,MATH 599,0,0,0,0
+262,8,Graduate,N/A,Transportation Core I,CE 5xx,0,0,0,0
+263,8,Graduate,N/A,Transportation Core II,CE 5xx,0,0,0,0
+264,8,Graduate,N/A,Transportation Elective I,CE 5xx,0,0,0,0
+265,8,Graduate,N/A,Transportation Elective II,CE 5xx,0,0,0,0
+266,8,Graduate,N/A,Transportation Elective III,CE 5xx,0,0,0,0
+267,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+268,8,Graduate,N/A,CE Elective,CE xxx,0,0,0,0
+269,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+270,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+271,8,Graduate,N/A,Applied Regression and Experimental Design,MATH 560,0,0,0,0
+272,8,Graduate,N/A,Seminar,MATH 599,0,0,0,0
+273,8,Graduate,N/A,Transportation Core I,CE 5xx,0,0,0,0
+274,8,Graduate,N/A,Transportation Core II,CE 5xx,0,0,0,0
+275,8,Graduate,N/A,Transportation Elective I,CE 5xx,0,0,0,0
+276,8,Graduate,N/A,Transportation Elective II,CE 5xx,0,0,0,0
+277,8,Graduate,N/A,Transportation Elective III,CE 5xx,0,0,0,0
+278,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+279,8,Graduate,N/A,CE Elective,CE xxx,0,0,0,0
+280,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+281,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+282,8,Graduate,N/A,CE 533,Groundwater Flow and Contaminant Transport,0,0,0,0
+283,8,Graduate,N/A,CE 599,Seminar,0,0,0,0
+284,8,Graduate,N/A,CE 610,Thesis,0,0,0,0
+285,8,Graduate,N/A,CE 531 or CE 541,Option Elective I,0,0,0,0
+286,8,Graduate,N/A,CE 5xx,Two Option Elective Courses,0,0,0,0
+287,8,Graduate,N/A,CE xxx,Two CE Elective Courses,0,0,0,0
+288,8,Graduate,N/A,XXX 5xx,Technical Elective,0,0,0,0
+289,8,Graduate,N/A,MATH 513 or MATH 560,Mathematics,0,0,0,0
+290,8,Graduate,N/A,Groundwater Flow and Contaminant Transport,CE 533,0,0,0,0
+291,8,Graduate,N/A,Math Elective,MATH 5xx,0,0,0,0
+292,8,Graduate,N/A,Option Elective I,CE 5xx,0,0,0,0
+293,8,Graduate,N/A,Seminar,CE 599,0,0,0,0
+294,8,Graduate,N/A,Option Elective II,CE 5xx,0,0,0,0
+295,8,Graduate,N/A,Option Elective III,CE 5xx,0,0,0,0
+296,8,Graduate,N/A,CE Elective I,CE xxx,0,0,0,0
+297,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+298,8,Graduate,N/A,CE Elective II,CE xxx,0,0,0,0
+299,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+300,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+301,8,Graduate,N/A,Groundwater Flow and Contaminant Transport,CE 533,0,0,0,0
+302,8,Graduate,N/A,Math Elective,MATH 5xx,0,0,0,0
+303,8,Graduate,N/A,Option Elective I,CE 5xx,0,0,0,0
+304,8,Graduate,N/A,Seminar,CE 599,0,0,0,0
+305,8,Graduate,N/A,Option Elective II,CE 5xx,0,0,0,0
+306,8,Graduate,N/A,Option Elective III,CE 5xx,0,0,0,0
+307,8,Graduate,N/A,CE Elective I,CE xxx,0,0,0,0
+308,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+309,8,Graduate,N/A,CE Elective II,CE xxx,0,0,0,0
+310,8,Graduate,N/A,Thesis,CE 610,0,0,0,0
+311,8,Graduate,N/A,Technical Elective,XXX 5xx,0,0,0,0
+312,24,Graduate,N/A,COE 5xx/COE 6xx,COE Course in Major Area (Depth),0,0,0,0
+313,24,Graduate,N/A,COE 5xx/COE 6xx (from COE but not from the same COE major area),Other COE Major Areas (Breadth),0,0,0,0
+314,24,Graduate,N/A,COE 699,Seminar,0,0,0,0
+315,24,Graduate,N/A,COE 711,PhD. Pre-Dissertation,0,0,0,0
+316,24,Graduate,N/A,COE 712,PhD. Dissertation,0,0,0,0
+317,24,Graduate,N/A,"COE 701, COE 702 or courses from other departments: ICS, EE, SE and MATH",Elective Course,0,0,0,0
+318,49,Graduate,N/A,ICS 553,Design and Theory of Algorithms (Core),0,0,0,0
+319,49,Graduate,N/A,ICS 500,Research Methods & Experiment Design in Computing,0,0,0,0
+320,49,Graduate,N/A,ICS 535,Design and Implementation of Programming Languages,0,0,0,0
+321,49,Graduate,N/A,ICS 599,Seminar,0,0,0,0
+322,49,Graduate,N/A,ICS 610,Thesis,0,0,0,0
+323,49,Graduate,N/A,ICS xxx,Two ICS Courses in Major Are,0,0,0,0
+324,49,Graduate,N/A,XXX xxx,Three General Elective Courses,0,0,0,0
+325,49,Graduate,N/A,Design and Theory of Algorithms (Core),ICS 553,0,0,0,0
+326,49,Graduate,N/A,Major Area Elective I,ICS xxx,0,0,0,0
+327,49,Graduate,N/A,Research Methods & Experiment Design in Computing,ICS 500,0,0,0,0
+328,49,Graduate,N/A,Design and Implementation of Programming Languages,ICS 535,0,0,0,0
+329,49,Graduate,N/A,Major Area Elective II,ICS xxx,0,0,0,0
+330,49,Graduate,N/A,General Elective I,XXX xxx,0,0,0,0
+331,49,Graduate,N/A,General Elective II,XXX xxx,0,0,0,0
+332,49,Graduate,N/A,General Elective III,XXX xxx,0,0,0,0
+333,49,Graduate,N/A,Seminar,ICS 599,0,0,0,0
+334,49,Graduate,N/A,Thesis,ICS 610,0,0,0,0
+335,49,Graduate,N/A,Thesis,ICS 610,0,0,0,0
+336,49,Graduate,N/A,Design and Theory of Algorithms (Core),ICS 553,0,0,0,0
+337,49,Graduate,N/A,Major Area Elective I,ICS xxx,0,0,0,0
+338,49,Graduate,N/A,Research Methods & Experiment Design in Computing,ICS 500,0,0,0,0
+339,49,Graduate,N/A,Design and Implementation of Programming Languages,ICS 535,0,0,0,0
+340,49,Graduate,N/A,Major Area Elective II,ICS xxx,0,0,0,0
+341,49,Graduate,N/A,General Elective I,XXX xxx,0,0,0,0
+342,49,Graduate,N/A,General Elective II,XXX xxx,0,0,0,0
+343,49,Graduate,N/A,General Elective III,XXX xxx,0,0,0,0
+344,49,Graduate,N/A,Seminar,ICS 599,0,0,0,0
+345,49,Graduate,N/A,Thesis,ICS 610,0,0,0,0
+346,49,Graduate,N/A,Thesis,ICS 610,0,0,0,0
+347,49,Graduate,N/A,ICS 599,Seminar,0,0,0,0
+348,49,Graduate,N/A,ICS 711,PhD Pre-Dissertation,0,0,0,0
+349,49,Graduate,N/A,ICS 712,PhD. Dissertation,0,0,0,0
+350,49,Graduate,N/A,ICS xxx,Three ICS Courses in Major Area,0,0,0,0
+351,49,Graduate,N/A,ICS xxx,Three ICS Courses in Breadth Area,0,0,0,0
+352,49,Graduate,N/A,ICS xxx,One ICS Elective Course,0,0,0,0
+353,49,Graduate,N/A,XXX xxx,Three General Elective Courses,0,0,0,0
+354,49,Graduate,N/A,Major Area Elective I,ICS xxx,0,0,0,0
+355,49,Graduate,N/A,Breadth Area Elective I,ICS xxx,0,0,0,0
+356,49,Graduate,N/A,Breadth Area Elective II,ICS xxx,0,0,0,0
+357,49,Graduate,N/A,Major Area Elective II,ICS xxx,0,0,0,0
+358,49,Graduate,N/A,Breadth Area Elective III,ICS xxx,0,0,0,0
+359,49,Graduate,N/A,CS Elective,ICS xxx,0,0,0,0
+360,49,Graduate,N/A,Major Area Elective III,ICS xxx,0,0,0,0
+361,49,Graduate,N/A,General Elective I,XXX xxx,0,0,0,0
+362,49,Graduate,N/A,General Elective II,XXX xxx,0,0,0,0
+363,49,Graduate,N/A,General Elective III,XXX xxx,0,0,0,0
+364,49,Graduate,N/A,Seminar,ICS 699,0,0,0,0
+365,49,Graduate,N/A,PhD Pre-Dissertation,ICS 711,0,0,0,0
+366,49,Graduate,N/A,PhD. Dissertation,ICS 712,0,0,0,0
+367,49,Graduate,N/A,PhD. Dissertation,ICS 712,0,0,0,0
+368,49,Graduate,N/A,Major Area Elective I,ICS xxx,0,0,0,0
+369,49,Graduate,N/A,Breadth Area Elective I,ICS xxx,0,0,0,0
+370,49,Graduate,N/A,Breadth Area Elective II,ICS xxx,0,0,0,0
+371,49,Graduate,N/A,Major Area Elective II,ICS xxx,0,0,0,0
+372,49,Graduate,N/A,Breadth Area Elective III,ICS xxx,0,0,0,0
+373,49,Graduate,N/A,CS Elective,ICS xxx,0,0,0,0
+374,49,Graduate,N/A,Major Area Elective III,ICS xxx,0,0,0,0
+375,49,Graduate,N/A,General Elective I,XXX xxx,0,0,0,0
+376,49,Graduate,N/A,General Elective II,XXX xxx,0,0,0,0
+377,49,Graduate,N/A,General Elective III,XXX xxx,0,0,0,0
+378,49,Graduate,N/A,Seminar,ICS 699,0,0,0,0
+379,49,Graduate,N/A,PhD Pre-Dissertation,ICS 711,0,0,0,0
+380,49,Graduate,N/A,PhD. Dissertation,ICS 712,0,0,0,0
+381,49,Graduate,N/A,PhD. Dissertation,ICS 712,0,0,0,0
+382,46,Graduate,N/A,CEM 510,Project Planning and Control,0,0,0,0
+383,46,Graduate,N/A,CEM 511,Cost Engineering and Machine Learning Applications,0,0,0,0
+384,46,Graduate,N/A,CEM 520,Construction Contracting & Leadership,0,0,0,0
+385,46,Graduate,N/A,CEM 530,Construction Robotics and Autonomous Systems,0,0,0,0
+386,46,Graduate,N/A,CEM 599,Research Seminar,0,0,0,0
+387,46,Graduate,N/A,CRP 505,Statistical Analysis in Planning,0,0,0,0
+388,46,Graduate,N/A,CEM 610,Thesis,0,0,0,0
+389,46,Graduate,N/A,CEM 5xx,CEM Elective,0,0,0,0
+390,46,Graduate,N/A,XXX 5XX,Approved Elective,0,0,0,0
+391,46,Graduate,N/A,Construction Contracting & Leadership,CEM 520,0,0,0,0
+392,46,Graduate,N/A,CEM Elective,CEM 5xx,0,0,0,0
+393,46,Graduate,N/A,Project Planning and Control,CEM 510,0,0,0,0
+394,46,Graduate,N/A,Statistical Analysis in Planning,CRP 505,0,0,0,0
+395,46,Graduate,N/A,Cost Engineering and Machine Learning Applications,CEM 511,0,0,0,0
+396,46,Graduate,N/A,CEM Elective,CEM 5xx,0,0,0,0
+397,46,Graduate,N/A,Thesis,CEM 610,0,0,0,0
+398,46,Graduate,N/A,Research Seminar,CEM 599,0,0,0,0
+399,46,Graduate,N/A,Construction Robotics and Autonomous Systems,CEM 530,0,0,0,0
+400,46,Graduate,N/A,Elective,XXX 5xx,0,0,0,0
+401,46,Graduate,N/A,Thesis,CEM 610,0,0,0,0
+402,46,Graduate,N/A,Construction Contracting & Leadership,CEM 520,0,0,0,0
+403,46,Graduate,N/A,CEM Elective,CEM 5xx,0,0,0,0
+404,46,Graduate,N/A,Project Planning and Control,CEM 510,0,0,0,0
+405,46,Graduate,N/A,Statistical Analysis in Planning,CRP 505,0,0,0,0
+406,46,Graduate,N/A,Cost Engineering and Machine Learning Applications,CEM 511,0,0,0,0
+407,46,Graduate,N/A,CEM Elective,CEM 5xx,0,0,0,0
+408,46,Graduate,N/A,Thesis,CEM 610,0,0,0,0
+409,46,Graduate,N/A,Research Seminar,CEM 599,0,0,0,0
+410,46,Graduate,N/A,Construction Robotics and Autonomous Systems,CEM 530,0,0,0,0
+411,46,Graduate,N/A,Elective,XXX 5xx,0,0,0,0
+412,46,Graduate,N/A,Thesis,CEM 610,0,0,0,0
+413,46,Graduate,N/A,ARE 530,Building Science,0,0,0,0
+414,46,Graduate,N/A,EM 621,Design of Experiments and Engineering Simulation,0,0,0,0
+415,46,Graduate,N/A,CEM 519,Sustainable Construction and Carbon Management,0,0,0,0
+416,46,Graduate,N/A,ARE 632,Integrated Building Systems,0,0,0,0
+417,46,Graduate,N/A,CEM 547,"BIM, Lean Construction & Digital Transformation",0,0,0,0
+418,46,Graduate,N/A,AECM 699,Seminar,0,0,0,0
+419,46,Graduate,N/A,AECM 711,PhD. Pre-Dissertation,0,0,0,0
+420,46,Graduate,N/A,AECM 712,PhD. Dissertation,0,0,0,0
+421,46,Graduate,N/A,XXX 5XX/6XX,AECM Elective,0,0,0,0
+422,46,Graduate,N/A,XXX 5XX/6XX,Free Elective,0,0,0,0
+423,46,Graduate,N/A,Building Science,ARE 530,0,0,0,0
+424,46,Graduate,N/A,Design of Experiments and Engineering Simulation,EM 621,0,0,0,0
+425,46,Graduate,N/A,Sustainable Construction and Carbon Management,CEM 519,0,0,0,0
+426,46,Graduate,N/A,Integrated Building Systems,ARE 632,0,0,0,0
+427,46,Graduate,N/A,"BIM, Lean Construction & Digital Transformation",CEM 547,0,0,0,0
+428,46,Graduate,N/A,AECM Elective,XXX 5XX/6XX,0,0,0,0
+429,46,Graduate,N/A,AECM Elective,XXX 5XX/6XX,0,0,0,0
+430,46,Graduate,N/A,AECM Elective,XXX 5XX/6XX,0,0,0,0
+431,46,Graduate,N/A,Free Elective,XXX 5XX/6XX,0,0,0,0
+432,46,Graduate,N/A,Seminar,AECM 699,0,0,0,0
+433,46,Graduate,N/A,Free Elective,XXX 6XX/7XX,0,0,0,0
+434,46,Graduate,N/A,PhD. Pre-Dissertation,AECM 711,0,0,0,0
+435,46,Graduate,N/A,PhD. Dissertation,AECM 712,0,0,0,0
+436,46,Graduate,N/A,PhD. Dissertation,AECM 712,0,0,0,0
+437,46,Graduate,N/A,PhD. Dissertation,AECM 712,0,0,0,0
+438,46,Graduate,N/A,PhD. Dissertation,AECM 712,0,0,0,0
+439,46,Graduate,N/A,Building Science,ARE 530,0,0,0,0
+440,46,Graduate,N/A,Design of Experiments and Engineering Simulation,EM 621,0,0,0,0
+441,46,Graduate,N/A,Sustainable Construction and Carbon Management,CEM 519,0,0,0,0
+442,46,Graduate,N/A,Integrated Building Systems,ARE 632,0,0,0,0
+443,46,Graduate,N/A,"BIM, Lean Construction & Digital Transformation",CEM 547,0,0,0,0
+444,46,Graduate,N/A,AECM Elective,XXX 5XX/6XX,0,0,0,0
+445,16,Graduate,N/A,EE xxx,Courses in the Area of Specialization,0,0,0,0
+446,16,Graduate,N/A,EE xxx,Course in the Major Area,0,0,0,0
+447,16,Graduate,N/A,EE 699,Seminar,0,0,0,0
+448,16,Graduate,N/A,EE 711,PhD. Pre-Dissertation,0,0,0,0
+449,16,Graduate,N/A,EE 712,PhD. Dissertation,0,0,0,0
+450,16,Graduate,N/A,XX xxx,Non-EE Technical Elective,0,0,0,0
+451,16,Graduate,N/A,XX xxx,Free Elective,0,0,0,0
+452,16,Graduate,N/A,XX xxx,Non-EE Technical Elective,0,0,0,0
+453,16,Graduate,N/A,Course in the Major area,EE xxx,0,0,0,0
+454,16,Graduate,N/A,Course in the Major area,EE xxx,0,0,0,0
+455,16,Graduate,N/A,Course in the Minor area,EE xxx,0,0,0,0
+456,16,Graduate,N/A,Course in the Major area,EE xxx,0,0,0,0
+457,16,Graduate,N/A,Course in the Minor Area,EE xxx,0,0,0,0
+458,16,Graduate,N/A,Non-EE Technical Elective,XX xxx,0,0,0,0
+459,16,Graduate,N/A,Non-EE Technical Elective,XX xxx,0,0,0,0
+460,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+461,16,Graduate,N/A,Free Elective,XX xxx,0,0,0,0
+462,16,Graduate,N/A,Seminar,EE 699,0,0,0,0
+463,16,Graduate,N/A,PhD. Pre-Dissertation,EE 711,0,0,0,0
+464,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+465,16,Graduate,N/A,PhD. Dissertation,EE 712,0,0,0,0
+466,16,Graduate,N/A,PhD. Dissertation,EE 712,0,0,0,0
+467,16,Graduate,N/A,Course in the Major area,EE xxx,0,0,0,0
+468,16,Graduate,N/A,Course in the Major area,EE xxx,0,0,0,0
+469,16,Graduate,N/A,Course in the Minor area,EE xxx,0,0,0,0
+470,16,Graduate,N/A,Course in the Major area,EE xxx,0,0,0,0
+471,16,Graduate,N/A,Course in the Minor Area,EE xxx,0,0,0,0
+472,16,Graduate,N/A,Non-EE Technical Elective,XX xxx,0,0,0,0
+473,16,Graduate,N/A,Non-EE Technical Elective,XX xxx,0,0,0,0
+474,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+475,16,Graduate,N/A,Free Elective,XX xxx,0,0,0,0
+476,16,Graduate,N/A,Seminar,EE 699,0,0,0,0
+477,16,Graduate,N/A,PhD. Pre-Dissertation,EE 711,0,0,0,0
+478,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+479,16,Graduate,N/A,PhD. Dissertation,EE 712,0,0,0,0
+480,16,Graduate,N/A,PhD. Dissertation,EE 712,0,0,0,0
+481,16,Graduate,N/A,EE xxx,EE Course in Area of Specialization,0,0,0,0
+482,16,Graduate,N/A,EE xxx,Courses in Other Area(s) within EE,0,0,0,0
+483,16,Graduate,N/A,EE 599,Seminar,0,0,0,0
+484,16,Graduate,N/A,EE 610,M.S. Thesis,0,0,0,0
+485,16,Graduate,N/A,XXX xxx,Technical Elective Courses,0,0,0,0
+486,16,Graduate,N/A,EE Course in Area of Depth,EE xxx,0,0,0,0
+487,16,Graduate,N/A,EE Course in Area of Depth,EE xxx,0,0,0,0
+488,16,Graduate,N/A,EE Course in Area(s) of Breadth,EE xxx,0,0,0,0
+489,16,Graduate,N/A,EE Course in Area of Depth,EE xxx,0,0,0,0
+490,16,Graduate,N/A,EE Course in Area(s) of Breadth,EE xxx,0,0,0,0
+491,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+492,16,Graduate,N/A,Seminar,EE 599,0,0,0,0
+493,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+494,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+495,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+496,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+497,16,Graduate,N/A,EE Course in Area of Depth,EE xxx,0,0,0,0
+498,16,Graduate,N/A,EE Course in Area of Depth,EE xxx,0,0,0,0
+499,16,Graduate,N/A,EE Course in Area(s) of Breadth,EE xxx,0,0,0,0
+500,16,Graduate,N/A,EE Course in Area of Depth,EE xxx,0,0,0,0
+501,16,Graduate,N/A,EE Course in Area(s) of Breadth,EE xxx,0,0,0,0
+502,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+503,16,Graduate,N/A,Seminar,EE 599,0,0,0,0
+504,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+505,16,Graduate,N/A,Free Technical Elective,XX xxx,0,0,0,0
+506,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+507,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+508,12,Graduate,N/A,Reflection Seismology,GEOP 501,0,0,0,0
+509,12,Graduate,N/A,Potential Theory Methods,GEOP 502,0,0,0,0
+510,12,Graduate,N/A,Solid Earth Geophysics,GEOP 503,0,0,0,0
+511,12,Graduate,N/A,Geophysics Elective I,GEOP xxx,0,0,0,0
+512,12,Graduate,N/A,Seminar,GEOP 509,0,0,0,0
+513,12,Graduate,N/A,Graduate Mathematics Course,MATH 5xx,0,0,0,0
+514,12,Graduate,N/A,Geophysics Elective II,GEOP xxx,0,0,0,0
+515,12,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+516,12,Graduate,N/A,Geophysics Elective III,GEOP xxx,0,0,0,0
+517,12,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+518,12,Graduate,N/A,Non-Tehnical Elective (Must be chosen from CIM or EM major ),XXX 5xx,0,0,0,0
+519,12,Graduate,N/A,Master Report,GEOP 600,0,0,0,0
+520,12,Graduate,N/A,Graduate Mathematics Course,MATH 5xx,0,0,0,0
+521,12,Graduate,N/A,Geophysics Elective II,GEOP xxx,0,0,0,0
+522,12,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+523,12,Graduate,N/A,Geophysics Elective III,GEOP xxx,0,0,0,0
+524,12,Graduate,N/A,Geophysical Wave Propagation,GEOP 602,0,0,0,0
+525,12,Graduate,N/A,Numerical Modeling in Geophysics,GEOP 603,0,0,0,0
+526,12,Graduate,N/A,Geophysical Signal Analysis,GEOP 604,0,0,0,0
+527,12,Graduate,N/A,Mathematics elective,MATH xxx,0,0,0,0
+528,12,Graduate,N/A,Geophysics elective I,GEOP xxx,0,0,0,0
+529,12,Graduate,N/A,Direcred Research I,GEOP 701,0,0,0,0
+530,12,Graduate,N/A,Seminar,GEOP 699,0,0,0,0
+531,12,Graduate,N/A,Geophysics elective II,GEOP xxx,0,0,0,0
+532,12,Graduate,N/A,Directed Research II,GEOP 702,0,0,0,0
+533,12,Graduate,N/A,PhD. Pre-Dissertation,GEOP 711,0,0,0,0
+534,12,Graduate,N/A,PhD. Dissertation,GEOP 712,0,0,0,0
+535,12,Graduate,N/A,PhD. Dissertation,GEOP 712,0,0,0,0
+536,12,Graduate,N/A,Geophysical Wave Propagation,GEOP 602,0,0,0,0
+537,12,Graduate,N/A,Numerical Modeling in Geophysics,GEOP 603,0,0,0,0
+538,12,Graduate,N/A,Geophysical Signal Analysis,GEOP 604,0,0,0,0
+539,12,Graduate,N/A,Mathematics elective,MATH xxx,0,0,0,0
+540,12,Graduate,N/A,Geophysics elective I,GEOP xxx,0,0,0,0
+541,12,Graduate,N/A,Reflection Seismology,GEOP 501,0,0,0,0
+542,12,Graduate,N/A,Potential Theory Methods,GEOP 502,0,0,0,0
+543,12,Graduate,N/A,Geophysics Elective I,GEOP xxx,0,0,0,0
+544,12,Graduate,N/A,Seminar,GEOP 599,0,0,0,0
+545,12,Graduate,N/A,Solid Earth Geophysics,GEOP 503,0,0,0,0
+546,12,Graduate,N/A,Geophysics Elective II,GEOP xxx,0,0,0,0
+547,12,Graduate,N/A,Free Elective I,XXX xxx,0,0,0,0
+548,12,Graduate,N/A,Graduate Mathematics Course,MATH 5xx,0,0,0,0
+549,12,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+550,12,Graduate,N/A,Thesis,GEOP 610,0,0,0,0
+551,12,Graduate,N/A,Graduate Mathematics Course,MATH 5xx,0,0,0,0
+552,12,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+553,12,Graduate,N/A,Thesis,GEOP 610,0,0,0,0
+554,20,Graduate,N/A,ISE 503,Linear Programming and Applications - I,0,0,0,0
+555,20,Graduate,N/A,ISE 502,Probabilistic Modelling in ISE,0,0,0,0
+556,20,Graduate,N/A,ISE 508,Advanced Production Systems & Inventory Control,0,0,0,0
+557,20,Graduate,N/A,ISE 610,Thesis,0,0,0,0
+558,20,Graduate,N/A,"ISE 512, ISE 521,ISE 534, ISE 535, ISE 536, ISE 543",ISE courses,0,0,0,0
+559,20,Graduate,N/A,"SCE 5XX, ME 5XX,MSE 5XX ,CHE 5XX, EE 5XX,CE 5XX,MATH 5XX, STAT 5XX, CHEM 5XX, ICS 5XX, SWE 5XX, COE 5XX, PETE 5XX",Technical Electives,0,0,0,0
+560,29,Graduate,N/A,MSE 599,Seminar,0,0,0,0
+561,29,Graduate,N/A,Independent Thesis Research,MSE 610,0,0,0,0
+562,29,Graduate,N/A,Chem 514/515/537/560/615/617; CE 501/504; EE 546; CHE 540/541/542/543/544/545; ME 575/576/577/578/579/585/588/597/675/697,MSE Technical Elective Courses,0,0,0,0
+563,21,Graduate,N/A,MATH 711,PhD. Pre-Dissertation,0,0,0,0
+564,21,Graduate,N/A,MATH 712,PhD. Dissertation,0,0,0,0
+565,21,Graduate,N/A,MATH 699,Seminar,0,0,0,0
+566,21,Graduate,N/A,Free Elective I,XXX xxx,0,0,0,0
+567,21,Graduate,N/A,Course from Minor Area I,MATH xxx,0,0,0,0
+568,21,Graduate,N/A,Course from Major Area I,MATH xxx,0,0,0,0
+569,21,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+570,21,Graduate,N/A,Course from Minor Area II,MATH xxx,0,0,0,0
+571,21,Graduate,N/A,Course from Major Area II,MATH xxx,0,0,0,0
+572,21,Graduate,N/A,Course from Major Area IV,MATH xxx,0,0,0,0
+573,21,Graduate,N/A,Course from Major Area III,MATH xxx,0,0,0,0
+574,21,Graduate,N/A,Seminar,MATH 699,0,0,0,0
+575,21,Graduate,N/A,Free Elective III,XXX xxx,0,0,0,0
+576,21,Graduate,N/A,PhD. Pre-Dissertation,MATH 711,0,0,0,0
+577,21,Graduate,N/A,Course from Major Area,MATH xxx,0,0,0,0
+578,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+579,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+580,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+581,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+582,21,Graduate,N/A,Free Elective I,XXX xxx,0,0,0,0
+583,21,Graduate,N/A,Course from Minor Area I,MATH xxx,0,0,0,0
+584,21,Graduate,N/A,Course from Major Area I,MATH xxx,0,0,0,0
+585,21,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+586,21,Graduate,N/A,Course from Minor Area II,MATH xxx,0,0,0,0
+587,21,Graduate,N/A,Course from Major Area II,MATH xxx,0,0,0,0
+588,21,Graduate,N/A,Course from Major Area IV,MATH xxx,0,0,0,0
+589,21,Graduate,N/A,Course from Major Area III,MATH xxx,0,0,0,0
+590,21,Graduate,N/A,Seminar,MATH 699,0,0,0,0
+591,21,Graduate,N/A,Free Elective III,XXX xxx,0,0,0,0
+592,21,Graduate,N/A,PhD. Pre-Dissertation,MATH 711,0,0,0,0
+593,21,Graduate,N/A,Course from Major Area,MATH xxx,0,0,0,0
+594,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+595,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+596,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+597,21,Graduate,N/A,PhD. Dissertation,MATH 712,0,0,0,0
+598,21,Graduate,N/A,"Of the 18 credit hours, student must pass at least three courses of MATH 521/531/533/550/551",Mathematics Courses,0,0,0,0
+599,21,Graduate,N/A,MATH 599,Seminar,0,0,0,0
+600,21,Graduate,N/A,MATH 610,M.S. Thesis,0,0,0,0
+601,21,Graduate,N/A,MATH Elective I,MATH xxx,0,0,0,0
+602,21,Graduate,N/A,MATH Requirement II,MATH xxx,0,0,0,0
+603,21,Graduate,N/A,MATH Requirement I,MATH xxx,0,0,0,0
+604,21,Graduate,N/A,Free Elective I,XXX xxx,0,0,0,0
+605,21,Graduate,N/A,MATH Elective II,MATH xxx,0,0,0,0
+606,21,Graduate,N/A,MATH Requirement III,MATH xxx,0,0,0,0
+607,21,Graduate,N/A,Seminar,MATH 599,0,0,0,0
+608,21,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+609,21,Graduate,N/A,MATH Elective III,MATH xxx,0,0,0,0
+610,21,Graduate,N/A,M.S. Thesis,MATH 610,0,0,0,0
+611,21,Graduate,N/A,M.S. Thesis,MATH 610,0,0,0,0
+612,21,Graduate,N/A,MATH Elective I,MATH xxx,0,0,0,0
+613,21,Graduate,N/A,MATH Requirement II,MATH xxx,0,0,0,0
+614,21,Graduate,N/A,MATH Requirement I,MATH xxx,0,0,0,0
+615,21,Graduate,N/A,Free Elective I,XXX xxx,0,0,0,0
+616,21,Graduate,N/A,MATH Elective II,MATH xxx,0,0,0,0
+617,21,Graduate,N/A,MATH Requirement III,MATH xxx,0,0,0,0
+618,21,Graduate,N/A,Seminar,MATH 599,0,0,0,0
+619,21,Graduate,N/A,Free Elective II,XXX xxx,0,0,0,0
+620,21,Graduate,N/A,MATH Elective III,MATH xxx,0,0,0,0
+621,21,Graduate,N/A,M.S. Thesis,MATH 610,0,0,0,0
+622,21,Graduate,N/A,M.S. Thesis,MATH 610,0,0,0,0
+623,30,Graduate,N/A,500 level,Math course,0,0,0,0
+624,30,Graduate,N/A,at 500 or 600 levels,Technical Graduate Courses,0,0,0,0
+625,30,Graduate,N/A,ME 599,Seminar,0,0,0,0
+626,30,Graduate,N/A,ME 610,M.S. Thesis,0,0,0,0
+627,30,Graduate,N/A,ME courses at 500 or 600 levels (one course can be at 400 level),ME elective courses,0,0,0,0
+628,30,Graduate,N/A,Core I,ME 5xx,0,0,0,0
+629,30,Graduate,N/A,ME Elective I,ME 5xx,0,0,0,0
+630,30,Graduate,N/A,MATH Course,MATH 5xx,0,0,0,0
+631,30,Graduate,N/A,Core II,ME 5xx,0,0,0,0
+632,30,Graduate,N/A,ME Elective II,ME 5xx/6xx,0,0,0,0
+633,30,Graduate,N/A,Technical Elective I,XX 5xx/6xx,0,0,0,0
+634,30,Graduate,N/A,Seminar,ME 599,0,0,0,0
+635,30,Graduate,N/A,ME Elective III,ME 5xx/6xx,0,0,0,0
+636,30,Graduate,N/A,Technical Elective II,XX 5xx/6xx,0,0,0,0
+637,30,Graduate,N/A,M.S. Thesis,ME 610,0,0,0,0
+638,30,Graduate,N/A,M.S. Thesis,ME 610,0,0,0,0
+639,30,Graduate,N/A,Core I,ME 5xx,0,0,0,0
+640,30,Graduate,N/A,ME Elective I,ME 5xx,0,0,0,0
+641,30,Graduate,N/A,MATH Course,MATH 5xx,0,0,0,0
+642,30,Graduate,N/A,Core II,ME 5xx,0,0,0,0
+643,30,Graduate,N/A,ME Elective II,ME 5xx/6xx,0,0,0,0
+644,30,Graduate,N/A,Technical Elective I,XX 5xx/6xx,0,0,0,0
+645,30,Graduate,N/A,Seminar,ME 599,0,0,0,0
+646,30,Graduate,N/A,ME Elective III,ME 5xx/6xx,0,0,0,0
+647,30,Graduate,N/A,Technical Elective II,XX 5xx/6xx,0,0,0,0
+648,30,Graduate,N/A,M.S. Thesis,ME 610,0,0,0,0
+649,30,Graduate,N/A,M.S. Thesis,ME 610,0,0,0,0
+650,30,Graduate,N/A,ME 699,Seminar,0,0,0,0
+651,30,Graduate,N/A,ME 711,PhD. Pre-Dissertation,0,0,0,0
+652,30,Graduate,N/A,ME 712,PhD. Dissertation,0,0,0,0
+653,30,Graduate,N/A,ME Elective I,ME 5xx/6xx,0,0,0,0
+654,30,Graduate,N/A,ME Elective II,ME 5xx/6xx,0,0,0,0
+655,30,Graduate,N/A,ME Elective III,ME 5xx/6xx,0,0,0,0
+656,30,Graduate,N/A,ME Elective IV,ME 5xx/6xx,0,0,0,0
+657,30,Graduate,N/A,ME Elective V,ME 5xx/6xx,0,0,0,0
+658,30,Graduate,N/A,ME Elective VI,ME 5xx/6xx,0,0,0,0
+659,30,Graduate,N/A,Seminar,ME 699,0,0,0,0
+660,30,Graduate,N/A,ME Elective VII,ME 5xx/6xx,0,0,0,0
+661,30,Graduate,N/A,Technical Elective I,XX 5xx/6xx,0,0,0,0
+662,30,Graduate,N/A,Technical Elective II,XX 5xx/6xx,0,0,0,0
+663,30,Graduate,N/A,Technical Elective III,XX 5xx/6xx,0,0,0,0
+664,30,Graduate,N/A,PhD. Pre-Dissertation,ME 711,0,0,0,0
+665,30,Graduate,N/A,PhD. Dissertation,ME 712,0,0,0,0
+666,30,Graduate,N/A,PhD. Dissertation,ME 712,0,0,0,0
+667,30,Graduate,N/A,ME Elective I,ME 5xx/6xx,0,0,0,0
+668,30,Graduate,N/A,ME Elective II,ME 5xx/6xx,0,0,0,0
+669,30,Graduate,N/A,ME Elective III,ME 5xx/6xx,0,0,0,0
+670,30,Graduate,N/A,ME Elective IV,ME 5xx/6xx,0,0,0,0
+671,30,Graduate,N/A,ME Elective V,ME 5xx/6xx,0,0,0,0
+672,30,Graduate,N/A,ME Elective VI,ME 5xx/6xx,0,0,0,0
+673,30,Graduate,N/A,Seminar,ME 699,0,0,0,0
+674,30,Graduate,N/A,ME Elective VII,ME 5xx/6xx,0,0,0,0
+675,30,Graduate,N/A,Technical Elective I,XX 5xx/6xx,0,0,0,0
+676,30,Graduate,N/A,Technical Elective II,XX 5xx/6xx,0,0,0,0
+677,30,Graduate,N/A,Technical Elective III,XX 5xx/6xx,0,0,0,0
+678,30,Graduate,N/A,PhD. Pre-Dissertation,ME 711,0,0,0,0
+679,30,Graduate,N/A,PhD. Dissertation,ME 712,0,0,0,0
+680,30,Graduate,N/A,PhD. Dissertation,ME 712,0,0,0,0
+681,49,Graduate,N/A,Principles of Information Assurance & Security,SEC 511,0,0,0,0
+682,49,Graduate,N/A,Data Security and Encryption,ICS 555,0,0,0,0
+683,49,Graduate,N/A,SEC Elective I,SEC 5/6xx,0,0,0,0
+684,49,Graduate,N/A,Network Security,SEC 521,0,0,0,0
+685,49,Graduate,N/A,SEC Elective II,SEC 5/6xx,0,0,0,0
+686,49,Graduate,N/A,SEC Elective III,SEC 5/6xx,0,0,0,0
+687,49,Graduate,N/A,Graduate Seminar,SEC 599,0,0,0,0
+688,49,Graduate,N/A,Free Elective I,XXX 5/6xx,0,0,0,0
+689,49,Graduate,N/A,Free Elective II,XXX 5/6xx,0,0,0,0
+690,49,Graduate,N/A,Thesis,SEC 610,0,0,0,0
+691,49,Graduate,N/A,Principles of Information Assurance & Security,SEC 511,0,0,0,0
+692,49,Graduate,N/A,Data Security and Encryption,ICS 555,0,0,0,0
+693,49,Graduate,N/A,SEC Elective I,SEC 5/6xx,0,0,0,0
+694,49,Graduate,N/A,Network Security,SEC 521,0,0,0,0
+695,49,Graduate,N/A,SEC Elective II,SEC 5/6xx,0,0,0,0
+696,49,Graduate,N/A,SEC Elective III,SEC 5/6xx,0,0,0,0
+697,49,Graduate,N/A,Graduate Seminar,SEC 599,0,0,0,0
+698,18,Graduate,N/A,SCE XXX; Taken from the 500/600 level courses with at least two of the courses from 600/700 level courses,Major Elective,0,0,0,0
+699,18,Graduate,N/A,SCE 701/xxx,Directed Research/Major Elective,0,0,0,0
+700,18,Graduate,N/A,SCE 710,PhD Dissertation,0,0,0,0
+701,18,Graduate,N/A,SCE/XX xxx,Major/Free Elective,0,0,0,0
+702,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+703,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+704,18,Graduate,N/A,Major/Free Elective,SCE/xx XXX,0,0,0,0
+705,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+706,18,Graduate,N/A,Directed Research/Major Elective,SCE 701/xx,0,0,0,0
+707,18,Graduate,N/A,Major/Free Elective,SCE/xx XXX,0,0,0,0
+708,18,Graduate,N/A,Major/Free Elective,SCE/xx XXX,0,0,0,0
+709,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+710,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+711,18,Graduate,N/A,Seminar,SCE 699,0,0,0,0
+712,18,Graduate,N/A,Directed Research/Major Elective,SCE 70x/XX,0,0,0,0
+713,18,Graduate,N/A,PhD Dissertation,SCE 710,0,0,0,0
+714,18,Graduate,N/A,PhD Dissertation,SCE 710,0,0,0,0
+715,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+716,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+717,18,Graduate,N/A,Major/Free Elective,SCE/xx XXX,0,0,0,0
+718,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+719,18,Graduate,N/A,Directed Research/Major Elective,SCE 701/xx,0,0,0,0
+720,18,Graduate,N/A,Major/Free Elective,SCE/xx XXX,0,0,0,0
+721,18,Graduate,N/A,Major/Free Elective,SCE/xx XXX,0,0,0,0
+722,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+723,18,Graduate,N/A,Major Elective,SCE xxx,0,0,0,0
+724,18,Graduate,N/A,Seminar,SCE 699,0,0,0,0
+725,18,Graduate,N/A,Directed Research/Major Elective,SCE 70x/XX,0,0,0,0
+726,18,Graduate,N/A,PhD Dissertation,SCE 710,0,0,0,0
+727,18,Graduate,N/A,PhD Dissertation,SCE 710,0,0,0,0
+728,18,Graduate,N/A,SCE 507,Linear Multivariable Control,0,0,0,0
+729,18,Graduate,N/A,SCE 513,System Identification,0,0,0,0
+730,18,Graduate,N/A,SCE 599,Seminar,0,0,0,0
+731,18,Graduate,N/A,SCE 5xx,Core Courses,0,0,0,0
+732,18,Graduate,N/A,SCE 610,Thesis,0,0,0,0
+733,18,Graduate,N/A,SCE/XX xxx,Major/Free Elective,0,0,0,0
+734,18,Graduate,N/A,SCE 606/XXX,Major Elective/Independent Research Course,0,0,0,0
+735,18,Graduate,N/A,XX xxx,Free Elective Courses,0,0,0,0
+736,18,Graduate,N/A,Linear Multivariable Control,SCE 507,0,0,0,0
+737,18,Graduate,N/A,System Identification,SCE 513,0,0,0,0
+738,18,Graduate,N/A,Major Elective/Free Elective,SCE/xx XXX,0,0,0,0
+739,18,Graduate,N/A,Core Course,SCE 5xx,0,0,0,0
+740,18,Graduate,N/A,Core Course,SCE 5xx,0,0,0,0
+741,18,Graduate,N/A,Free Elective,XXX xxx,0,0,0,0
+742,18,Graduate,N/A,Seminar,SCE 599,0,0,0,0
+743,18,Graduate,N/A,Major Elective/Independent Research,SCE xxx,0,0,0,0
+744,18,Graduate,N/A,Major Elective/Free Elective,SCE/xx XXX,0,0,0,0
+745,18,Graduate,N/A,Thesis,SCE 610,0,0,0,0
+746,18,Graduate,N/A,Linear Multivariable Control,SCE 507,0,0,0,0
+747,18,Graduate,N/A,System Identification,SCE 513,0,0,0,0
+748,18,Graduate,N/A,Major Elective/Free Elective,SCE/xx XXX,0,0,0,0
+749,18,Graduate,N/A,Core Course,SCE 5xx,0,0,0,0
+750,18,Graduate,N/A,Core Course,SCE 5xx,0,0,0,0
+751,18,Graduate,N/A,Free Elective,XXX xxx,0,0,0,0
+752,18,Graduate,N/A,Seminar,SCE 599,0,0,0,0
+753,18,Graduate,N/A,Major Elective/Independent Research,SCE xxx,0,0,0,0
+754,18,Graduate,N/A,Major Elective/Free Elective,SCE/xx XXX,0,0,0,0
+755,18,Graduate,N/A,Thesis,SCE 610,0,0,0,0
+756,16,Graduate,N/A,EE 570,Stochastic Processes,0,0,0,0
+757,16,Graduate,N/A,EE 571,Digital Communications I,0,0,0,0
+758,16,Graduate,N/A,EE 573 or EE 577,Digital Communication II OR Wireless Communications,0,0,0,0
+759,16,Graduate,N/A,COE 540,Computer Networks,0,0,0,0
+760,16,Graduate,N/A,EE 599,Seminar,0,0,0,0
+761,16,Graduate,N/A,EE 610,M.S. Thesis,0,0,0,0
+762,16,Graduate,N/A,XXX xxx,Technical Elective,0,0,0,0
+763,16,Graduate,N/A,MIS 5xx,Elective from MIS Dept,0,0,0,0
+764,16,Graduate,N/A,Stochastic Processes,EE 570,0,0,0,0
+765,16,Graduate,N/A,Digital Communications I,EE 571,0,0,0,0
+766,16,Graduate,N/A,Computer Networks,COE 540,0,0,0,0
+767,16,Graduate,N/A,Digital Communications II /  Wireless and Personal Communications,EE 573/577,0,0,0,0
+768,16,Graduate,N/A,Technical Elective,XX xxx,0,0,0,0
+769,16,Graduate,N/A,Technical Elective,XX xxx,0,0,0,0
+770,16,Graduate,N/A,Seminar,EE 599,0,0,0,0
+771,16,Graduate,N/A,Technical Elective,XX xxx,0,0,0,0
+772,16,Graduate,N/A,Elective from MIS Dept,MIS 5xx,0,0,0,0
+773,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+774,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+775,16,Graduate,N/A,Stochastic Processes,EE 570,0,0,0,0
+776,16,Graduate,N/A,Digital Communications I,EE 571,0,0,0,0
+777,16,Graduate,N/A,Computer Networks,COE 540,0,0,0,0
+778,16,Graduate,N/A,Digital Communications II /  Wireless and Personal Communications,EE 573/577,0,0,0,0
+779,16,Graduate,N/A,Technical Elective,XX xxx,0,0,0,0
+780,16,Graduate,N/A,Technical Elective,XX xxx,0,0,0,0
+781,16,Graduate,N/A,Seminar,EE 599,0,0,0,0
+782,16,Graduate,N/A,Technical Elective,XX xxx,0,0,0,0
+783,16,Graduate,N/A,Elective from MIS Dept,MIS 5xx,0,0,0,0
+784,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0
+785,16,Graduate,N/A,M.S. Thesis,EE 610,0,0,0,0

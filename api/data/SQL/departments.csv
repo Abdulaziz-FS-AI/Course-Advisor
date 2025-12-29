@@ -1,0 +1,51 @@
+id,name,shortcut,college,other_info,link
+1,Accounting,ACCT,KFUPM Business School,Offers summer training programs,https://kbs.kfupm.edu.sa/academics/accounting-and-finance/
+2,Finance,FIN,KFUPM Business School,,https://kbs.kfupm.edu.sa/academics/accounting-and-finance/
+3,Management,MGT,KFUPM Business School,,https://kbs.kfupm.edu.sa/academics/management-marketing/
+4,Management Information Systems,MIS,KFUPM Business School,,https://kbs.kfupm.edu.sa/academics/information-systems-and-operations-management/
+5,Marketing,MKT,KFUPM Business School,,https://kbs.kfupm.edu.sa/academics/management-marketing/
+6,Architectural Engineering,ARE,College of Engineering Sciences,,https://aecm.kfupm.edu.sa/
+7,Architecture,ARC,College of Engineering Sciences,,https://acd.kfupm.edu.sa/
+8,Civil Engineering,CE,College of Engineering Sciences,,https://ce.kfupm.edu.sa/
+9,Environmental Engineering,ESE,College of Engineering Sciences,,https://ce.kfupm.edu.sa/
+10,Information Technology and Digital Design,ITD,College of Engineering Sciences,,https://itd.kfupm.edu.sa/
+11,Smart and Sustainable Cities,SSC,College of Engineering Sciences,,
+12,Geosciences,GEOL,College of Petroleum Engineering and Geosciences,,https://cpg.kfupm.edu.sa/academics/departments/department-of-geosciences/
+13,Geophysics,GEOP,College of Petroleum Engineering and Geosciences,,
+14,Mining Engineering,MINE,College of Petroleum Engineering and Geosciences,,
+15,Petroleum Engineering,PETE,College of Petroleum Engineering and Geosciences,,https://cpg.kfupm.edu.sa/academics/departments/department-of-petroleum-engineering/
+16,Electrical Engineering,EE,College of Engineering Sciences,,https://ee.kfupm.edu.sa/
+17,Aerospace Engineering,AE,College of Engineering Sciences,,https://ae.kfupm.edu.sa/
+18,Control and Instrumentation Engineering,CIE,College of Engineering Sciences,,https://cie.kfupm.edu.sa/
+19,Management and Marketing,MM,KFUPM Business School,,https://kbs.kfupm.edu.sa/academics/management-marketing/
+20,Industrial and Systems Engineering,ISE,College of Engineering Sciences,,https://ise.kfupm.edu.sa/
+21,Mathematics,MATH,College of Computing and Mathematics,,https://math.kfupm.edu.sa/
+22,Software Engineering,SWE,College of Computing and Mathematics,Active in open-source projects,
+23,Actuarial Science and Financial Mathematics,AS,College of Computing and Mathematics,,
+24,Computer Engineering,COE,College of Computing and Mathematics,,https://coe.kfupm.edu.sa/
+25,Information and Computer Science,CS,College of Computing and Mathematics,,https://ics.kfupm.edu.sa/
+26,Bioengineering,BIOE,College of Engineering Sciences,,https://bioe.kfupm.edu.sa/
+27,Chemical Engineering,CHE,College of Engineering Sciences,,https://che.kfupm.edu.sa/
+28,Chemistry,CHEM,College of Sciences,,https://chemistry.kfupm.edu.sa/
+29,Material Science and Engineering,MSE,College of Engineering Sciences,,https://mse.kfupm.edu.sa/
+30,Mechanical Engineering,ME,College of Engineering Sciences,,https://me.kfupm.edu.sa/
+31,Physics,PHYS,College of Computing and Mathematics,,https://physics.kfupm.edu.sa/
+32,Biology,BIOL,College of Sciences,,
+33,Economics,ECON,KFUPM Business School,,
+34,English,ENGL,College of Sciences,,https://eld.kfupm.edu.sa/
+35,General Studies,GS,,,https://kbs.kfupm.edu.sa/academics/global-studies/
+36,Geography,GEO,College of Sciences,,
+37,Human Resources Management,HRM,KFUPM Business School,,
+38,Islamic and Arabic Studies,IAS,College of Sciences,,https://ias.kfupm.edu.sa/
+39,Operations Management,OM,KFUPM Business School,,https://kbs.kfupm.edu.sa/academics/information-systems-and-operations-management/
+40,Physical Education,PE,College of Sciences,,https://pe.kfupm.edu.sa/
+41,Statistics,STAT,College of Computing and Mathematics,,
+42,Business,BUS,KFUPM Business School,,
+43,Computer Programming,CP,College of Computing and Mathematics,,
+44,College of General Studies,CGS,College of Sciences,,
+45,Construction Project Management,CPG,College of Engineering Sciences,,
+46,Construction Engineering Management,CEM,College of Engineering Sciences,,https://aecm.kfupm.edu.sa/
+47,Data Science,DATA,College of Computing and Mathematics,,
+48,Entrepreneurship,ENTR,KFUPM Business School,,
+49,Information and Computer Science,ICS,College of Computing and Mathematics,,https://ics.kfupm.edu.sa/
+50,Systems Engineering,SE,College of Engineering Sciences,,
