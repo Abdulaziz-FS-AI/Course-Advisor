@@ -128,6 +128,10 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            height: 100vh;
+            /* Ensure full height */
+            overflow: hidden;
+            /* Prevent body scroll */
         }
 
         .main-container {
@@ -142,6 +146,10 @@
             padding: 20px;
             box-sizing: border-box;
             transition: all 0.5s ease;
+            height: 100%;
+            /* Fill container */
+            overflow: hidden;
+            /* Manage inner scroll */
         }
 
         .main-container.chat-active {
@@ -149,18 +157,18 @@
             padding-top: 40px;
         }
 
-        /* Original Styles... */
+        /* Header */
         .header-section {
             text-align: center;
             margin-bottom: 40px;
             transition: all 0.5s ease;
+            flex-shrink: 0;
+            /* Prevent shrinking */
         }
 
         .main-container.chat-active .header-section {
             margin-bottom: 20px;
             transform: scale(0.8);
-            display: none;
-            /* Hide header completely when chatting to save space? Or just shrink. Let's shrink */
             margin-top: -20px;
         }
 
@@ -180,16 +188,21 @@
             color: #333;
         }
 
+        /* Messages Area */
         .messages-area {
             width: 100%;
             flex: 1;
             overflow-y: auto;
+            /* Enable Scroll */
             display: none;
             flex-direction: column;
             gap: 20px;
-            padding: 20px 0;
+            padding: 20px 10px;
+            /* Add padding for scrollbar space */
             margin-bottom: 20px;
             scrollbar-width: thin;
+            min-height: 0;
+            /* Critical for Flexbox scroll */
         }
 
         .main-container.chat-active .messages-area {
@@ -203,6 +216,8 @@
             font-size: 16px;
             line-height: 1.6;
             animation: fadeIn 0.3s ease;
+            word-wrap: break-word;
+            /* Prevent overflow */
         }
 
         .user-msg {
@@ -229,6 +244,7 @@
             align-self: flex-start;
             width: 100%;
             max-width: 800px;
+            flex-shrink: 0;
         }
 
         .suggestions-row {
@@ -239,6 +255,7 @@
             margin-bottom: 40px;
             justify-content: center;
             flex-wrap: wrap;
+            flex-shrink: 0;
         }
 
         .main-container.chat-active .suggestions-row,
@@ -273,6 +290,8 @@
             max-width: 800px;
             position: relative;
             margin-bottom: 20px;
+            flex-shrink: 0;
+            /* Prevent shrinking */
         }
 
         .input-box {
@@ -315,7 +334,9 @@
             width: 24px;
             height: 24px;
             fill: currentColor;
-            transform: rotate(45deg);
+            transform: rotate(0deg);
+            /* Fixed Rotation */
+            margin-bottom: 2px;
         }
 
         .typing-indicator {
@@ -443,8 +464,10 @@
                     <input type="text" class="input-box" id="user-input" placeholder="Ask anything about courses..."
                         autocomplete="off">
                     <button type="submit" class="send-btn">
+                        <!-- Fixed SVG: Paper plane sending up-right -->
                         <svg viewBox="0 0 24 24">
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                 </form>
@@ -454,6 +477,7 @@
     </div>
 
     <script>
+        // ... (Script remains the same as before, preserving sidebar logic)
         const form = document.getElementById('chat-form');
         const input = document.getElementById('user-input');
         const messages = document.getElementById('messages');
@@ -461,18 +485,14 @@
         const mainContainer = document.getElementById('mainContainer');
         const chatList = document.getElementById('chatList');
 
-        // Chat State
         let currentChatId = null;
         let chats = JSON.parse(localStorage.getItem('chats') || '{}');
 
-        // Initialize
         function init() {
             renderChatList();
-            // Start new chat by default if no chats
             if (Object.keys(chats).length === 0) {
                 startNewChat();
             } else {
-                // Determine most recent chat
                 const recentId = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp)[0];
                 loadChat(recentId);
             }
@@ -497,7 +517,6 @@
             currentChatId = id;
             clearMessages();
 
-            // Re-render messages
             const chatMessages = chats[id].messages;
             if (chatMessages.length > 0) {
                 mainContainer.classList.add('chat-active');
@@ -517,7 +536,11 @@
             delete chats[id];
             saveChats();
             if (currentChatId === id) {
-                startNewChat();
+                if (Object.keys(chats).length > 0) {
+                    loadChat(Object.keys(chats)[0]); // Load another chat
+                } else {
+                    startNewChat();
+                }
             } else {
                 renderChatList();
             }
@@ -529,7 +552,6 @@
 
         function renderChatList() {
             chatList.innerHTML = '';
-            // Sort by new
             const sortedIds = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp);
 
             sortedIds.forEach(id => {
@@ -567,17 +589,14 @@
             const query = input.value.trim();
             if (!query) return;
 
-            // First message? Update title
             if (chats[currentChatId].messages.length === 0) {
                 chats[currentChatId].title = query.substring(0, 30) + (query.length > 30 ? '...' : '');
                 saveChats();
                 renderChatList();
             }
 
-            // UI Transition
             mainContainer.classList.add('chat-active');
 
-            // Add user message
             addMessage(query, 'user-msg');
             chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
             saveChats();
@@ -587,7 +606,6 @@
             typing.style.display = 'block';
 
             try {
-                // Get history for context
                 const history = chats[currentChatId].messages.map(m => ({
                     role: m.role,
                     content: m.content
@@ -602,7 +620,6 @@
                 const data = await response.json();
                 const botResponse = marked.parse(data.response);
 
-                // Add bot message
                 addMessage(botResponse, 'bot-msg', true);
                 chats[currentChatId].messages.push({ role: 'assistant', content: botResponse, isHtml: true });
                 saveChats();
@@ -625,10 +642,11 @@
                 div.textContent = text;
             }
             messages.appendChild(div);
-            messages.scrollTop = messages.scrollHeight;
+            setTimeout(() => {
+                messages.scrollTop = messages.scrollHeight;
+            }, 10);
         }
 
-        // Start
         init();
     </script>
 </body>
