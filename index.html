@@ -10,12 +10,13 @@
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
-            --sidebar-bg: #f8f9fa;
-            --sidebar-width: 260px;
+            /* Sidebar Variables */
+            --sidebar-bg: #f7f9fc;
+            --sidebar-width: 280px;
+            --metal-shadow-light: rgba(255, 255, 255, 0.8);
+            --metal-shadow-dark: rgba(209, 217, 230, 0.5);
             --accent-color: #00766c;
-            --text-color: #1a1a1a;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --glass-bg: rgba(255, 255, 255, 0.8);
+            --text-color: #2d3748;
         }
 
         body {
@@ -28,39 +29,67 @@
             overflow: hidden;
         }
 
-        /* Sidebar Styles */
+        /* Sidebar Styles - Glassy Metal */
         .sidebar {
             width: var(--sidebar-width);
             background: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
+            /* Subtle texture/gradient for metal feel */
+            background-image: linear-gradient(145deg, #f7f9fc, #f1f3f6);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 24px;
             box-sizing: border-box;
             transition: transform 0.3s ease;
             z-index: 10;
         }
 
         .new-chat-btn {
-            background: #fff;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 12px;
-            border-radius: 8px;
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: #4a5568;
+            padding: 14px;
+            border-radius: 12px;
             cursor: pointer;
             font-family: inherit;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 14px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            /* Premium Soft Shadow */
+            box-shadow:
+                6px 6px 12px var(--metal-shadow-dark),
+                -6px -6px 12px var(--metal-shadow-light);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .new-chat-btn:hover {
-            background: #f0f0f0;
-            border-color: #ccc;
+            transform: translateY(-2px);
+            box-shadow:
+                8px 8px 16px var(--metal-shadow-dark),
+                -8px -8px 16px var(--metal-shadow-light);
+            color: var(--accent-color);
+        }
+
+        .new-chat-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 4px 4px 8px var(--metal-shadow-dark), inset -4px -4px 8px var(--metal-shadow-light);
+        }
+
+        .chat-list-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #a0aec0;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-left: 8px;
         }
 
         .chat-list {
@@ -68,46 +97,64 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
+            padding-right: 5px;
+        }
+
+        /* Scrollbar styling for sidebar */
+        .chat-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-list::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 4px;
         }
 
         .chat-item {
-            padding: 10px 12px;
-            border-radius: 6px;
+            padding: 12px 16px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
-            color: #444;
+            color: #555;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
         .chat-item:hover {
-            background: #e9ecef;
+            background: #ffffff;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.03);
+            color: #333;
         }
 
         .chat-item.active {
-            background: #e0e7ff;
-            color: #00766c;
-            font-weight: 500;
+            background: linear-gradient(145deg, #ffffff, #f5f7fa);
+            color: var(--accent-color);
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow:
+                4px 4px 10px rgba(0, 0, 0, 0.04),
+                -4px -4px 10px rgba(255, 255, 255, 0.8);
         }
 
         .chat-title {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 180px;
+            max-width: 170px;
         }
 
         .delete-btn {
             opacity: 0;
-            color: #999;
+            color: #a0aec0;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 4px;
-            border-radius: 4px;
+            padding: 6px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             transition: all 0.2s;
@@ -118,8 +165,9 @@
         }
 
         .delete-btn:hover {
-            background: #fee2e2;
-            color: #ef4444;
+            background: #fff1f2;
+            color: #e53e3e;
+            box-shadow: 0 2px 5px rgba(229, 62, 62, 0.1);
         }
 
         /* Main Content */
@@ -129,9 +177,7 @@
             flex-direction: column;
             position: relative;
             height: 100vh;
-            /* Ensure full height */
             overflow: hidden;
-            /* Prevent body scroll */
         }
 
         .main-container {
@@ -147,9 +193,7 @@
             box-sizing: border-box;
             transition: all 0.5s ease;
             height: 100%;
-            /* Fill container */
             overflow: hidden;
-            /* Manage inner scroll */
         }
 
         .main-container.chat-active {
@@ -157,13 +201,12 @@
             padding-top: 40px;
         }
 
-        /* Header */
+        /* Header logic remains same */
         .header-section {
             text-align: center;
             margin-bottom: 40px;
             transition: all 0.5s ease;
             flex-shrink: 0;
-            /* Prevent shrinking */
         }
 
         .main-container.chat-active .header-section {
@@ -188,21 +231,18 @@
             color: #333;
         }
 
-        /* Messages Area */
+        /* Messages */
         .messages-area {
             width: 100%;
             flex: 1;
             overflow-y: auto;
-            /* Enable Scroll */
             display: none;
             flex-direction: column;
             gap: 20px;
             padding: 20px 10px;
-            /* Add padding for scrollbar space */
             margin-bottom: 20px;
             scrollbar-width: thin;
             min-height: 0;
-            /* Critical for Flexbox scroll */
         }
 
         .main-container.chat-active .messages-area {
@@ -217,7 +257,6 @@
             line-height: 1.6;
             animation: fadeIn 0.3s ease;
             word-wrap: break-word;
-            /* Prevent overflow */
         }
 
         .user-msg {
@@ -236,6 +275,7 @@
             border-bottom-left-radius: 4px;
         }
 
+        /* Suggestions */
         .suggestions-label {
             font-size: 14px;
             font-weight: 600;
@@ -285,13 +325,13 @@
             border-color: rgba(0, 118, 108, 0.3);
         }
 
+        /* Input */
         .input-container {
             width: 100%;
             max-width: 800px;
             position: relative;
             margin-bottom: 20px;
             flex-shrink: 0;
-            /* Prevent shrinking */
         }
 
         .input-box {
@@ -335,7 +375,6 @@
             height: 24px;
             fill: currentColor;
             transform: rotate(0deg);
-            /* Fixed Rotation */
             margin-bottom: 2px;
         }
 
@@ -348,6 +387,7 @@
             text-align: center;
         }
 
+        /* Markdown */
         table {
             border-collapse: collapse;
             width: 100%;
@@ -425,8 +465,9 @@
             </svg>
             New Chat
         </button>
+        <div class="chat-list-label">History</div>
         <div class="chat-list" id="chatList">
-            <!-- Chat items inserted here -->
+            <!-- Chat items -->
         </div>
     </div>
 
@@ -477,7 +518,6 @@
     </div>
 
     <script>
-        // ... (Script remains the same as before, preserving sidebar logic)
         const form = document.getElementById('chat-form');
         const input = document.getElementById('user-input');
         const messages = document.getElementById('messages');
@@ -485,14 +525,18 @@
         const mainContainer = document.getElementById('mainContainer');
         const chatList = document.getElementById('chatList');
 
+        // Chat State
         let currentChatId = null;
         let chats = JSON.parse(localStorage.getItem('chats') || '{}');
 
+        // Initialize
         function init() {
             renderChatList();
+            // Start new chat by default if no chats
             if (Object.keys(chats).length === 0) {
                 startNewChat();
             } else {
+                // Determine most recent chat
                 const recentId = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp)[0];
                 loadChat(recentId);
             }
@@ -517,6 +561,7 @@
             currentChatId = id;
             clearMessages();
 
+            // Re-render messages
             const chatMessages = chats[id].messages;
             if (chatMessages.length > 0) {
                 mainContainer.classList.add('chat-active');
@@ -552,6 +597,7 @@
 
         function renderChatList() {
             chatList.innerHTML = '';
+            // Sort by new
             const sortedIds = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp);
 
             sortedIds.forEach(id => {
@@ -589,14 +635,17 @@
             const query = input.value.trim();
             if (!query) return;
 
+            // First message? Update title
             if (chats[currentChatId].messages.length === 0) {
                 chats[currentChatId].title = query.substring(0, 30) + (query.length > 30 ? '...' : '');
                 saveChats();
                 renderChatList();
             }
 
+            // UI Transition
             mainContainer.classList.add('chat-active');
 
+            // Add user message
             addMessage(query, 'user-msg');
             chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
             saveChats();
@@ -606,6 +655,7 @@
             typing.style.display = 'block';
 
             try {
+                // Get history for context
                 const history = chats[currentChatId].messages.map(m => ({
                     role: m.role,
                     content: m.content
@@ -620,6 +670,7 @@
                 const data = await response.json();
                 const botResponse = marked.parse(data.response);
 
+                // Add bot message
                 addMessage(botResponse, 'bot-msg', true);
                 chats[currentChatId].messages.push({ role: 'assistant', content: botResponse, isHtml: true });
                 saveChats();
@@ -642,11 +693,13 @@
                 div.textContent = text;
             }
             messages.appendChild(div);
+            // Smooth scroll to bottom
             setTimeout(() => {
                 messages.scrollTop = messages.scrollHeight;
             }, 10);
         }
 
+        // Start
         init();
     </script>
 </body>
