@@ -142,7 +142,7 @@ class DatabaseManager:
 - name (TEXT) - Full department name, e.g., "Information and Computer Science"
 - shortcut (TEXT, UNIQUE) - Abbreviation, e.g., "ICS", "SWE", "COE"
 - college (TEXT) - Parent college name
-- link (TEXT) - Official department website URL (ALWAYS include in responses about departments)
+- link (TEXT) - Official department website URL (**ALWAYS include in responses!**)
 
 ### courses
 - id (INTEGER, PRIMARY KEY)
@@ -154,7 +154,7 @@ class DatabaseManager:
 - department_id (INTEGER, FK -> departments.id)
 - type (TEXT) - "Undergraduate" or "Graduate"
 - description (TEXT) - Course description
-- prerequisites (TEXT) - Prerequisite courses
+- prerequisites (TEXT) - Prerequisite courses (**WARNING: Often empty! Use concentration_courses for prerequisites**)
 
 ### concentrations
 - id (INTEGER, PRIMARY KEY)
@@ -162,39 +162,67 @@ class DatabaseManager:
 - description (TEXT) - Full description
 - department_id (INTEGER, FK -> departments.id)
 
-### program_plans (Degree Plans)
+### program_plans (Undergraduate Degree Plans)
 - id (INTEGER, PRIMARY KEY)
 - department_id (INTEGER, FK)
-- year_level (INTEGER) - 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior, 5=Graduate
+- year_level (INTEGER) - 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior
 - semester (INTEGER) - 1 or 2
 - course_id (INTEGER, FK -> courses.id)
 - course_code (TEXT)
 - course_title (TEXT)
 - credits (INTEGER)
 - plan_option (TEXT) - "0"=Core, "1"=Coop, "2"=Summer Training
-- plan_type (TEXT) - "Undergraduate" or "Graduate"
+- plan_type (TEXT) - "Undergraduate"
 
-### concentration_courses
+### graduate_program_plans (Graduate Degree Plans - M.S. and Ph.D.)
+- id (INTEGER, PRIMARY KEY)
+- department_id (INTEGER, FK -> departments.id)
+- program_level (TEXT) - "Graduate", "M.S.", "Ph.D.", etc.
+- semester_info (TEXT) - Semester information if available
+- course_code (TEXT) - Graduate course code (e.g., "ICS 571", "EE 699")
+- course_title (TEXT) - Course title
+- lecture_hours (INTEGER)
+- lab_hours (INTEGER)
+- credits (INTEGER)
+- plan_option (TEXT) - Plan variant
+
+### concentration_courses (**BEST SOURCE FOR PREREQUISITES**)
 - id (INTEGER, PRIMARY KEY)
 - concentration_id (INTEGER, FK)
 - course_id (INTEGER, FK)
 - course_code (TEXT)
 - course_title (TEXT)
 - description (TEXT)
-- prerequisites (TEXT)
+- prerequisites (TEXT) - **This table has the most complete prerequisite data!**
 - semester (TEXT)
 
 ## Key Relationships
 - courses.department_id -> departments.id
 - concentrations.department_id -> departments.id
 - program_plans.department_id -> departments.id
+- graduate_program_plans.department_id -> departments.id
 - concentration_courses.concentration_id -> concentrations.id
+
+## CRITICAL DATA NOTES
+
+1. **PREREQUISITES**: The `courses` table often has EMPTY prerequisites!
+   - For prerequisite queries, ALWAYS query `concentration_courses` table first
+   - Example: `SELECT course_code, prerequisites FROM concentration_courses WHERE course_code LIKE 'ICS%' AND prerequisites != ''`
+
+2. **REFERENCE LINKS**: The `departments` table has official website links.
+   - ALWAYS include the link in responses about departments or courses
+   - JOIN with departments to get the link when querying courses
+
+3. **GRADUATE vs UNDERGRADUATE**: 
+   - Undergraduate programs: Use `program_plans` table
+   - Graduate programs (M.S., Ph.D.): Use `graduate_program_plans` table
+   - 14 departments offer graduate programs with 785 total courses
 """
         return schema
     
     def get_table_stats(self) -> Dict[str, int]:
         """Get row counts for each table."""
-        tables = ['departments', 'courses', 'concentrations', 'program_plans', 'concentration_courses']
+        tables = ['departments', 'courses', 'concentrations', 'program_plans', 'graduate_program_plans', 'concentration_courses']
         stats = {}
         for table in tables:
             results, _ = self.execute_query(f"SELECT COUNT(*) as count FROM {table}")
