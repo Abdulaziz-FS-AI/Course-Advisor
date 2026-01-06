@@ -116,33 +116,32 @@ def chat(request: ChatRequest):
         history_rows = db.get_session_messages(request.session_id)
         
         # Convert to format expected by LLMClient (list of dicts)
-        if not history_rows:
-            history_rows = []
-            
-        current_msg = history_rows[-1]["content"] if history_rows else request.message
-        # History is everything EXCEPT the last one (if it was added)
+        # Call Agent
+        # Prepare context by converting history rows to simple dicts
         context_history = []
-        for msg in history_rows[:-1]:
-            context_history.append({"role": msg["role"], "content": msg["content"]})
-            
-        # Call LLM
-        client = get_llm_client()
-        system_prompt = get_system_prompt()
+        if history_rows:
+            # History is all previous messages. Current message was just added.
+            # We want context to be previous messages.
+            # Actually, `add_message` added the USER message at the end.
+            # So history_rows[-1] is the current message.
+            # We want to pass previous history to the agent.
+            for msg in history_rows[:-1]: 
+                context_history.append({"role": msg["role"], "content": msg["content"]})
         
-        response_text = client.generate(
-            system_prompt=system_prompt,
-            user_message=current_msg,
-            conversation_history=context_history[-10:] # Limit context window if needed
-        )
+        agent = get_agent()
+        agent_response = agent.process_query(request.message, context_history)
         
-        # 3. Save AI Response
+        response_text = agent_response.message
+        
+        # 3. Save AI Response (if not already saved by some other logic? No, agent is pure logic now)
         db.add_message(request.session_id, "assistant", response_text)
         
         return {"response": response_text}
 
     except Exception as e:
         print(f"Chat error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        # In case of error, try to return a friendly message
+        return {"response": "I encountered an error connecting to my brain. Please try again."}
 
 
 @app.get("/api/admin/sessions")

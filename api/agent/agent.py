@@ -48,7 +48,6 @@ class CourseAdvisorAgent:
         self.db: DatabaseManager = get_database()
         self.llm: LLMClient = get_llm_client()
         self.system_prompt = get_system_prompt()
-        self.conversation_history: List[Dict] = []
     
     def _is_greeting(self, query: str) -> bool:
         """Quick check if query is a simple greeting."""
@@ -233,7 +232,7 @@ What would you like to know about KFUPM academics?"""
 
 What else can I help you find?"""
     
-    def process_query(self, query: str) -> AgentResponse:
+    def process_query(self, query: str, history: List[Dict] = None) -> AgentResponse:
         """
         Main entry point: Process a user query and return a response.
         
@@ -244,6 +243,7 @@ What else can I help you find?"""
         4. Format results into friendly response
         """
         query = query.strip()
+        history = history or [] # Stateless history
         
         if not query:
             return AgentResponse(
@@ -260,7 +260,7 @@ What else can I help you find?"""
             llm_response = self.llm.generate(
                 system_prompt=self.system_prompt,
                 user_message=query,
-                conversation_history=self.conversation_history[-6:],  # Last 3 exchanges
+                conversation_history=history[-6:],  # Last 3 exchanges from passed history
                 temperature=0.3
             )
         except RuntimeError as e:
@@ -297,10 +297,6 @@ What else can I help you find?"""
                 # Format results
                 formatted_response = self._format_results(results, query, final_sql)
                 
-                # Update conversation history
-                self.conversation_history.append({"role": "user", "content": query})
-                self.conversation_history.append({"role": "assistant", "content": formatted_response})
-                
                 return AgentResponse(
                     message=formatted_response,
                     query_type=QueryType.DATABASE_QUESTION,
@@ -336,10 +332,7 @@ What else can I help you find?"""
             error="Failed to execute SQL after retries"
         )
     
-    def reset_history(self):
-        """Clear conversation history."""
-        self.conversation_history = []
-
+    # reset_history removed as it's stateless
 
 # Singleton instance
 _agent: Optional[CourseAdvisorAgent] = None
@@ -350,3 +343,4 @@ def get_agent() -> CourseAdvisorAgent:
     if _agent is None:
         _agent = CourseAdvisorAgent()
     return _agent
+
