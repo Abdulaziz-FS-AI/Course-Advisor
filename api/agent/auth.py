@@ -2,10 +2,11 @@ from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
 from passlib.context import CryptContext
+import os
 
 # Secret key for JWT encoding/decoding
-# In production, this should be an environment variable
-SECRET_KEY = "kfupm_course_advisor_secret_key_change_this_in_prod"
+# MUST be set as environment variable in production
+SECRET_KEY = os.getenv("SECRET_KEY", "kfupm_course_advisor_dev_key_CHANGE_IN_PROD")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 43200  # 30 days
 
