@@ -109,6 +109,11 @@ def chat(request: ChatRequest):
     Chat endpoint for anonymous users.
     """
     db = get_database()
+    # Validate required fields
+    if not request.session_id:
+        raise HTTPException(status_code=422, detail="session_id is required")
+    if not request.message:
+        raise HTTPException(status_code=422, detail="message is required")
     
     # 1. Save User Message
     try:

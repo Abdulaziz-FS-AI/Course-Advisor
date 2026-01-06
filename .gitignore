@@ -9,5 +9,5 @@ ngrok
 cloudflared
 *.tgz
 node_modules/
-*.db
+# *.db  # Included for Vercel deployment
 *.db-journal

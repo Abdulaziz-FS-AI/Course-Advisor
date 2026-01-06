@@ -6,7 +6,7 @@ from pathlib import Path
 # === Paths ===
 BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / "data" / "SQL"
-DB_PATH = DATA_DIR / "kfupm_relational.db"
+DB_PATH = Path(__file__).parent.parent.parent / "api" / "data" / "SQL" / "kfupm_relational.db"
 
 # === vLLM Configuration ===
 VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
