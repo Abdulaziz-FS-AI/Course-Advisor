@@ -815,14 +815,17 @@
         }
 
         function askQuestion(text) {
-            input.value = text;
-            form.dispatchEvent(new Event('submit'));
+            if (input && form) {
+                input.value = text;
+                form.dispatchEvent(new Event('submit'));
+            }
         }
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const query = input.value.trim();
-            if (!query) return;
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const query = input.value.trim();
+                if (!query) return;
 
             mainContainer.classList.add('chat-active');
             addMessage(query, 'user-msg');
@@ -885,7 +888,10 @@
                 typing.style.display = 'none';
                 input.focus();
             }
-        });
+            });
+        } else {
+            console.error('Form element not found. Make sure #chat-form exists in the HTML.');
+        }
 
         function addMessage(text, className, isHtml = false) {
             const div = document.createElement('div');
