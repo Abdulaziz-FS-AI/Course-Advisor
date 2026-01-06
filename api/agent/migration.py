@@ -34,6 +34,7 @@ def run_migration():
     CREATE TABLE IF NOT EXISTS chat_sessions (
         id TEXT PRIMARY KEY,
         user_id INTEGER NOT NULL,
+        device_id TEXT,
         title TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -41,6 +42,19 @@ def run_migration():
     )
     ''')
     print("Created chat_sessions table.")
+
+    # 2b. Add device_id column if missing (for existing databases)
+    try:
+        cursor.execute("SELECT device_id FROM chat_sessions LIMIT 1")
+    except sqlite3.OperationalError:
+        cursor.execute("ALTER TABLE chat_sessions ADD COLUMN device_id TEXT")
+        print("Added device_id column to existing chat_sessions table.")
+
+    # 2c. Create index for device_id lookups
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_chat_sessions_device_id ON chat_sessions(device_id)
+    ''')
+    print("Created index on device_id.")
 
     # 3. Create chat_messages table
     cursor.execute('''
