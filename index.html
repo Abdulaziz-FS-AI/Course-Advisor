@@ -32,9 +32,8 @@
         /* Sidebar Styles - Glassy Metal */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--sidebar-bg);
-            /* Subtle texture/gradient for metal feel */
-            background-image: linear-gradient(145deg, #f7f9fc, #f1f3f6);
+            /* Light sky blue gradient */
+            background: linear-gradient(180deg, #e6f7ff 0%, #f0faff 100%);
             border-right: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
             display: flex;
@@ -911,90 +910,90 @@
                 const query = input.value.trim();
                 if (!query) return;
 
-            mainContainer.classList.add('chat-active');
-            addMessage(query, 'user-msg');
-            input.value = '';
-            input.disabled = true;
-            typing.style.display = 'block';
+                mainContainer.classList.add('chat-active');
+                addMessage(query, 'user-msg');
+                input.value = '';
+                input.disabled = true;
+                typing.style.display = 'block';
 
-            try {
-                // 1. If new chat, create session first
-                if (!currentChatId) {
-                    const sessionRes = await fetch('/api/chat/sessions', {
+                try {
+                    // 1. If new chat, create session first
+                    if (!currentChatId) {
+                        const sessionRes = await fetch('/api/chat/sessions', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                title: query.substring(0, 30) || "New Chat",
+                                device_id: deviceId
+                            })
+                        });
+                        const sessionData = await sessionRes.json();
+                        currentChatId = sessionData.id;
+
+                        chats[currentChatId] = {
+                            id: currentChatId,
+                            title: sessionData.title,
+                            messages: [],
+                            timestamp: Date.now()
+                        };
+                        renderChatList();
+                    }
+
+                    // 2. Optimistic update
+                    if (chats[currentChatId]) {
+                        chats[currentChatId].messages.push({ role: 'user', content: query });
+                    }
+
+                    // 3. Send Message
+                    const res = await fetch('/api/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            title: query.substring(0, 30) || "New Chat",
+                            message: query,
+                            session_id: currentChatId,
                             device_id: deviceId
                         })
                     });
-                    const sessionData = await sessionRes.json();
-                    currentChatId = sessionData.id;
 
-                    chats[currentChatId] = {
-                        id: currentChatId,
-                        title: sessionData.title,
-                        messages: [],
-                        timestamp: Date.now()
-                    };
-                    renderChatList();
+                    // Check if response is OK
+                    if (!res.ok) {
+                        throw new Error(`Server error: ${res.status}`);
+                    }
+
+                    // Parse JSON safely
+                    let data;
+                    try {
+                        data = await res.json();
+                    } catch (e) {
+                        throw new Error('Invalid response from server');
+                    }
+
+                    // Check if response field exists
+                    if (!data || !data.response) {
+                        throw new Error('Empty response from server');
+                    }
+
+                    const botResponse = marked.parse(data.response);
+
+                    addMessage(botResponse, 'bot-msg', true, data.message_id);
+
+                    if (chats[currentChatId]) {
+                        chats[currentChatId].messages.push({
+                            role: 'assistant',
+                            content: data.response,
+                            isHtml: true,
+                            message_id: data.message_id
+                        });
+                    }
+
+                } catch (error) {
+                    console.error('Chat error:', error);
+                    addMessage("⚠️ Error: " + (error.message || 'Something went wrong. Please try again.'), 'bot-msg');
+                } finally {
+                    input.disabled = false;
+                    typing.style.display = 'none';
+                    input.focus();
                 }
-
-                // 2. Optimistic update
-                if (chats[currentChatId]) {
-                    chats[currentChatId].messages.push({ role: 'user', content: query });
-                }
-
-                // 3. Send Message
-                const res = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        message: query,
-                        session_id: currentChatId,
-                        device_id: deviceId
-                    })
-                });
-
-                // Check if response is OK
-                if (!res.ok) {
-                    throw new Error(`Server error: ${res.status}`);
-                }
-
-                // Parse JSON safely
-                let data;
-                try {
-                    data = await res.json();
-                } catch (e) {
-                    throw new Error('Invalid response from server');
-                }
-
-                // Check if response field exists
-                if (!data || !data.response) {
-                    throw new Error('Empty response from server');
-                }
-
-                const botResponse = marked.parse(data.response);
-
-                addMessage(botResponse, 'bot-msg', true, data.message_id);
-
-                if (chats[currentChatId]) {
-                    chats[currentChatId].messages.push({
-                        role: 'assistant',
-                        content: data.response,
-                        isHtml: true,
-                        message_id: data.message_id
-                    });
-                }
-
-            } catch (error) {
-                console.error('Chat error:', error);
-                addMessage("⚠️ Error: " + (error.message || 'Something went wrong. Please try again.'), 'bot-msg');
-            } finally {
-                input.disabled = false;
-                typing.style.display = 'none';
-                input.focus();
-            }
             });
         } else {
             console.error('Form element not found. Make sure #chat-form exists in the HTML.');
