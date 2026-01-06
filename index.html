@@ -276,6 +276,44 @@
             border-bottom-left-radius: 4px;
         }
 
+        /* Feedback Buttons */
+        .feedback {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .thumb {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            opacity: 0.5;
+        }
+
+        .thumb:hover:not(:disabled) {
+            opacity: 1;
+            background: rgba(0, 118, 108, 0.1);
+            transform: scale(1.1);
+        }
+
+        .thumb:disabled {
+            cursor: not-allowed;
+        }
+
+        .thumb.up:hover:not(:disabled) {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .thumb.down:hover:not(:disabled) {
+            background: rgba(244, 67, 54, 0.1);
+        }
+
         /* Suggestions */
         .suggestions-label {
             font-size: 14px;
@@ -748,11 +786,12 @@
                 const msgRes = await fetch(`/api/chat/messages?session_id=${sessionId}&device_id=${deviceId}`);
                 if (msgRes.ok) {
                     const data = await msgRes.json();
-                    // data is list of {role, content, ...}
+                    // data is list of {role, content, id, ...}
                     chats[sessionId].messages = data.map(m => ({
                         role: m.role,
                         content: m.content,
-                        isHtml: m.role === 'assistant'
+                        isHtml: m.role === 'assistant',
+                        message_id: m.id
                     }));
                     return true;
                 }
@@ -784,7 +823,8 @@
                 chatMessages.forEach(msg => {
                     addMessage(msg.isHtml ? msg.content : msg.content,
                         msg.role === 'user' ? 'user-msg' : 'bot-msg',
-                        msg.isHtml);
+                        msg.isHtml,
+                        msg.message_id);
                 });
             } else {
                 resetUI();
@@ -875,10 +915,15 @@
                 const data = await res.json();
                 const botResponse = marked.parse(data.response);
 
-                addMessage(botResponse, 'bot-msg', true);
+                addMessage(botResponse, 'bot-msg', true, data.message_id);
 
                 if (chats[currentChatId]) {
-                    chats[currentChatId].messages.push({ role: 'assistant', content: data.response, isHtml: true });
+                    chats[currentChatId].messages.push({
+                        role: 'assistant',
+                        content: data.response,
+                        isHtml: true,
+                        message_id: data.message_id
+                    });
                 }
 
             } catch (error) {
@@ -893,12 +938,12 @@
             console.error('Form element not found. Make sure #chat-form exists in the HTML.');
         }
 
-        function addMessage(text, className, isHtml = false) {
+        function addMessage(text, className, isHtml = false, messageId = null) {
             const div = document.createElement('div');
             div.className = `message ${className}`;
 
             // Add Feedback UI for assistant
-            if (className.includes('bot-msg')) {
+            if (className.includes('bot-msg') && messageId) {
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'content';
                 contentDiv.innerHTML = text; // Assumes marked/sanitized
@@ -906,19 +951,20 @@
                 const feedbackDiv = document.createElement('div');
                 feedbackDiv.className = 'feedback';
                 feedbackDiv.innerHTML = `
-                    <button class="thumb up" title="Helpful">👍</button>
-                    <button class="thumb down" title="Not Helpful">👎</button>
+                    <button class="thumb up" title="Helpful" data-msg-id="${messageId}">👍</button>
+                    <button class="thumb down" title="Not Helpful" data-msg-id="${messageId}">👎</button>
                 `;
 
                 div.appendChild(contentDiv);
                 div.appendChild(feedbackDiv);
 
-                // Add feedback logic (simplified)
-                feedbackDiv.querySelector('.up').onclick = () => handleFeedback(currentChatId, className, 'up'); // pass msg id? 
-                // We need msg ID for feedback. Current API returns only response text. 
-                // To support feedback properly, API should return message ID.
-                // For now, just console log or basic placeholder.
-                feedbackDiv.querySelector('.down').onclick = () => handleFeedback(currentChatId, className, 'down');
+                // Add feedback logic
+                feedbackDiv.querySelector('.up').onclick = (e) => {
+                    handleFeedback(currentChatId, messageId, 'up', e.target);
+                };
+                feedbackDiv.querySelector('.down').onclick = (e) => {
+                    handleFeedback(currentChatId, messageId, 'down', e.target);
+                };
 
             } else {
                 if (isHtml) div.innerHTML = text;
@@ -929,9 +975,51 @@
             setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 10);
         }
 
-        function handleFeedback(sessionId, msgId, rating) {
-            console.log("Feedback:", sessionId, rating);
-            // Implement feedback modal call here if needed
+        async function handleFeedback(sessionId, messageId, rating, button) {
+            if (!sessionId || !messageId) {
+                console.error('Missing session ID or message ID');
+                return;
+            }
+
+            try {
+                // Disable both buttons
+                const feedbackDiv = button.parentElement;
+                const buttons = feedbackDiv.querySelectorAll('.thumb');
+                buttons.forEach(btn => btn.disabled = true);
+
+                // Submit feedback
+                const res = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        message_id: messageId,
+                        rating: rating,
+                        device_id: deviceId
+                    })
+                });
+
+                if (res.ok) {
+                    // Highlight the selected button
+                    button.style.opacity = '1';
+                    button.style.transform = 'scale(1.2)';
+                    // Fade out the other button
+                    buttons.forEach(btn => {
+                        if (btn !== button) {
+                            btn.style.opacity = '0.3';
+                        }
+                    });
+                } else {
+                    console.error('Failed to submit feedback');
+                    // Re-enable buttons
+                    buttons.forEach(btn => btn.disabled = false);
+                }
+            } catch (error) {
+                console.error('Feedback error:', error);
+                // Re-enable buttons
+                const feedbackDiv = button.parentElement;
+                feedbackDiv.querySelectorAll('.thumb').forEach(btn => btn.disabled = false);
+            }
         }
 
         init();

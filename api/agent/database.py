@@ -386,7 +386,7 @@ CREATE TABLE concentration_courses (
         return results
 
     def add_message(self, session_id: str, role: str, content: str) -> Dict[str, Any]:
-        """Add a message to a session."""
+        """Add a message to a session and return the message ID."""
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
@@ -395,16 +395,18 @@ CREATE TABLE concentration_courses (
                     INSERT INTO chat_messages (session_id, role, content)
                     VALUES (?, ?, ?)
                 """, (session_id, role, content))
-                
+
+                message_id = cursor.lastrowid
+
                 # Update session timestamp
                 cursor.execute("""
-                    UPDATE chat_sessions 
-                    SET updated_at = CURRENT_TIMESTAMP 
+                    UPDATE chat_sessions
+                    SET updated_at = CURRENT_TIMESTAMP
                     WHERE id = ?
                 """, (session_id,))
-                
+
                 conn.commit()
-                return {"status": "success"}
+                return {"status": "success", "message_id": message_id}
         except sqlite3.Error as e:
             raise RuntimeError(f"Database error: {e}")
 
@@ -418,56 +420,66 @@ CREATE TABLE concentration_courses (
         """
         results, _ = self.execute_query(sql, (session_id,))
         return results
+    # =========================================================================
+    # FEEDBACK MANAGEMENT
+    # =========================================================================
+
+    def _ensure_feedback_table(self):
+        """Create feedback table if it does not exist."""
+        sql = """
+            CREATE TABLE IF NOT EXISTS feedback (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER REFERENCES users(id),
+                session_id TEXT,
+                message_id INTEGER REFERENCES chat_messages(id),
+                rating TEXT CHECK(rating IN ('up','down')),
+                comment TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        """
+        self.execute_query(sql, (), read_only=False)
+
+    def create_feedback(self, user_id: int, session_id: str, message_id: int, rating: str, comment: str = None) -> Dict[str, Any]:
+        """Insert a feedback entry. rating must be 'up' or 'down'."""
+        self._ensure_feedback_table()
+        sql = """
+            INSERT INTO feedback (user_id, session_id, message_id, rating, comment)
+            VALUES (?, ?, ?, ?, ?)
+        """
+        params = (user_id, session_id, message_id, rating, comment)
+        try:
+            with self.get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(sql, params)
+                conn.commit()
+                feedback_id = cursor.lastrowid
+                # Return the created feedback
+                cursor.execute("SELECT * FROM feedback WHERE id = ?", (feedback_id,))
+                row = cursor.fetchone()
+                columns = [desc[0] for desc in cursor.description]
+                return dict(zip(columns, row))
+        except sqlite3.Error as e:
+            raise RuntimeError(f"Failed to create feedback: {e}")
+
+    def get_all_feedback(self) -> List[Dict[str, Any]]:
+        """Return all feedback with related user, session, and message info."""
+        self._ensure_feedback_table()
+        sql = """
+            SELECT f.id, f.rating, f.comment, f.created_at,
+                   u.username AS user_name,
+                   s.id AS session_id, s.title AS session_title,
+                   m.id AS message_id, m.role AS message_role, m.content AS message_content
+            FROM feedback f
+            JOIN users u ON f.user_id = u.id
+            JOIN chat_sessions s ON f.session_id = s.id
+            JOIN chat_messages m ON f.message_id = m.id
+            ORDER BY f.created_at DESC;
+        """
+        results, _ = self.execute_query(sql)
+        return results
 
 
 # Singleton instance
-
-# ------------------------------------------------------------------
-# FEEDBACK MANAGEMENT
-# ------------------------------------------------------------------
-def _ensure_feedback_table(self):
-    """Create feedback table if it does not exist."""
-    sql = """
-        CREATE TABLE IF NOT EXISTS feedback (
-            id INTEGER PRIMARY KEY,
-            user_id INTEGER REFERENCES users(id),
-            session_id TEXT,
-            message_id INTEGER REFERENCES chat_messages(id),
-            rating TEXT CHECK(rating IN ('up','down')),
-            comment TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
-    """
-    self.execute_query(sql, (), read_only=False)
-
-def create_feedback(self, user_id: int, session_id: str, message_id: int, rating: str, comment: None = None) -> Dict[str, Any]:
-    """Insert a feedback entry. rating must be 'up' or 'down'."""
-    self._ensure_feedback_table()
-    sql = """
-        INSERT INTO feedback (user_id, session_id, message_id, rating, comment)
-        VALUES (?, ?, ?, ?, ?)
-        RETURNING id, user_id, session_id, message_id, rating, comment, created_at;
-    """
-    params = (user_id, session_id, message_id, rating, comment)
-    results, _ = self.execute_query(sql, params, read_only=False)
-    return results[0]
-
-def get_all_feedback(self) -> List[Dict[str, Any]]:
-    """Return all feedback with related user, session, and message info."""
-    self._ensure_feedback_table()
-    sql = """
-        SELECT f.id, f.rating, f.comment, f.created_at,
-               u.username AS user_name,
-               s.id AS session_id, s.title AS session_title,
-               m.id AS message_id, m.role AS message_role, m.content AS message_content
-        FROM feedback f
-        JOIN users u ON f.user_id = u.id
-        JOIN chat_sessions s ON f.session_id = s.id
-        JOIN chat_messages m ON f.message_id = m.id
-        ORDER BY f.created_at DESC;
-    """
-    results, _ = self.execute_query(sql)
-    return results
 _db_manager: Optional[DatabaseManager] = None
 
 def get_database() -> DatabaseManager:
