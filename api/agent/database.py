@@ -7,6 +7,8 @@ import sqlite3
 from typing import Optional, List, Dict, Any, Tuple
 from contextlib import contextmanager
 from pathlib import Path
+import os
+import shutil
 
 from .config import DB_PATH, ENABLE_FUZZY_SEARCH
 
@@ -15,7 +17,25 @@ class DatabaseManager:
     """Manages SQLite database connections and queries."""
     
     def __init__(self, db_path: Path = DB_PATH):
-        self.db_path = db_path
+        # Vercel Read-Only Fix: Copy DB to /tmp if running on Vercel (or if we can't write to source)
+        # Check if VERCEL env var is set
+        if os.getenv("VERCEL") == "1":
+            tmp_path = Path("/tmp") / db_path.name
+            if not tmp_path.exists() and db_path.exists():
+                try:
+                    shutil.copy2(db_path, tmp_path)
+                    print(f"Copied DB to {tmp_path}")
+                except Exception as e:
+                    print(f"Failed to copy DB to tmp: {e}")
+            
+            # Use tmp path if it exists now
+            if tmp_path.exists():
+                self.db_path = tmp_path
+            else:
+                self.db_path = db_path
+        else:
+            self.db_path = db_path
+            
         self._validate_database()
     
     def _validate_database(self):
