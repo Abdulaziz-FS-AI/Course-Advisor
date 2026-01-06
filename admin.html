@@ -25,6 +25,111 @@
             height: 100vh;
         }
 
+        /* Login Overlay */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-overlay.hidden {
+            display: none;
+        }
+
+        .login-box {
+            background: white;
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-box h2 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .login-box p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00766c, #26a69a);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .login-btn:hover {
+            opacity: 0.95;
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .login-error {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #718096;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .dashboard.visible {
+            display: flex;
+        }
+
         .sidebar {
             width: 250px;
             background: var(--white);
@@ -133,7 +238,7 @@
 
         .modal {
             background: white;
-            width: 800px;
+            width: 900px;
             height: 80vh;
             border-radius: 16px;
             display: flex;
@@ -193,34 +298,54 @@
 
 <body>
 
-    <div class="sidebar">
-        <div class="logo" onclick="window.location.href='/'">✨ Admin</div>
-        <div class="menu-item active">Users</div>
-        <div class="menu-item" onclick="logout()">Logout</div>
+    <!-- Admin Login Form -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <h2>🛡️ Admin Panel</h2>
+            <p>Enter your admin credentials to access the dashboard</p>
+            <form id="loginForm">
+                <input type="text" class="login-input" id="adminUsername" placeholder="Admin Username" required>
+                <input type="password" class="login-input" id="adminPassword" placeholder="Password" required>
+                <div class="login-error" id="loginError"></div>
+                <button type="submit" class="login-btn" id="loginBtn">Login</button>
+            </form>
+            <div class="back-link">
+                <a href="/">← Back to Course Advisor</a>
+            </div>
+        </div>
     </div>
 
-    <div class="main">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-            <h1>User Management</h1>
-            <button class="btn-sm" onclick="fetchUsers()">Refresh</button>
+    <!-- Dashboard (Hidden until login) -->
+    <div class="dashboard" id="dashboard">
+        <div class="sidebar">
+            <div class="logo" onclick="window.location.href='/'">✨ Admin</div>
+            <div class="menu-item active">Users</div>
+            <div class="menu-item" onclick="adminLogout()">Logout</div>
         </div>
 
-        <div class="card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Joined</th>
-                        <th>Sessions</th>
-                        <th>Messages</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="usersTable">
-                    <!-- Users here -->
-                </tbody>
-            </table>
+        <div class="main">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h1>User Management</h1>
+                <button class="btn-sm" onclick="fetchUsers()">Refresh</button>
+            </div>
+
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                            <th>Sessions</th>
+                            <th>Messages</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTable">
+                        <!-- Users here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -239,18 +364,91 @@
 
     <script>
         const API_URL = '/api';
-        let token = localStorage.getItem('kfupm_token');
+        let adminToken = localStorage.getItem('kfupm_admin_token');
 
-        if (!token) {
-            window.location.href = '/';
+        // Check if already logged in as admin
+        function init() {
+            if (adminToken) {
+                // Verify token is valid and is admin
+                verifyAdminToken();
+            } else {
+                showLogin();
+            }
         }
+
+        async function verifyAdminToken() {
+            try {
+                const res = await fetch(`${API_URL}/admin/users?token=${adminToken}`);
+                if (res.ok) {
+                    showDashboard();
+                    fetchUsers();
+                } else {
+                    // Invalid or expired token
+                    localStorage.removeItem('kfupm_admin_token');
+                    showLogin();
+                }
+            } catch (e) {
+                showLogin();
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('loginOverlay').classList.remove('hidden');
+            document.getElementById('dashboard').classList.remove('visible');
+        }
+
+        function showDashboard() {
+            document.getElementById('loginOverlay').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('visible');
+        }
+
+        // Login Form
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('adminUsername').value.trim();
+            const password = document.getElementById('adminPassword').value.trim();
+            const loginBtn = document.getElementById('loginBtn');
+            const loginError = document.getElementById('loginError');
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+            loginError.textContent = '';
+
+            try {
+                const res = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok) {
+                    if (data.role !== 'admin') {
+                        loginError.textContent = 'Access Denied. Admin privileges required.';
+                    } else {
+                        adminToken = data.token;
+                        localStorage.setItem('kfupm_admin_token', adminToken);
+                        showDashboard();
+                        fetchUsers();
+                    }
+                } else {
+                    loginError.textContent = data.detail || 'Invalid credentials';
+                }
+            } catch (err) {
+                loginError.textContent = 'Server error. Please try again.';
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Login';
+            }
+        });
 
         async function fetchUsers() {
             try {
-                const res = await fetch(`${API_URL}/admin/users?token=${token}`);
+                const res = await fetch(`${API_URL}/admin/users?token=${adminToken}`);
                 if (res.status === 403 || res.status === 401) {
-                    alert('Access Denied. Admin privileges required.');
-                    window.location.href = '/';
+                    alert('Session expired. Please login again.');
+                    adminLogout();
                     return;
                 }
                 const data = await res.json();
@@ -277,7 +475,7 @@
         }
 
         async function viewUserChats(userId, username) {
-            const res = await fetch(`${API_URL}/admin/users/${userId}/chats?token=${token}`);
+            const res = await fetch(`${API_URL}/admin/users/${userId}/chats?token=${adminToken}`);
             const data = await res.json();
 
             const modal = document.getElementById('chatModal');
@@ -306,7 +504,7 @@
         }
 
         async function loadTranscript(sessionId) {
-            const res = await fetch(`${API_URL}/admin/chats/${sessionId}?token=${token}`);
+            const res = await fetch(`${API_URL}/admin/chats/${sessionId}?token=${adminToken}`);
             const data = await res.json();
             const area = document.getElementById('transcriptArea');
 
@@ -323,15 +521,14 @@
             document.getElementById('chatModal').style.display = 'none';
         }
 
-        function logout() {
-            localStorage.removeItem('kfupm_token');
-            localStorage.removeItem('kfupm_username');
-            localStorage.removeItem('kfupm_role');
-            window.location.href = '/';
+        function adminLogout() {
+            localStorage.removeItem('kfupm_admin_token');
+            adminToken = null;
+            showLogin();
         }
 
         // Init
-        fetchUsers();
+        init();
     </script>
 
 </body>
