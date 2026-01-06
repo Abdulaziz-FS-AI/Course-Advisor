@@ -741,7 +741,7 @@
         let currentUsername = localStorage.getItem('kfupm_username');
         let userRole = localStorage.getItem('kfupm_role');
 
-        let isLoginMode = true;
+        let isLoginMode = true; // Forced Login Mode
 
         // Chat State
         let currentChatId = null;
@@ -776,14 +776,7 @@
             }
         }
 
-        // Auth Logic
-        toggleAuthBtn.onclick = () => {
-            isLoginMode = !isLoginMode;
-            authTitle.textContent = isLoginMode ? 'Welcome Back!' : 'Create Account';
-            authSubmitBtn.textContent = isLoginMode ? 'Login' : 'Sign Up';
-            toggleAuthBtn.textContent = isLoginMode ? "Don't have an account? Sign up" : "Already have an account? Login";
-            authError.textContent = '';
-        };
+        // Auth Logic - Sign Up Toggle REMOVED
 
         async function loadHistoryFromServer() {
             try {
@@ -860,7 +853,8 @@
             authSubmitBtn.textContent = 'Processing...';
             authError.textContent = '';
 
-            const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/register';
+            // STRICT LOGIN ONLY
+            const endpoint = '/api/auth/login';
 
             try {
                 const res = await fetch(endpoint, {
@@ -869,38 +863,29 @@
                     body: JSON.stringify({ username, password })
                 });
 
-                const data = await res.json();
+                const data = await res.json().catch(() => ({}));
 
                 if (res.ok) {
-                    if (isLoginMode) {
-                        token = data.token;
-                        currentUsername = data.username;
-                        userRole = data.role;
+                    token = data.token;
+                    currentUsername = data.username;
+                    userRole = data.role;
 
-                        localStorage.setItem('kfupm_token', token);
-                        localStorage.setItem('kfupm_username', currentUsername);
-                        localStorage.setItem('kfupm_role', userRole);
+                    localStorage.setItem('kfupm_token', token);
+                    localStorage.setItem('kfupm_username', currentUsername);
+                    localStorage.setItem('kfupm_role', userRole);
 
-                        hideUsernameModal();
-                        updateUIForUser();
-                        loadHistoryFromServer();
-                    } else {
-                        // Registration successful, switch to login
-                        isLoginMode = true;
-                        authTitle.textContent = 'Registration Successful!';
-                        authSubmitBtn.textContent = 'Login Now';
-                        toggleAuthBtn.click(); // Switch UI to login
-                        usernameInput.value = username;
-                        passwordInput.value = password;
-                    }
+                    hideUsernameModal();
+                    updateUIForUser();
+                    loadHistoryFromServer();
                 } else {
-                    authError.textContent = data.detail || 'Authentication failed';
+                    authError.textContent = data.detail || `Authentication failed (${res.status})`;
                 }
             } catch (err) {
-                authError.textContent = 'Network error. Please try again.';
+                console.error(err);
+                authError.textContent = 'Network or Server Error. Please check console.';
             } finally {
                 authSubmitBtn.disabled = false;
-                if (isLoginMode) authSubmitBtn.textContent = 'Login';
+                authSubmitBtn.textContent = 'Login';
             }
         });
 
