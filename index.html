@@ -956,7 +956,24 @@
                     })
                 });
 
-                const data = await res.json();
+                // Check if response is OK
+                if (!res.ok) {
+                    throw new Error(`Server error: ${res.status}`);
+                }
+
+                // Parse JSON safely
+                let data;
+                try {
+                    data = await res.json();
+                } catch (e) {
+                    throw new Error('Invalid response from server');
+                }
+
+                // Check if response field exists
+                if (!data || !data.response) {
+                    throw new Error('Empty response from server');
+                }
+
                 const botResponse = marked.parse(data.response);
 
                 addMessage(botResponse, 'bot-msg', true, data.message_id);
@@ -971,7 +988,8 @@
                 }
 
             } catch (error) {
-                addMessage("⚠️ Error: " + error.message, 'bot-msg');
+                console.error('Chat error:', error);
+                addMessage("⚠️ Error: " + (error.message || 'Something went wrong. Please try again.'), 'bot-msg');
             } finally {
                 input.disabled = false;
                 typing.style.display = 'none';
