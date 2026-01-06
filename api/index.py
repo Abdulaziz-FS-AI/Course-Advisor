@@ -86,12 +86,16 @@ def register(user: UserRegister):
 @app.post("/api/auth/login")
 def login(user: UserLogin):
     db = get_database()
-    db_user = db.get_user_by_username(user.username)
-    if not db_user or not verify_password(user.password, db_user["password_hash"]):
-        raise HTTPException(status_code=401, detail="Invalid username or password")
-    
-    token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": db_user["role"]})
-    return {"token": token, "username": db_user["username"], "role": db_user["role"]}
+    try:
+        db_user = db.get_user_by_username(user.username)
+        if not db_user or not verify_password(user.password, db_user["password_hash"]):
+            raise HTTPException(status_code=401, detail="Invalid username or password")
+        token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": db_user["role"]})
+        return {"token": token, "username": db_user["username"], "role": db_user["role"]}
+    except Exception as e:
+        print("Login error:", e)
+        raise HTTPException(status_code=500, detail="Server error")
+
 
 @app.post("/api/auth/guest")
 def guest_login(user: GuestLogin):
