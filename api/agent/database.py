@@ -33,26 +33,36 @@ class DatabaseManager:
         finally:
             conn.close()
     
-    def execute_query(self, sql: str, params: tuple = ()) -> Tuple[List[Dict[str, Any]], List[str]]:
+    def execute_query(self, sql: str, params: tuple = (), read_only: bool = True) -> Tuple[List[Dict[str, Any]], List[str]]:
         """
         Execute SQL query safely and return results.
+        
+        Args:
+            read_only: If True, blocks modification queries.
         
         Returns:
             Tuple of (rows as list of dicts, column names)
         """
-        # Security: Block dangerous operations
-        sql_lower = sql.lower().strip()
-        dangerous_keywords = ['drop', 'delete', 'update', 'insert', 'alter', 'truncate', 'create']
-        if any(f'{kw} ' in sql_lower or sql_lower.startswith(kw) for kw in dangerous_keywords):
-            raise ValueError(f"Dangerous SQL operation detected. Only SELECT queries are allowed.")
+        # Security: Block dangerous operations if read_only
+        if read_only:
+            sql_lower = sql.lower().strip()
+            dangerous_keywords = ['drop', 'delete', 'update', 'insert', 'alter', 'truncate', 'create']
+            if any(f'{kw} ' in sql_lower or sql_lower.startswith(kw) for kw in dangerous_keywords):
+                raise ValueError(f"Dangerous SQL operation detected. Only SELECT queries are allowed.")
         
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(sql, params)
+                
                 rows = cursor.fetchall()
                 columns = [desc[0] for desc in cursor.description] if cursor.description else []
-                return [dict(zip(columns, row)) for row in rows], columns
+                results = [dict(zip(columns, row)) for row in rows]
+
+                if not read_only:
+                    conn.commit()
+                
+                return results, columns
         except sqlite3.Error as e:
             raise RuntimeError(f"SQL execution error: {e}")
     
@@ -135,99 +145,217 @@ class DatabaseManager:
     def get_schema_info(self) -> str:
         """Get database schema description for LLM context."""
         schema = """
-## Database Tables
+-- ============================================================================
+-- KFUPM COURSE ADVISOR DATABASE SCHEMA
+-- ============================================================================
 
-### departments
-- id (INTEGER, PRIMARY KEY)
-- name (TEXT) - Full department name, e.g., "Information and Computer Science"
-- shortcut (TEXT, UNIQUE) - Abbreviation, e.g., "ICS", "SWE", "COE"
-- college (TEXT) - Parent college name
-- link (TEXT) - Official department website URL (**ALWAYS include in responses!**)
+/**
+ * DEPARTMENTS
+ * Central table for all academic departments and colleges.
+ * Contains official website links which MUST be included in responses.
+ */
+CREATE TABLE departments (
+    id INTEGER PRIMARY KEY,
+    name TEXT,      -- Full name, e.g., "Information and Computer Science"
+    shortcut TEXT,  -- Abbreviation, e.g., "ICS", "SWE", "COE". Unique.
+    college TEXT,   -- Parent college name
+    link TEXT       -- Official website URL. **CRITICAL: ALWAYS include in responses.**
+);
 
-### courses
-- id (INTEGER, PRIMARY KEY)
-- code (TEXT, UNIQUE) - Course code, e.g., "ICS 104", "SWE 205"
-- title (TEXT) - Course title
-- lecture_hours (INTEGER)
-- lab_hours (INTEGER)
-- credits (INTEGER)
-- department_id (INTEGER, FK -> departments.id)
-- type (TEXT) - "Undergraduate" or "Graduate"
-- description (TEXT) - Course description
-- prerequisites (TEXT) - Prerequisite courses (**WARNING: Often empty! Use concentration_courses for prerequisites**)
+/**
+ * COURSES
+ * Catalog of all undergraduate and graduate courses.
+ * Note: Prerequisites here are often empty (2.7% populated).
+ */
+CREATE TABLE courses (
+    id INTEGER PRIMARY KEY,
+    code TEXT,      -- Course code, e.g., "ICS 104", "EE 202". Unique.
+    title TEXT,     -- Course title
+    lecture_hours INTEGER,
+    lab_hours INTEGER,
+    credits INTEGER,
+    department_id INTEGER REFERENCES departments(id), -- Relationship to department
+    type TEXT,      -- "Undergraduate" or "Graduate"
+    description TEXT, -- Course description
+    prerequisites TEXT -- **Often empty in this table. Use concentration_courses for better data.**
+);
 
-### concentrations
-- id (INTEGER, PRIMARY KEY)
-- name (TEXT) - Concentration name, e.g., "Artificial Intelligence and Machine Learning"
-- description (TEXT) - Full description
-- department_id (INTEGER, FK -> departments.id)
+/**
+ * PROGRAM_PLANS (Undergraduate)
+ * Standard 4-year degree plans for undergraduate majors.
+ */
+CREATE TABLE program_plans (
+    id INTEGER PRIMARY KEY,
+    department_id INTEGER REFERENCES departments(id),
+    year_level INTEGER, -- 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior
+    semester INTEGER,   -- 1 (First) or 2 (Second)
+    course_id INTEGER REFERENCES courses(id),
+    course_code TEXT,   -- e.g., "MATH 101"
+    course_title TEXT,
+    credits INTEGER,
+    plan_option TEXT,   -- "0"=Core, "1"=Coop, "2"=Summer Training
+    plan_type TEXT      -- Always "Undergraduate"
+);
 
-### program_plans (Undergraduate Degree Plans)
-- id (INTEGER, PRIMARY KEY)
-- department_id (INTEGER, FK)
-- year_level (INTEGER) - 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior
-- semester (INTEGER) - 1 or 2
-- course_id (INTEGER, FK -> courses.id)
-- course_code (TEXT)
-- course_title (TEXT)
-- credits (INTEGER)
-- plan_option (TEXT) - "0"=Core, "1"=Coop, "2"=Summer Training
-- plan_type (TEXT) - "Undergraduate"
+/**
+ * GRADUATE_PROGRAM_PLANS
+ * Graduate program offerings (M.S. and Ph.D.).
+ * Contains 785 courses from 14 departments.
+ */
+CREATE TABLE graduate_program_plans (
+    id INTEGER PRIMARY KEY,
+    department_id INTEGER REFERENCES departments(id),
+    program_level TEXT, -- "Graduate", "M.S.", "Ph.D.", etc.
+    semester_info TEXT, -- Semester context if available
+    course_code TEXT,   -- e.g., "ICS 571", "EE 699"
+    course_title TEXT,
+    credits INTEGER,
+    description TEXT,   -- Detailed graduate course description
+    prerequisites TEXT  -- Graduate-level prerequisites
+);
 
-### graduate_program_plans (Graduate Degree Plans - M.S. and Ph.D.)
-- id (INTEGER, PRIMARY KEY)
-- department_id (INTEGER, FK -> departments.id)
-- program_level (TEXT) - "Graduate", "M.S.", "Ph.D.", etc.
-- semester_info (TEXT) - Semester information if available
-- course_code (TEXT) - Graduate course code (e.g., "ICS 571", "EE 699")
-- course_title (TEXT) - Course title
-- lecture_hours (INTEGER)
-- lab_hours (INTEGER)
-- credits (INTEGER)
-- plan_option (TEXT) - Plan variant
+/**
+ * CONCENTRATIONS
+ * Specialization tracks within a major.
+ */
+CREATE TABLE concentrations (
+    id INTEGER PRIMARY KEY,
+    name TEXT,         -- Concentration name, e.g., "Cybersecurity"
+    description TEXT,  -- Description of the track
+    department_id INTEGER REFERENCES departments(id)
+);
 
-### concentration_courses (**BEST SOURCE FOR PREREQUISITES**)
-- id (INTEGER, PRIMARY KEY)
-- concentration_id (INTEGER, FK)
-- course_id (INTEGER, FK)
-- course_code (TEXT)
-- course_title (TEXT)
-- description (TEXT)
-- prerequisites (TEXT) - **This table has the most complete prerequisite data!**
-- semester (TEXT)
-
-## Key Relationships
-- courses.department_id -> departments.id
-- concentrations.department_id -> departments.id
-- program_plans.department_id -> departments.id
-- graduate_program_plans.department_id -> departments.id
-- concentration_courses.concentration_id -> concentrations.id
-
-## CRITICAL DATA NOTES
-
-1. **PREREQUISITES**: The `courses` table often has EMPTY prerequisites!
-   - For prerequisite queries, ALWAYS query `concentration_courses` table first
-   - Example: `SELECT course_code, prerequisites FROM concentration_courses WHERE course_code LIKE 'ICS%' AND prerequisites != ''`
-
-2. **REFERENCE LINKS**: The `departments` table has official website links.
-   - ALWAYS include the link in responses about departments or courses
-   - JOIN with departments to get the link when querying courses
-
-3. **GRADUATE vs UNDERGRADUATE**: 
-   - Undergraduate programs: Use `program_plans` table
-   - Graduate programs (M.S., Ph.D.): Use `graduate_program_plans` table
-   - 14 departments offer graduate programs with 785 total courses
+/**
+ * CONCENTRATION_COURSES
+ * Detailed course lists for concentrations.
+ * **CRITICAL**: This is the BEST SOURCE for prerequisites data!
+ */
+CREATE TABLE concentration_courses (
+    id INTEGER PRIMARY KEY,
+    concentration_id INTEGER REFERENCES concentrations(id),
+    course_id INTEGER REFERENCES courses(id),
+    course_code TEXT,   -- e.g., "ICS 471"
+    course_title TEXT,
+    description TEXT,
+    prerequisites TEXT, -- **MOST COMPLETE PREREQUISITE DATA.** Query this table first!
+    semester TEXT       -- Recommended semester
+);
 """
         return schema
     
     def get_table_stats(self) -> Dict[str, int]:
         """Get row counts for each table."""
-        tables = ['departments', 'courses', 'concentrations', 'program_plans', 'graduate_program_plans', 'concentration_courses']
+        tables = ['departments', 'courses', 'concentrations', 'program_plans', 
+                 'graduate_program_plans', 'concentration_courses', 'users', 'chat_sessions', 'chat_messages']
         stats = {}
         for table in tables:
-            results, _ = self.execute_query(f"SELECT COUNT(*) as count FROM {table}")
-            stats[table] = results[0]['count'] if results else 0
+            try:
+                results, _ = self.execute_query(f"SELECT COUNT(*) as count FROM {table}")
+                stats[table] = results[0]['count'] if results else 0
+            except:
+                stats[table] = 0
         return stats
+
+    # =========================================================================
+    # USER MANAGEMENT
+    # =========================================================================
+
+    def create_user(self, username: str, password_hash: str, role: str = 'user') -> Dict[str, Any]:
+        """Create a new user."""
+        sql = """
+            INSERT INTO users (username, password_hash, role)
+            VALUES (?, ?, ?)
+            RETURNING id, username, role, created_at
+        """
+        try:
+            results, _ = self.execute_query(sql, (username, password_hash, role), read_only=False)
+            return results[0]
+        except RuntimeError as e:
+            if "UNIQUE constraint failed" in str(e):
+                raise ValueError("Username already exists")
+            raise e
+
+    def get_user_by_username(self, username: str) -> Optional[Dict[str, Any]]:
+        """Get user by username."""
+        sql = "SELECT * FROM users WHERE username = ?"
+        results, _ = self.execute_query(sql, (username,))
+        return results[0] if results else None
+
+    def get_all_users(self) -> List[Dict[str, Any]]:
+        """Get all users (for admin)."""
+        sql = """
+            SELECT u.id, u.username, u.role, u.created_at, 
+                   COUNT(cs.id) as session_count,
+                   (SELECT COUNT(*) FROM chat_messages cm JOIN chat_sessions cs2 ON cm.session_id = cs2.id WHERE cs2.user_id = u.id) as message_count
+            FROM users u
+            LEFT JOIN chat_sessions cs ON u.id = cs.user_id
+            GROUP BY u.id
+            ORDER BY u.created_at DESC
+        """
+        # Admin queries are read-only
+        results, _ = self.execute_query(sql)
+        return results
+
+    # =========================================================================
+    # CHAT MANAGEMENT
+    # =========================================================================
+
+    def create_chat_session(self, user_id: int, title: str, session_id: str) -> Dict[str, Any]:
+        """Create a new chat session."""
+        sql = """
+            INSERT INTO chat_sessions (id, user_id, title)
+            VALUES (?, ?, ?)
+            RETURNING id, user_id, title, created_at
+        """
+        results, _ = self.execute_query(sql, (session_id, user_id, title), read_only=False)
+        return results[0]
+
+    def get_user_sessions(self, user_id: int) -> List[Dict[str, Any]]:
+        """Get all chat sessions for a user with message counts."""
+        sql = """
+            SELECT cs.*, COUNT(cm.id) as message_count
+            FROM chat_sessions cs
+            LEFT JOIN chat_messages cm ON cs.id = cm.session_id
+            WHERE cs.user_id = ?
+            GROUP BY cs.id
+            ORDER BY cs.updated_at DESC
+        """
+        results, _ = self.execute_query(sql, (user_id,))
+        return results
+
+    def add_message(self, session_id: str, role: str, content: str) -> Dict[str, Any]:
+        """Add a message to a session."""
+        try:
+            with self.get_connection() as conn:
+                cursor = conn.cursor()
+                # Insert message
+                cursor.execute("""
+                    INSERT INTO chat_messages (session_id, role, content)
+                    VALUES (?, ?, ?)
+                """, (session_id, role, content))
+                
+                # Update session timestamp
+                cursor.execute("""
+                    UPDATE chat_sessions 
+                    SET updated_at = CURRENT_TIMESTAMP 
+                    WHERE id = ?
+                """, (session_id,))
+                
+                conn.commit()
+                return {"status": "success"}
+        except sqlite3.Error as e:
+            raise RuntimeError(f"Database error: {e}")
+
+    def get_session_messages(self, session_id: str) -> List[Dict[str, Any]]:
+        """Get all messages for a session."""
+        sql = """
+            SELECT role, content, timestamp 
+            FROM chat_messages 
+            WHERE session_id = ? 
+            ORDER BY id ASC
+        """
+        results, _ = self.execute_query(sql, (session_id,))
+        return results
 
 
 # Singleton instance

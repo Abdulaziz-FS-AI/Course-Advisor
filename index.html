@@ -220,6 +220,7 @@
             margin-bottom: 20px;
             display: inline-block;
             background: linear-gradient(45deg, #00766c, #26a69a);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -441,6 +442,165 @@
             }
         }
 
+        /* Username Modal */
+        .username-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .username-modal.hidden {
+            display: none;
+        }
+
+        .username-form-container {
+            background: linear-gradient(145deg, #ffffff, #f5f7fa);
+            padding: 50px 60px;
+            border-radius: 24px;
+            box-shadow:
+                12px 12px 24px rgba(0, 0, 0, 0.1),
+                -12px -12px 24px rgba(255, 255, 255, 0.9);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .username-form-container h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin: 0 0 12px 0;
+        }
+
+        .username-form-container p {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 30px 0;
+        }
+
+        .username-input {
+            width: 100%;
+            padding: 18px 24px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fff;
+            font-size: 16px;
+            font-family: inherit;
+            box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 24px;
+        }
+
+        .username-input:focus {
+            box-shadow:
+                inset 2px 2px 6px rgba(0, 0, 0, 0.05),
+                0 0 0 3px rgba(0, 118, 108, 0.1);
+            border-color: rgba(0, 118, 108, 0.3);
+        }
+
+        .username-submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00766c, #26a69a);
+            color: white;
+            padding: 18px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 118, 108, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .username-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 118, 108, 0.3);
+        }
+
+        .username-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .username-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* User Info Display */
+        .user-info {
+            padding: 16px 20px;
+            background: linear-gradient(145deg, #ffffff, #f5f7fa);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow:
+                4px 4px 10px rgba(0, 0, 0, 0.04),
+                -4px -4px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .user-info-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #a0aec0;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .user-info-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: #e53e3e;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            box-shadow:
+                4px 4px 8px var(--metal-shadow-dark),
+                -4px -4px 8px var(--metal-shadow-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                6px 6px 12px var(--metal-shadow-dark),
+                -6px -6px 12px var(--metal-shadow-light);
+            color: #c53030;
+        }
+
+        .logout-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 3px 3px 6px var(--metal-shadow-dark), inset -3px -3px 6px var(--metal-shadow-light);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .sidebar {
@@ -452,13 +612,52 @@
             .sidebar.open {
                 transform: translateX(0);
             }
+
+            .username-form-container {
+                padding: 40px 30px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Auth Modal -->
+    <div class="username-modal" id="usernameModal">
+        <div class="username-form-container">
+            <div class="logo-icon">✨</div>
+            <h2 id="auth-title">Welcome Back!</h2>
+            <p>Login to access your course advisor history</p>
+            <form id="username-form">
+                <input type="text" class="username-input" id="username-input" placeholder="Username"
+                    autocomplete="username" required maxlength="30">
+                <input type="password" class="username-input" id="password-input" placeholder="Password"
+                    autocomplete="current-password" required>
+                <div id="auth-error" style="color: #e53e3e; margin-bottom: 15px; font-size: 14px;"></div>
+                <button type="submit" class="username-submit-btn" id="auth-submit-btn">Login</button>
+                <div id="toggle-auth"
+                    style="margin-top: 20px; color: #00766c; cursor: pointer; font-size: 14px; text-decoration: underline;">
+                    Don't have an account? Sign up
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <div class="sidebar">
+        <!-- User Info -->
+        <div class="user-info" id="userInfo">
+            <div class="user-info-label">Logged in as</div>
+            <div class="user-info-name" id="currentUsername"></div>
+
+            <!-- Admin Link -->
+            <a href="/admin.html" id="admin-link"
+                style="display: none; align-items: center; gap: 8px; color: #e53e3e; font-size: 13px; margin-bottom: 10px; font-weight: 600; cursor: pointer; text-decoration: none;">
+                <span>🛡️</span> Admin Dashboard
+            </a>
+
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
         <button class="new-chat-btn" onclick="startNewChat()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12h14" />
@@ -524,45 +723,209 @@
         const typing = document.getElementById('typing');
         const mainContainer = document.getElementById('mainContainer');
         const chatList = document.getElementById('chatList');
+        const usernameModal = document.getElementById('usernameModal');
+        const usernameForm = document.getElementById('username-form');
+        const usernameInput = document.getElementById('username-input');
+        const currentUsernameDisplay = document.getElementById('currentUsername');
+
+        // New Elements
+        const passwordInput = document.getElementById('password-input');
+        const authTitle = document.getElementById('auth-title');
+        const authSubmitBtn = document.getElementById('auth-submit-btn');
+        const toggleAuthBtn = document.getElementById('toggle-auth');
+        const authError = document.getElementById('auth-error');
+        const adminLink = document.getElementById('admin-link');
+
+        // User State
+        let token = localStorage.getItem('kfupm_token');
+        let currentUsername = localStorage.getItem('kfupm_username');
+        let userRole = localStorage.getItem('kfupm_role');
+
+        let isLoginMode = true;
 
         // Chat State
         let currentChatId = null;
-        let chats = JSON.parse(localStorage.getItem('chats') || '{}');
+        let chats = {};
 
         // Initialize
         function init() {
-            renderChatList();
-            // Start new chat by default if no chats
-            if (Object.keys(chats).length === 0) {
-                startNewChat();
+            if (!token) {
+                showUsernameModal();
             } else {
-                // Determine most recent chat
-                const recentId = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp)[0];
-                loadChat(recentId);
+                hideUsernameModal();
+                updateUIForUser();
+                loadHistoryFromServer();
             }
         }
 
-        function startNewChat() {
-            currentChatId = Date.now().toString();
-            chats[currentChatId] = {
-                id: currentChatId,
-                title: 'New Chat',
-                messages: [],
-                timestamp: Date.now()
-            };
-            saveChats();
-            renderChatList();
-            clearMessages();
-            resetUI();
+        function showUsernameModal() {
+            usernameModal.classList.remove('hidden');
+            usernameInput.focus();
         }
 
-        function loadChat(id) {
+        function hideUsernameModal() {
+            usernameModal.classList.add('hidden');
+        }
+
+        function updateUIForUser() {
+            currentUsernameDisplay.textContent = currentUsername;
+            if (userRole === 'admin') {
+                adminLink.style.display = 'flex';
+            } else {
+                adminLink.style.display = 'none';
+            }
+        }
+
+        // Auth Logic
+        toggleAuthBtn.onclick = () => {
+            isLoginMode = !isLoginMode;
+            authTitle.textContent = isLoginMode ? 'Welcome Back!' : 'Create Account';
+            authSubmitBtn.textContent = isLoginMode ? 'Login' : 'Sign Up';
+            toggleAuthBtn.textContent = isLoginMode ? "Don't have an account? Sign up" : "Already have an account? Login";
+            authError.textContent = '';
+        };
+
+        async function loadHistoryFromServer() {
+            try {
+                const res = await fetch('/api/history?token=' + token);
+                if (res.ok) {
+                    const data = await res.json();
+                    chats = {}; // Reset local cache
+                    data.sessions.forEach(s => {
+                        chats[s.id] = {
+                            id: s.id,
+                            title: s.title,
+                            messages: [], // We load messages on demand
+                            timestamp: new Date(s.created_at).getTime()
+                        };
+                    });
+                    renderChatList();
+                    if (Object.keys(chats).length === 0) {
+                        startNewChat();
+                    }
+                } else {
+                    // Token might be expired
+                    logout();
+                }
+            } catch (e) {
+                console.error("Failed to load history", e);
+            }
+        }
+
+        async function loadChatMessages(sessionId) {
+            try {
+                const res = await fetch(`/api/chats/${sessionId}?token=${token}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    chats[sessionId].messages = data.messages.map(m => ({
+                        role: m.role,
+                        content: m.content,
+                        isHtml: m.role === 'assistant'
+                    }));
+                    return true;
+                }
+            } catch (e) {
+                console.error("Failed to load messages", e);
+            }
+            return false;
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('kfupm_token');
+                localStorage.removeItem('kfupm_username');
+                localStorage.removeItem('kfupm_role');
+                token = null;
+                currentUsername = null;
+                userRole = null;
+
+                chats = {};
+                currentChatId = null;
+                clearMessages();
+                resetUI();
+                chatList.innerHTML = '';
+                showUsernameModal();
+            }
+        }
+
+        // Auth form submission
+        usernameForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!username || !password) return;
+
+            authSubmitBtn.disabled = true;
+            authSubmitBtn.textContent = 'Processing...';
+            authError.textContent = '';
+
+            const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/register';
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    if (isLoginMode) {
+                        token = data.token;
+                        currentUsername = data.username;
+                        userRole = data.role;
+
+                        localStorage.setItem('kfupm_token', token);
+                        localStorage.setItem('kfupm_username', currentUsername);
+                        localStorage.setItem('kfupm_role', userRole);
+
+                        hideUsernameModal();
+                        updateUIForUser();
+                        loadHistoryFromServer();
+                    } else {
+                        // Registration successful, switch to login
+                        isLoginMode = true;
+                        authTitle.textContent = 'Registration Successful!';
+                        authSubmitBtn.textContent = 'Login Now';
+                        toggleAuthBtn.click(); // Switch UI to login
+                        usernameInput.value = username;
+                        passwordInput.value = password;
+                    }
+                } else {
+                    authError.textContent = data.detail || 'Authentication failed';
+                }
+            } catch (err) {
+                authError.textContent = 'Network error. Please try again.';
+            } finally {
+                authSubmitBtn.disabled = false;
+                if (isLoginMode) authSubmitBtn.textContent = 'Login';
+            }
+        });
+
+        function startNewChat() {
+            currentChatId = null; // Will be created on first message
+            clearMessages();
+            resetUI();
+
+            // Deselect all in sidebar
+            document.querySelectorAll('.chat-item').forEach(el => el.classList.remove('active'));
+        }
+
+        async function loadChat(id) {
             if (!chats[id]) return;
             currentChatId = id;
             clearMessages();
 
+            // Check if messages loaded
+            if (!chats[id].messages || chats[id].messages.length === 0) {
+                // Fetch from server
+                await loadChatMessages(id);
+            }
+
             // Re-render messages
-            const chatMessages = chats[id].messages;
+            const chatMessages = chats[id].messages || [];
             if (chatMessages.length > 0) {
                 mainContainer.classList.add('chat-active');
                 chatMessages.forEach(msg => {
@@ -576,28 +939,12 @@
             renderChatList();
         }
 
-        function deleteChat(e, id) {
-            e.stopPropagation();
-            delete chats[id];
-            saveChats();
-            if (currentChatId === id) {
-                if (Object.keys(chats).length > 0) {
-                    loadChat(Object.keys(chats)[0]); // Load another chat
-                } else {
-                    startNewChat();
-                }
-            } else {
-                renderChatList();
-            }
-        }
-
-        function saveChats() {
-            localStorage.setItem('chats', JSON.stringify(chats));
-        }
+        // Removed delete functionality for now as it's not in API yet
+        // function deleteChat(e, id) { ... }
 
         function renderChatList() {
             chatList.innerHTML = '';
-            // Sort by new
+            // Sort by time
             const sortedIds = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp);
 
             sortedIds.forEach(id => {
@@ -607,11 +954,6 @@
                 div.onclick = () => loadChat(id);
                 div.innerHTML = `
                     <span class="chat-title">${chat.title}</span>
-                    <button class="delete-btn" onclick="deleteChat(event, '${id}')">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-                        </svg>
-                    </button>
                 `;
                 chatList.appendChild(div);
             });
@@ -635,45 +977,66 @@
             const query = input.value.trim();
             if (!query) return;
 
-            // First message? Update title
-            if (chats[currentChatId].messages.length === 0) {
-                chats[currentChatId].title = query.substring(0, 30) + (query.length > 30 ? '...' : '');
-                saveChats();
-                renderChatList();
-            }
-
             // UI Transition
             mainContainer.classList.add('chat-active');
 
             // Add user message
             addMessage(query, 'user-msg');
-            chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
-            saveChats();
+
+            // Optimistic update
+            if (!chats[currentChatId]) {
+                // Temporary ID until server responds
+                // Actually, let's wait for server
+            } else {
+                chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
+            }
 
             input.value = '';
             input.disabled = true;
             typing.style.display = 'block';
 
             try {
-                // Get history for context
-                const history = chats[currentChatId].messages.map(m => ({
+                // Prepare history
+                const history = currentChatId && chats[currentChatId] ? chats[currentChatId].messages.map(m => ({
                     role: m.role,
                     content: m.content
-                }));
+                })) : [];
 
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: query, history: history })
+                    body: JSON.stringify({
+                        message: query,
+                        history: history,
+                        session_id: currentChatId,
+                        token: token
+                    })
                 });
 
                 const data = await response.json();
+
+                // Update session ID if it was new
+                if (data.session_id) {
+                    currentChatId = data.session_id;
+                    if (!chats[currentChatId]) {
+                        chats[currentChatId] = {
+                            id: currentChatId,
+                            title: query.substring(0, 30),
+                            messages: [],
+                            timestamp: Date.now()
+                        };
+                        // Add previous user message to this new session
+                        chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
+                    }
+                }
+
                 const botResponse = marked.parse(data.response);
 
                 // Add bot message
                 addMessage(botResponse, 'bot-msg', true);
                 chats[currentChatId].messages.push({ role: 'assistant', content: botResponse, isHtml: true });
-                saveChats();
+
+                renderChatList(); // Update list order/titles
 
             } catch (error) {
                 addMessage("⚠️ Error connecting to the agent. " + error.message, 'bot-msg');
