@@ -300,15 +300,77 @@ CREATE TABLE concentration_courses (
     # CHAT MANAGEMENT
     # =========================================================================
 
-    def create_chat_session(self, user_id: int, title: str, session_id: str) -> Dict[str, Any]:
-        """Create a new chat session."""
+    # =========================================================================
+    # ANONYMOUS SESSION MANAGEMENT
+    # =========================================================================
+
+    def create_chat_session(self, title: str, session_id: str, device_id: str) -> Dict[str, Any]:
+        """Create a new anonymous chat session linked to a device ID."""
+        
+        # Ensure 'device_id' column exists (migration helper)
+        self._ensure_device_column()
+        
+        # Get or create anonymous user to satisfy foreign key constraint
+        anon_user = self.get_user_by_username("anonymous_user")
+        if not anon_user:
+            try:
+                # Create with dummy hash
+                self.create_user("anonymous_user", "nopassword", role="user")
+                anon_user = self.get_user_by_username("anonymous_user")
+            except:
+                pass
+        
+        user_id = anon_user["id"] if anon_user else 1 # Fallback to admin if query fails
+            
         sql = """
-            INSERT INTO chat_sessions (id, user_id, title)
-            VALUES (?, ?, ?)
-            RETURNING id, user_id, title, created_at
+            INSERT INTO chat_sessions (id, device_id, title, user_id)
+            VALUES (?, ?, ?, ?)
+            RETURNING id, device_id, title, created_at
         """
-        results, _ = self.execute_query(sql, (session_id, user_id, title), read_only=False)
+        
+        results, _ = self.execute_query(sql, (session_id, device_id, title, user_id), read_only=False)
         return results[0]
+
+
+    def get_device_sessions(self, device_id: str) -> List[Dict[str, Any]]:
+        """Get all chat sessions for a specific device."""
+        self._ensure_device_column()
+        sql = """
+            SELECT cs.*, COUNT(cm.id) as message_count
+            FROM chat_sessions cs
+            LEFT JOIN chat_messages cm ON cs.id = cm.session_id
+            WHERE cs.device_id = ?
+            GROUP BY cs.id
+            ORDER BY cs.updated_at DESC
+        """
+        results, _ = self.execute_query(sql, (device_id,))
+        return results
+
+    def get_all_sessions_for_admin(self) -> List[Dict[str, Any]]:
+        """Get ALL sessions (for admin dashboard)."""
+        self._ensure_device_column()
+        sql = """
+            SELECT cs.*, COUNT(cm.id) as message_count
+            FROM chat_sessions cs
+            LEFT JOIN chat_messages cm ON cs.id = cm.session_id
+            GROUP BY cs.id
+            ORDER BY cs.updated_at DESC
+        """
+        results, _ = self.execute_query(sql)
+        return results
+
+    def _ensure_device_column(self):
+        """Helper to migrate schema on the fly if needed."""
+        try:
+            self.execute_query("SELECT device_id FROM chat_sessions LIMIT 1")
+        except:
+            # Column doesn't exist, add it
+            try:
+                self.execute_query("ALTER TABLE chat_sessions ADD COLUMN device_id TEXT", read_only=False)
+                self.execute_query("CREATE INDEX idx_device_id ON chat_sessions(device_id)", read_only=False)
+            except Exception as e:
+                print(f"Migration warning: {e}")
+
 
     def get_user_sessions(self, user_id: int) -> List[Dict[str, Any]]:
         """Get all chat sessions for a user with message counts."""
@@ -359,6 +421,53 @@ CREATE TABLE concentration_courses (
 
 
 # Singleton instance
+
+# ------------------------------------------------------------------
+# FEEDBACK MANAGEMENT
+# ------------------------------------------------------------------
+def _ensure_feedback_table(self):
+    """Create feedback table if it does not exist."""
+    sql = """
+        CREATE TABLE IF NOT EXISTS feedback (
+            id INTEGER PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            session_id TEXT,
+            message_id INTEGER REFERENCES chat_messages(id),
+            rating TEXT CHECK(rating IN ('up','down')),
+            comment TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """
+    self.execute_query(sql, (), read_only=False)
+
+def create_feedback(self, user_id: int, session_id: str, message_id: int, rating: str, comment: None = None) -> Dict[str, Any]:
+    """Insert a feedback entry. rating must be 'up' or 'down'."""
+    self._ensure_feedback_table()
+    sql = """
+        INSERT INTO feedback (user_id, session_id, message_id, rating, comment)
+        VALUES (?, ?, ?, ?, ?)
+        RETURNING id, user_id, session_id, message_id, rating, comment, created_at;
+    """
+    params = (user_id, session_id, message_id, rating, comment)
+    results, _ = self.execute_query(sql, params, read_only=False)
+    return results[0]
+
+def get_all_feedback(self) -> List[Dict[str, Any]]:
+    """Return all feedback with related user, session, and message info."""
+    self._ensure_feedback_table()
+    sql = """
+        SELECT f.id, f.rating, f.comment, f.created_at,
+               u.username AS user_name,
+               s.id AS session_id, s.title AS session_title,
+               m.id AS message_id, m.role AS message_role, m.content AS message_content
+        FROM feedback f
+        JOIN users u ON f.user_id = u.id
+        JOIN chat_sessions s ON f.session_id = s.id
+        JOIN chat_messages m ON f.message_id = m.id
+        ORDER BY f.created_at DESC;
+    """
+    results, _ = self.execute_query(sql)
+    return results
 _db_manager: Optional[DatabaseManager] = None
 
 def get_database() -> DatabaseManager:

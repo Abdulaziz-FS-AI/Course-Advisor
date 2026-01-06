@@ -621,37 +621,16 @@
 </head>
 
 <body>
-    <!-- Auth Modal -->
-    <div class="username-modal" id="usernameModal">
-        <div class="username-form-container">
-            <div class="logo-icon">✨</div>
-            <h2 id="auth-title">Welcome!</h2>
-            <p>Enter your name to start chatting</p>
-            <form id="username-form">
-                <input type="text" class="username-input" id="username-input" placeholder="Your Name"
-                    autocomplete="username" required maxlength="30">
-                <!-- No Password Field -->
-                <div id="auth-error" style="color: #e53e3e; margin-bottom: 15px; font-size: 14px;"></div>
-                <button type="submit" class="username-submit-btn" id="auth-submit-btn">Start Chatting</button>
-            </form>
-        </div>
-    </div>
+
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- User Info -->
-        <div class="user-info" id="userInfo">
-            <div class="user-info-label">Logged in as</div>
-            <div class="user-info-name" id="currentUsername"></div>
+        <!-- User Info Removed for Anonymous Mode -->
+        <a href="/admin"
+            style="font-size:12px; color:#cbd5e0; text-decoration:none; display:block; margin-bottom: 20px; padding-left:10px;">Admin
+            Login</a>
 
-            <!-- Admin Link: HIDDEN FOR NORMAL USERS -->
-            <a href="/admin.html" id="admin-link"
-                style="display: none; align-items: center; gap: 8px; color: #e53e3e; font-size: 13px; margin-bottom: 10px; font-weight: 600; cursor: pointer; text-decoration: none;">
-                <span>🛡️</span> Admin Dashboard
-            </a>
-
-            <button class="logout-btn" onclick="logout()">Exit</button>
-        </div>
 
         <button class="new-chat-btn" onclick="startNewChat()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -710,83 +689,54 @@
             </div>
         </div>
     </div>
+    <div class="overlay" id="overlay"></div>
 
     <script>
-        const form = document.getElementById('chat-form');
-        const input = document.getElementById('user-input');
-        const messages = document.getElementById('messages');
-        const typing = document.getElementById('typing');
-        const mainContainer = document.getElementById('mainContainer');
-        const chatList = document.getElementById('chatList');
-        const usernameModal = document.getElementById('usernameModal');
-        const usernameForm = document.getElementById('username-form');
-        const usernameInput = document.getElementById('username-input');
-        const currentUsernameDisplay = document.getElementById('currentUsername');
+        // DOM Elements
+        const form = document.querySelector('.chat-input-form');
+        const input = document.querySelector('.input-box');
+        const messages = document.querySelector('.messages-area');
+        const typing = document.querySelector('.typing-indicator');
+        const chatList = document.querySelector('.chat-list');
+        const mainContainer = document.querySelector('.main-container');
 
-        // New Elements
-        const authSubmitBtn = document.getElementById('auth-submit-btn');
-        const authError = document.getElementById('auth-error');
-        const adminLink = document.getElementById('admin-link');
+        // State
+        // State
+        let deviceId = localStorage.getItem('kfupm_device_id');
+        if (!deviceId) {
+            // Robust fallback for non-secure contexts
+            if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+                deviceId = crypto.randomUUID();
+            } else {
+                deviceId = 'dev-' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+            }
+            localStorage.setItem('kfupm_device_id', deviceId);
+        }
 
-        // User State
-        let token = localStorage.getItem('kfupm_token');
-        let currentUsername = localStorage.getItem('kfupm_username');
-        let userRole = localStorage.getItem('kfupm_role');
-
-        // Chat State
+        let chats = {}; // { id: { title: "", messages: [], timestamp: 0 } }
         let currentChatId = null;
-        let chats = {};
 
-        // Initialize
-        function init() {
-            if (!token) {
-                showUsernameModal();
-            } else {
-                hideUsernameModal();
-                updateUIForUser();
-                loadHistoryFromServer();
-            }
-        }
-
-        function showUsernameModal() {
-            usernameModal.classList.remove('hidden');
-            usernameInput.focus();
-        }
-
-        function hideUsernameModal() {
-            usernameModal.classList.add('hidden');
-        }
-
-        function updateUIForUser() {
-            currentUsernameDisplay.textContent = currentUsername;
-            // Only show admin link if actually admin, though typical users won't be logging in as admin here anymore
-            if (userRole === 'admin') {
-                adminLink.style.display = 'flex';
-            } else {
-                adminLink.style.display = 'none';
-            }
+        // Init
+        async function init() {
+            await loadHistoryFromServer();
+            startNewChat();
         }
 
         async function loadHistoryFromServer() {
             try {
-                const res = await fetch('/api/history?token=' + token);
+                const res = await fetch(`/api/chat/sessions?device_id=${deviceId}`);
                 if (res.ok) {
-                    const data = await res.json();
+                    const sessions = await res.json();
                     chats = {};
-                    data.sessions.forEach(s => {
+                    sessions.forEach(s => {
                         chats[s.id] = {
                             id: s.id,
-                            title: s.title,
-                            messages: [],
-                            timestamp: new Date(s.created_at).getTime()
+                            title: s.title || "Untitled Chat",
+                            messages: [], // Will load on demand
+                            timestamp: new Date(s.updated_at || s.created_at).getTime()
                         };
                     });
                     renderChatList();
-                    if (Object.keys(chats).length === 0) {
-                        startNewChat();
-                    }
-                } else {
-                    logout();
                 }
             } catch (e) {
                 console.error("Failed to load history", e);
@@ -795,10 +745,11 @@
 
         async function loadChatMessages(sessionId) {
             try {
-                const res = await fetch(`/api/chats/${sessionId}?token=${token}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    chats[sessionId].messages = data.messages.map(m => ({
+                const msgRes = await fetch(`/api/chat/messages?session_id=${sessionId}&device_id=${deviceId}`);
+                if (msgRes.ok) {
+                    const data = await msgRes.json();
+                    // data is list of {role, content, ...}
+                    chats[sessionId].messages = data.map(m => ({
                         role: m.role,
                         content: m.content,
                         isHtml: m.role === 'assistant'
@@ -811,70 +762,10 @@
             return false;
         }
 
-        function logout() {
-            if (confirm('Are you sure you want to exit?')) {
-                localStorage.removeItem('kfupm_token');
-                localStorage.removeItem('kfupm_username');
-                localStorage.removeItem('kfupm_role');
-                location.reload();
-            }
-        }
-
-        // Auth form submission
-        usernameForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = usernameInput.value.trim();
-
-            if (!username) return;
-
-            authSubmitBtn.disabled = true;
-            authSubmitBtn.textContent = 'Joining...';
-            authError.textContent = '';
-
-            try {
-                // Use new Guest Login Endpoint
-                const res = await fetch('/api/auth/guest', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username })
-                });
-
-                const data = await res.json().catch(() => ({}));
-
-                if (res.ok) {
-                    token = data.token;
-                    currentUsername = data.username;
-                    userRole = data.role;
-
-                    localStorage.setItem('kfupm_token', token);
-                    localStorage.setItem('kfupm_username', currentUsername);
-                    localStorage.setItem('kfupm_role', userRole);
-
-                    hideUsernameModal();
-                    updateUIForUser();
-                    loadHistoryFromServer();
-                } else {
-                    if (res.status === 403) {
-                        authError.textContent = "This name is reserved for Admin. Please choose another.";
-                    } else {
-                        authError.textContent = data.detail || `Login failed (${res.status})`;
-                    }
-                }
-            } catch (err) {
-                console.error(err);
-                authError.textContent = 'Server Error. please try again.';
-            } finally {
-                authSubmitBtn.disabled = false;
-                authSubmitBtn.textContent = 'Start Chatting';
-            }
-        });
-
-        function startNewChat() {
-            currentChatId = null; // Will be created on first message
+        async function startNewChat() {
+            currentChatId = null;
             clearMessages();
             resetUI();
-
-            // Deselect all in sidebar
             document.querySelectorAll('.chat-item').forEach(el => el.classList.remove('active'));
         }
 
@@ -883,13 +774,10 @@
             currentChatId = id;
             clearMessages();
 
-            // Check if messages loaded
             if (!chats[id].messages || chats[id].messages.length === 0) {
-                // Fetch from server
                 await loadChatMessages(id);
             }
 
-            // Re-render messages
             const chatMessages = chats[id].messages || [];
             if (chatMessages.length > 0) {
                 mainContainer.classList.add('chat-active');
@@ -904,12 +792,8 @@
             renderChatList();
         }
 
-        // Removed delete functionality for now as it's not in API yet
-        // function deleteChat(e, id) { ... }
-
         function renderChatList() {
             chatList.innerHTML = '';
-            // Sort by time
             const sortedIds = Object.keys(chats).sort((a, b) => chats[b].timestamp - chats[a].timestamp);
 
             sortedIds.forEach(id => {
@@ -917,9 +801,7 @@
                 const div = document.createElement('div');
                 div.className = `chat-item ${id === currentChatId ? 'active' : ''}`;
                 div.onclick = () => loadChat(id);
-                div.innerHTML = `
-                    <span class="chat-title">${chat.title}</span>
-                `;
+                div.innerHTML = `<span class="chat-title">${chat.title}</span>`;
                 chatList.appendChild(div);
             });
         }
@@ -942,69 +824,62 @@
             const query = input.value.trim();
             if (!query) return;
 
-            // UI Transition
             mainContainer.classList.add('chat-active');
-
-            // Add user message
             addMessage(query, 'user-msg');
-
-            // Optimistic update
-            if (!chats[currentChatId]) {
-                // Temporary ID until server responds
-                // Actually, let's wait for server
-            } else {
-                chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
-            }
-
             input.value = '';
             input.disabled = true;
             typing.style.display = 'block';
 
             try {
-                // Prepare history
-                const history = currentChatId && chats[currentChatId] ? chats[currentChatId].messages.map(m => ({
-                    role: m.role,
-                    content: m.content
-                })) : [];
+                // 1. If new chat, create session first
+                if (!currentChatId) {
+                    const sessionRes = await fetch('/api/chat/sessions', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            title: query.substring(0, 30) || "New Chat",
+                            device_id: deviceId
+                        })
+                    });
+                    const sessionData = await sessionRes.json();
+                    currentChatId = sessionData.id;
 
-                const response = await fetch('/api/chat', {
+                    chats[currentChatId] = {
+                        id: currentChatId,
+                        title: sessionData.title,
+                        messages: [],
+                        timestamp: Date.now()
+                    };
+                    renderChatList();
+                }
+
+                // 2. Optimistic update
+                if (chats[currentChatId]) {
+                    chats[currentChatId].messages.push({ role: 'user', content: query });
+                }
+
+                // 3. Send Message
+                const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         message: query,
-                        history: history,
                         session_id: currentChatId,
-                        token: token
+                        device_id: deviceId
                     })
                 });
 
-                const data = await response.json();
-
-                // Update session ID if it was new
-                if (data.session_id) {
-                    currentChatId = data.session_id;
-                    if (!chats[currentChatId]) {
-                        chats[currentChatId] = {
-                            id: currentChatId,
-                            title: query.substring(0, 30),
-                            messages: [],
-                            timestamp: Date.now()
-                        };
-                        // Add previous user message to this new session
-                        chats[currentChatId].messages.push({ role: 'user', content: query, isHtml: false });
-                    }
-                }
-
+                const data = await res.json();
                 const botResponse = marked.parse(data.response);
 
-                // Add bot message
                 addMessage(botResponse, 'bot-msg', true);
-                chats[currentChatId].messages.push({ role: 'assistant', content: botResponse, isHtml: true });
 
-                renderChatList(); // Update list order/titles
+                if (chats[currentChatId]) {
+                    chats[currentChatId].messages.push({ role: 'assistant', content: data.response, isHtml: true });
+                }
 
             } catch (error) {
-                addMessage("⚠️ Error connecting to the agent. " + error.message, 'bot-msg');
+                addMessage("⚠️ Error: " + error.message, 'bot-msg');
             } finally {
                 input.disabled = false;
                 typing.style.display = 'none';
@@ -1015,20 +890,50 @@
         function addMessage(text, className, isHtml = false) {
             const div = document.createElement('div');
             div.className = `message ${className}`;
-            if (isHtml) {
-                div.innerHTML = text;
+
+            // Add Feedback UI for assistant
+            if (className.includes('bot-msg')) {
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'content';
+                contentDiv.innerHTML = text; // Assumes marked/sanitized
+
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback';
+                feedbackDiv.innerHTML = `
+                    <button class="thumb up" title="Helpful">👍</button>
+                    <button class="thumb down" title="Not Helpful">👎</button>
+                `;
+
+                div.appendChild(contentDiv);
+                div.appendChild(feedbackDiv);
+
+                // Add feedback logic (simplified)
+                feedbackDiv.querySelector('.up').onclick = () => handleFeedback(currentChatId, className, 'up'); // pass msg id? 
+                // We need msg ID for feedback. Current API returns only response text. 
+                // To support feedback properly, API should return message ID.
+                // For now, just console log or basic placeholder.
+                feedbackDiv.querySelector('.down').onclick = () => handleFeedback(currentChatId, className, 'down');
+
             } else {
-                div.textContent = text;
+                if (isHtml) div.innerHTML = text;
+                else div.textContent = text;
             }
+
             messages.appendChild(div);
-            // Smooth scroll to bottom
-            setTimeout(() => {
-                messages.scrollTop = messages.scrollHeight;
-            }, 10);
+            setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 10);
         }
 
-        // Start
+        function handleFeedback(sessionId, msgId, rating) {
+            console.log("Feedback:", sessionId, rating);
+            // Implement feedback modal call here if needed
+        }
+
         init();
+        // Remove Auth Modal from DOM
+        (function removeAuthModal() {
+            const m = document.querySelector('.username-modal');
+            if (m) m.remove();
+        })();
     </script>
 </body>
 

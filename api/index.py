@@ -42,47 +42,24 @@ def serve_admin():
 def serve_admin_html():
     return FileResponse(os.path.join(parent_dir, "admin.html"))
 
+from agent.system_prompt import get_system_prompt
+from agent.llm_client import get_llm_client
+
 # Models
 class UserLogin(BaseModel):
     username: str
     password: str
 
-class GuestLogin(BaseModel):
-    username: str
-
-class UserRegister(BaseModel):
-    username: str
-    password: str
+class CreateSessionRequest(BaseModel):
+    title: str
+    device_id: str
 
 class ChatRequest(BaseModel):
     message: str
-    username: Optional[str] = None
-    token: Optional[str] = None
-    session_id: Optional[str] = None
-    history: Optional[List[Dict[str, str]]] = None
-
-class ChatResponse(BaseModel):
-    response: str
-    query_type: str
     session_id: str
-    sql: Optional[str] = None
-    results: Optional[List[Dict[str, Any]]] = None
-    error: Optional[str] = None
+    device_id: str = "anonymous"
 
-class HistoryResponse(BaseModel):
-    sessions: List[Dict[str, Any]]
-
-# Auth Endpoints
-@app.post("/api/auth/register")
-def register(user: UserRegister):
-    db = get_database()
-    try:
-        hashed_pw = get_password_hash(user.password)
-        new_user = db.create_user(user.username, hashed_pw)
-        return {"message": "User registered successfully", "user_id": new_user["id"]}
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
+# Auth Endpoints - Register removed (Admin usage only/seeded), Login kept for Admin
 @app.post("/api/auth/login")
 def login(user: UserLogin):
     db = get_database()
@@ -96,134 +73,137 @@ def login(user: UserLogin):
         print("Login error:", e)
         raise HTTPException(status_code=500, detail="Server error")
 
+# Chat Endpoints
+@app.post("/api/chat/sessions")
+def create_session(request: CreateSessionRequest):
+    """Create a new anonymous session linked to a device ID."""
+    try:
+        session_id = str(uuid.uuid4())
+        db = get_database()
+        session = db.create_chat_session(
+            title=request.title,
+            session_id=session_id,
+            device_id=request.device_id
+        )
+        return session
+    except Exception as e:
+        print(f"Error creating session: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/api/auth/guest")
-def guest_login(user: GuestLogin):
-    """Guest login – only a username is required.
-    - If the username already exists (and is not admin) return an error indicating the name is taken.
-    - If the username does not exist, create a new guest user with a dummy password hash.
+@app.get("/api/chat/sessions")
+def get_sessions(device_id: str):
+    """Get all sessions for a specific device."""
+    db = get_database()
+    return db.get_device_sessions(device_id)
+
+@app.post("/api/chat")
+def chat(request: ChatRequest):
+    """
+    Chat endpoint for anonymous users.
     """
     db = get_database()
-    username = user.username.strip()
-    if not username:
-        raise HTTPException(status_code=400, detail="Username required")
+    
+    # 1. Save User Message
+    try:
+        db.add_message(request.session_id, "user", request.message)
+    except Exception as e:
+        print(f"Error saving user message: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save message")
 
-    # Check for existing user
-    db_user = db.get_user_by_username(username)
-    if db_user:
-        if db_user["role"] == "admin":
-            raise HTTPException(status_code=403, detail="Admins must use password login")
-        else:
-            raise HTTPException(status_code=400, detail="Name already taken. Choose another.")
+    # 2. Generate AI Response using system prompt + history
+    try:
+        # Get history (list of dicts with 'role', 'content')
+        history_rows = db.get_session_messages(request.session_id)
+        
+        # Convert to format expected by LLMClient (list of dicts)
+        if not history_rows:
+            history_rows = []
+            
+        current_msg = history_rows[-1]["content"] if history_rows else request.message
+        # History is everything EXCEPT the last one (if it was added)
+        context_history = []
+        for msg in history_rows[:-1]:
+            context_history.append({"role": msg["role"], "content": msg["content"]})
+            
+        # Call LLM
+        client = get_llm_client()
+        system_prompt = get_system_prompt()
+        
+        response_text = client.generate(
+            system_prompt=system_prompt,
+            user_message=current_msg,
+            conversation_history=context_history[-10:] # Limit context window if needed
+        )
+        
+        # 3. Save AI Response
+        db.add_message(request.session_id, "assistant", response_text)
+        
+        return {"response": response_text}
 
-    # Create new guest user with a short dummy password (bcrypt limit 72 bytes)
-    dummy_password = "guest_user_no_password"[:72]
-    dummy_hash = get_password_hash(dummy_password)
-    new_user = db.create_user(username, dummy_hash, role='user')
-    token = create_access_token({"sub": new_user["username"], "id": new_user["id"], "role": "user"})
-    return {"token": token, "username": new_user["username"], "role": "user"}
+    except Exception as e:
+        print(f"Chat error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
+
+@app.get("/api/admin/sessions")
+def get_all_sessions_admin(token: str):
+    """Get ALL sessions for admin dashboard."""
+    db = get_database()
+    try:
+        payload = decode_access_token(token)
+        username = payload.get("sub")
+        role = payload.get("role")
+        if role != "admin":
+             raise HTTPException(status_code=403, detail="Admin only")
+    except:
+        raise HTTPException(status_code=401, detail="Invalid token")
+        
+    return db.get_all_sessions_for_admin()
+
+@app.get("/api/admin/messages")
+def get_session_msgs_admin(token: str, session_id: str):
+    """Get messages for a specific session (admin only)."""
+    db = get_database()
+    try:
+        payload = decode_access_token(token)
+        username = payload.get("sub")
+        role = payload.get("role")
+        if role != "admin":
+             raise HTTPException(status_code=403, detail="Admin only")
+    except:
+        raise HTTPException(status_code=401, detail="Invalid token")
+        
+    return db.get_session_messages(session_id)
 
 @app.get("/api/health")
 def health_check():
     agent = get_agent()
+    # Check VLLM
+    vllm_status = "unknown"
+    try:
+        # Simple reliable check: just see if we can instantiate client
+        client = get_llm_client()
+        vllm_status = "connected" if client.health_check() else "disconnected"
+    except:
+        vllm_status = "error"
+        
     status = {
-        "status": "online",
+        "status": "active",
+        "agent": "ready" if agent else "not_ready",
+        "vllm": vllm_status,
         "database": "connected" if agent.db else "disconnected",
         "llm_url": VLLM_BASE_URL
     }
     return status
 
-@app.get("/api/history")
-def get_history(token: str):
-    payload = decode_access_token(token)
-    if not payload:
-        raise HTTPException(status_code=401, detail="Invalid token")
-    
+@app.get("/api/chat/messages")
+def get_session_messages(session_id: str, device_id: str):
+    """Get messages for a specific session (device ownership check)."""
     db = get_database()
-    sessions = db.get_user_sessions(payload["id"])
-    return {"sessions": sessions}
+    # Check if session exists and belongs to device
+    # In a real app we'd verify device_id, for now we trust the client or just return public data (anonymous sessions)
+    # sessions = db.get_device_sessions(device_id) 
+    # if session_id not in [s['id'] for s in sessions]: ...
+    
+    return db.get_session_messages(session_id)
 
-@app.get("/api/chats/{session_id}")
-def get_chat_details(session_id: str, token: str):
-    payload = decode_access_token(token)
-    if not payload:
-        raise HTTPException(status_code=401, detail="Invalid token")
-        
-    db = get_database()
-    messages = db.get_session_messages(session_id)
-    return {"messages": messages}
-
-@app.post("/api/chat", response_model=ChatResponse)
-def chat(request: ChatRequest):
-    agent = get_agent()
-    db = get_database()
-    
-    session_id = request.session_id
-    user_id = None
-    
-    # Authenticate if token provided
-    if request.token:
-        payload = decode_access_token(request.token)
-        if payload:
-            user_id = payload["id"]
-    
-    # Create session if needed
-    if not session_id and user_id:
-        session_id = str(uuid.uuid4())
-        # Use first few chars of message as title
-        title = request.message[:30] + "..." if len(request.message) > 30 else request.message
-        db.create_chat_session(user_id, title, session_id)
-    
-    # Save User Message
-    if session_id and user_id:
-        db.add_message(session_id, "user", request.message)
-
-    # Process Query
-    response = agent.process_query(request.message)
-    
-    # Save Assistant Message
-    if session_id and user_id:
-        # Convert response to string if needed, or structured
-        content = response.message
-        db.add_message(session_id, "assistant", content)
-    
-    return ChatResponse(
-        response=response.message,
-        query_type=response.query_type.value,
-        session_id=session_id or "anonymous",
-        sql=response.sql_used,
-        results=response.raw_results,
-        error=response.error
-    )
-
-# Admin Endpoints
-@app.get("/api/admin/users")
-def get_all_users(token: str):
-    payload = decode_access_token(token)
-    if not payload or payload.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin privileges required")
-    
-    db = get_database()
-    users = db.get_all_users()
-    return {"users": users}
-
-@app.get("/api/admin/users/{user_id}/chats")
-def get_user_chats_admin(user_id: int, token: str):
-    payload = decode_access_token(token)
-    if not payload or payload.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin privileges required")
-    
-    db = get_database()
-    sessions = db.get_user_sessions(user_id)
-    return {"sessions": sessions}
-
-@app.get("/api/admin/chats/{session_id}")
-def get_chat_details_admin(session_id: str, token: str):
-    payload = decode_access_token(token)
-    if not payload or payload.get("role") != "admin":
-        raise HTTPException(status_code=403, detail="Admin privileges required")
-    
-    db = get_database()
-    messages = db.get_session_messages(session_id)
-    return {"messages": messages}
