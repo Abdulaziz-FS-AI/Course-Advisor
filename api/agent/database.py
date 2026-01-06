@@ -201,37 +201,28 @@ CREATE TABLE courses (
 );
 
 /**
- * PROGRAM_PLANS (Undergraduate)
- * Standard 4-year degree plans for undergraduate majors.
+ * PROGRAM_PLANS
+ * Standard degree plans for both Undergraduate and Graduate majors.
+ * 
+ * Columns:
+ * - plan_type: "Undergraduate" or "Graduate" (CRITICAL FILTER)
+ * - year_level: 
+ *      - Undergrad: 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior
+ *      - Grad: "Graduate"
+ * - semester: 1, 2, or "N/A"
+ * - course_code: e.g. "MATH 101", "SWE 501"
  */
 CREATE TABLE program_plans (
     id INTEGER PRIMARY KEY,
     department_id INTEGER REFERENCES departments(id),
-    year_level INTEGER, -- 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior
-    semester INTEGER,   -- 1 (First) or 2 (Second)
+    year_level TEXT,    -- "1", "2", "3", "4" or "Graduate"
+    semester TEXT,      -- "1", "2" or string
     course_id INTEGER REFERENCES courses(id),
     course_code TEXT,   -- e.g., "MATH 101"
     course_title TEXT,
     credits INTEGER,
     plan_option TEXT,   -- "0"=Core, "1"=Coop, "2"=Summer Training
-    plan_type TEXT      -- Always "Undergraduate"
-);
-
-/**
- * GRADUATE_PROGRAM_PLANS
- * Graduate program offerings (M.S. and Ph.D.).
- * Contains 785 courses from 14 departments.
- */
-CREATE TABLE graduate_program_plans (
-    id INTEGER PRIMARY KEY,
-    department_id INTEGER REFERENCES departments(id),
-    program_level TEXT, -- "Graduate", "M.S.", "Ph.D.", etc.
-    semester_info TEXT, -- Semester context if available
-    course_code TEXT,   -- e.g., "ICS 571", "EE 699"
-    course_title TEXT,
-    credits INTEGER,
-    description TEXT,   -- Detailed graduate course description
-    prerequisites TEXT  -- Graduate-level prerequisites
+    plan_type TEXT      -- "Undergraduate" or "Graduate"
 );
 
 /**

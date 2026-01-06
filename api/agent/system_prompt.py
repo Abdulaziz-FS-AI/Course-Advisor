@@ -98,6 +98,23 @@ WHERE LOWER(c.title) LIKE '%programming%' OR LOWER(c.description) LIKE '%program
 LIMIT 20;
 ```
 
+## Find graduate courses
+```sql
+SELECT c.code, c.title, c.credits, c.description
+FROM courses c
+JOIN departments d ON c.department_id = d.id
+WHERE c.type = 'Graduate' AND LOWER(d.shortcut) = LOWER('SWE');
+```
+
+## Get graduate degree plan
+```sql
+SELECT pp.semester, pp.course_code, pp.course_title, pp.credits
+FROM program_plans pp
+JOIN departments d ON pp.department_id = d.id
+WHERE pp.plan_type = 'Graduate' AND LOWER(d.shortcut) = LOWER('SWE')
+ORDER BY pp.semester;
+```
+
 # IMPORTANT RULES
 
 1. **Be accurate** - Only provide information from database results
@@ -137,7 +154,8 @@ Database results:
 
 Format these results into a clear, helpful response:
 - Use markdown for formatting (tables for lists, bold for emphasis)
-- If there's a 'link' field with a value, format as [Name](link)
+- **CRITICAL**: If a department is mentioned, YOU MUST include its link at the very end of the response (e.g., "Department Website: [Full Name](link)").
+- If multiple departments are listed, provide the link next to each one.
 - Be concise and direct
 - Don't include the SQL query in your response
 - Don't add information not in the results
