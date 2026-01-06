@@ -13,11 +13,16 @@ VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
 MODEL_NAME = os.getenv("MODEL_NAME", "/home/shared_dir/Qwen3-30B-A3B-Instruct-2507")
 
 # === LLM Parameters ===
-LLM_TEMPERATURE = 0.3  # Lower for more deterministic SQL generation
-LLM_MAX_TOKENS = 2048
-LLM_TOP_P = 0.9
+# Temperature: 0.1 for SQL generation (very deterministic), 0.4 for formatting
+LLM_TEMPERATURE = 0.1  # Low for accurate SQL generation
+LLM_MAX_TOKENS = 2048  # Enough for complex queries + response
+LLM_TOP_P = 0.95       # Slightly higher for better token selection
 
 # === Agent Settings ===
-MAX_SQL_RETRIES = 2  # Retry SQL generation on failure
-ENABLE_FUZZY_SEARCH = True  # Use FTS5 for fuzzy matching
+MAX_SQL_RETRIES = 2    # Retry SQL generation on syntax errors
 DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
+ENABLE_FUZZY_SEARCH = True  # Use FTS5 for fuzzy matching fallback
+
+# === Response Limits ===
+MAX_RESULTS_DISPLAY = 50   # Max rows to show in formatted response
+MAX_RESULT_CHARS = 8000    # Truncate result JSON for formatting prompt
