@@ -56,7 +56,7 @@ class CreateSessionRequest(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str
-    session_id: str
+    session_id: Optional[str] = None
     device_id: str = "anonymous"
 
 class FeedbackRequest(BaseModel):
@@ -109,9 +109,15 @@ def chat(request: ChatRequest):
     Chat endpoint for anonymous users.
     """
     db = get_database()
-    # Validate required fields
+    # Ensure we have a session_id; if not, create a new anonymous session
     if not request.session_id:
-        raise HTTPException(status_code=422, detail="session_id is required")
+        # Auto-create a session using the provided device_id (or anonymous)
+        new_session = db.create_chat_session(
+            title=request.message[:30] or "New Chat",
+            session_id=str(uuid.uuid4()),
+            device_id=request.device_id or "anonymous"
+        )
+        request.session_id = new_session["id"] if isinstance(new_session, dict) else new_session.get("id")
     if not request.message:
         raise HTTPException(status_code=422, detail="message is required")
     
