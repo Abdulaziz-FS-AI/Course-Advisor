@@ -165,92 +165,56 @@ class DatabaseManager:
     def get_schema_info(self) -> str:
         """Get database schema description for LLM context."""
         schema = """
--- ============================================================================
--- KFUPM COURSE ADVISOR DATABASE SCHEMA
--- ============================================================================
+# DATABASE SCHEMA
 
-/**
- * DEPARTMENTS
- * Central table for all academic departments and colleges.
- * Contains official website links which MUST be included in responses.
- */
-CREATE TABLE departments (
-    id INTEGER PRIMARY KEY,
-    name TEXT,      -- Full name, e.g., "Information and Computer Science"
-    shortcut TEXT,  -- Abbreviation, e.g., "ICS", "SWE", "COE". Unique.
-    college TEXT,   -- Parent college name
-    link TEXT       -- Official website URL. **CRITICAL: ALWAYS include in responses.**
-);
+## TABLES & KEY COLUMNS
 
-/**
- * COURSES
- * Catalog of all undergraduate and graduate courses.
- * Note: Prerequisites here are often empty (2.7% populated).
- */
-CREATE TABLE courses (
-    id INTEGER PRIMARY KEY,
-    code TEXT,      -- Course code, e.g., "ICS 104", "EE 202". Unique.
-    title TEXT,     -- Course title
-    lecture_hours INTEGER,
-    lab_hours INTEGER,
-    credits INTEGER,
-    department_id INTEGER REFERENCES departments(id), -- Relationship to department
-    type TEXT,      -- "Undergraduate" or "Graduate"
-    description TEXT, -- Course description
-    prerequisites TEXT -- **Often empty in this table. Use concentration_courses for better data.**
-);
+**departments** (central hub - all other tables reference this)
+- id, name, shortcut, college, link
+- Example: name="Information and Computer Science", shortcut="ICS", link="https://ics.kfupm.edu.sa/"
+- Note: shortcut is used in course codes (e.g., "ICS 104")
 
-/**
- * PROGRAM_PLANS
- * Standard degree plans for both Undergraduate and Graduate majors.
- * 
- * Columns:
- * - plan_type: "Undergraduate" or "Graduate" (CRITICAL FILTER)
- * - year_level: 
- *      - Undergrad: 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior
- *      - Grad: "Graduate"
- * - semester: 1, 2, or "N/A"
- * - course_code: e.g. "MATH 101", "SWE 501"
- */
-CREATE TABLE program_plans (
-    id INTEGER PRIMARY KEY,
-    department_id INTEGER REFERENCES departments(id),
-    year_level TEXT,    -- "1", "2", "3", "4" or "Graduate"
-    semester TEXT,      -- "1", "2" or string
-    course_id INTEGER REFERENCES courses(id),
-    course_code TEXT,   -- e.g., "MATH 101"
-    course_title TEXT,
-    credits INTEGER,
-    plan_option TEXT,   -- "0"=Core, "1"=Coop, "2"=Summer Training
-    plan_type TEXT      -- "Undergraduate" or "Graduate"
-);
+**courses** (all undergraduate & graduate courses)
+- id, code, title, lecture_hours, lab_hours, credits, department_id, type, description, prerequisites
+- department_id → departments.id (FOREIGN KEY - use JOIN to get department name/link)
+- type: "Undergraduate" or "Graduate"
+- ⚠️ prerequisites field is MOSTLY EMPTY (only 2.7% populated) - use concentration_courses instead
 
-/**
- * CONCENTRATIONS
- * Specialization tracks within a major.
- */
-CREATE TABLE concentrations (
-    id INTEGER PRIMARY KEY,
-    name TEXT,         -- Concentration name, e.g., "Cybersecurity"
-    description TEXT,  -- Description of the track
-    department_id INTEGER REFERENCES departments(id)
-);
+**program_plans** (degree plans for both undergrad & graduate)
+- id, department_id, year_level, semester, course_id, course_code, course_title, credits, plan_option, plan_type
+- department_id → departments.id (FOREIGN KEY)
+- plan_type: "Undergraduate" or "Graduate" (CRITICAL - always filter by this!)
+- year_level: "1"=Freshman, "2"=Sophomore, "3"=Junior, "4"=Senior, "Graduate"=Grad courses
+- semester: "1", "2", or other string values
+- plan_option: "0"=Core plan, "1"=Co-op plan, "2"=Summer Training
 
-/**
- * CONCENTRATION_COURSES
- * Detailed course lists for concentrations.
- * **CRITICAL**: This is the BEST SOURCE for prerequisites data!
- */
-CREATE TABLE concentration_courses (
-    id INTEGER PRIMARY KEY,
-    concentration_id INTEGER REFERENCES concentrations(id),
-    course_id INTEGER REFERENCES courses(id),
-    course_code TEXT,   -- e.g., "ICS 471"
-    course_title TEXT,
-    description TEXT,
-    prerequisites TEXT, -- **MOST COMPLETE PREREQUISITE DATA.** Query this table first!
-    semester TEXT       -- Recommended semester
-);
+**concentrations** (specialization tracks within departments)
+- id, name, description, department_id
+- department_id → departments.id (FOREIGN KEY)
+- Example: name="Artificial Intelligence and Machine Learning"
+
+**concentration_courses** (courses within concentration tracks)
+- id, concentration_id, course_id, course_code, course_title, description, prerequisites, semester
+- concentration_id → concentrations.id (FOREIGN KEY)
+- course_id → courses.id (FOREIGN KEY)
+- ✅ prerequisites field here is COMPLETE - use THIS table for prerequisite queries!
+
+## CRITICAL RELATIONSHIPS & RULES
+
+1. **Always JOIN with departments** to get the `link` field for department websites
+   Example: FROM courses c JOIN departments d ON c.department_id = d.id
+
+2. **For prerequisites**: Query concentration_courses table, NOT courses table
+   Why? courses.prerequisites is 97% empty, concentration_courses has complete data
+
+3. **For degree plans**: Always filter by plan_type ("Undergraduate" or "Graduate")
+   Example: WHERE plan_type = 'Graduate' AND department_id = X
+
+4. **Department matching**: Match both shortcut AND name for flexibility
+   Example: WHERE LOWER(d.shortcut) = LOWER('ICS') OR LOWER(d.name) LIKE '%computer%'
+
+5. **Course codes**: Format is "DEPT XXX" where DEPT = department.shortcut
+   Examples: "ICS 104", "SWE 205", "MATH 101"
 """
         return schema
     

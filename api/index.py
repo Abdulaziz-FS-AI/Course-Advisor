@@ -14,7 +14,7 @@ sys.path.append(current_dir)
 parent_dir = os.path.dirname(current_dir)
 
 from agent.agent import get_agent
-from agent.config import VLLM_BASE_URL
+from agent.config import VLLM_BASE_URL, DB_PATH
 from agent.database import get_database
 from agent.auth import verify_password, get_password_hash, create_access_token, decode_access_token
 
