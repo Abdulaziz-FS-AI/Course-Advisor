@@ -314,6 +314,59 @@
             background: rgba(244, 67, 54, 0.1);
         }
 
+        .feedback-comment-box {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .feedback-comment-box textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 13px;
+            resize: vertical;
+            margin-bottom: 8px;
+        }
+
+        .feedback-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .feedback-submit,
+        .feedback-cancel {
+            padding: 6px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .feedback-submit {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .feedback-submit:hover {
+            background: #005a52;
+        }
+
+        .feedback-cancel {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .feedback-cancel:hover {
+            background: #d0d0d0;
+        }
+
         /* Suggestions */
         .suggestions-label {
             font-size: 14px;
@@ -981,13 +1034,58 @@
                 return;
             }
 
+            const feedbackDiv = button.parentElement;
+            const buttons = feedbackDiv.querySelectorAll('.thumb');
+
+            // If thumbs down, show comment input first
+            if (rating === 'down') {
+                // Check if comment box already exists
+                let commentBox = feedbackDiv.querySelector('.feedback-comment-box');
+                if (commentBox) return;
+
+                // Disable buttons temporarily
+                buttons.forEach(btn => btn.disabled = true);
+
+                // Create comment input
+                commentBox = document.createElement('div');
+                commentBox.className = 'feedback-comment-box';
+                commentBox.innerHTML = `
+                    <textarea placeholder="What went wrong? (optional)" rows="2"></textarea>
+                    <div class="feedback-actions">
+                        <button class="feedback-submit">Submit</button>
+                        <button class="feedback-cancel">Cancel</button>
+                    </div>
+                `;
+                feedbackDiv.appendChild(commentBox);
+
+                const textarea = commentBox.querySelector('textarea');
+                const submitBtn = commentBox.querySelector('.feedback-submit');
+                const cancelBtn = commentBox.querySelector('.feedback-cancel');
+
+                textarea.focus();
+
+                submitBtn.onclick = async () => {
+                    await submitFeedback(sessionId, messageId, rating, textarea.value, button, feedbackDiv);
+                    commentBox.remove();
+                };
+
+                cancelBtn.onclick = () => {
+                    commentBox.remove();
+                    buttons.forEach(btn => btn.disabled = false);
+                };
+
+                return;
+            }
+
+            // For thumbs up, submit immediately
+            await submitFeedback(sessionId, messageId, rating, null, button, feedbackDiv);
+        }
+
+        async function submitFeedback(sessionId, messageId, rating, comment, button, feedbackDiv) {
             try {
-                // Disable both buttons
-                const feedbackDiv = button.parentElement;
                 const buttons = feedbackDiv.querySelectorAll('.thumb');
                 buttons.forEach(btn => btn.disabled = true);
 
-                // Submit feedback
                 const res = await fetch('/api/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -995,15 +1093,14 @@
                         session_id: sessionId,
                         message_id: messageId,
                         rating: rating,
-                        device_id: deviceId
+                        device_id: deviceId,
+                        comment: comment
                     })
                 });
 
                 if (res.ok) {
-                    // Highlight the selected button
                     button.style.opacity = '1';
                     button.style.transform = 'scale(1.2)';
-                    // Fade out the other button
                     buttons.forEach(btn => {
                         if (btn !== button) {
                             btn.style.opacity = '0.3';
@@ -1011,14 +1108,12 @@
                     });
                 } else {
                     console.error('Failed to submit feedback');
-                    // Re-enable buttons
                     buttons.forEach(btn => btn.disabled = false);
                 }
             } catch (error) {
                 console.error('Feedback error:', error);
-                // Re-enable buttons
-                const feedbackDiv = button.parentElement;
-                feedbackDiv.querySelectorAll('.thumb').forEach(btn => btn.disabled = false);
+                const buttons = feedbackDiv.querySelectorAll('.thumb');
+                buttons.forEach(btn => btn.disabled = false);
             }
         }
 

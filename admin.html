@@ -319,28 +319,55 @@
     <div class="dashboard" id="dashboard">
         <div class="sidebar">
             <div class="logo" onclick="window.location.href='/'">✨ Admin</div>
-            <div class="menu-item active">Sessions</div>
+            <div class="menu-item active" onclick="showSessions()">Sessions</div>
+            <div class="menu-item" onclick="showFeedback()">Feedback</div>
             <div class="menu-item" onclick="adminLogout()">Logout</div>
         </div>
         <div class="main-content">
-            <div class="header">
-                <h2>All Chat Sessions</h2>
-                <button class="refresh-btn" onclick="fetchSessions()">Refresh</button>
+            <!-- Sessions View -->
+            <div id="sessionsView">
+                <div class="header">
+                    <h2>All Chat Sessions</h2>
+                    <button class="refresh-btn" onclick="fetchSessions()">Refresh</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Device ID</th>
+                            <th>Messages</th>
+                            <th>Last Active</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sessionsTable">
+                        <!-- Sessions here -->
+                    </tbody>
+                </table>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Device ID</th>
-                        <th>Messages</th>
-                        <th>Last Active</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="sessionsTable">
-                    <!-- Sessions here -->
-                </tbody>
-            </table>
+
+            <!-- Feedback View -->
+            <div id="feedbackView" style="display: none;">
+                <div class="header">
+                    <h2>User Feedback</h2>
+                    <button class="refresh-btn" onclick="fetchFeedback()">Refresh</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rating</th>
+                            <th>Session</th>
+                            <th>Message Preview</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTable">
+                        <!-- Feedback here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -549,6 +576,137 @@
             localStorage.removeItem('kfupm_admin_token');
             adminToken = null;
             showLogin();
+        }
+
+        function showSessions() {
+            document.getElementById('sessionsView').style.display = 'block';
+            document.getElementById('feedbackView').style.display = 'none';
+
+            // Update active menu item
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+            menuItems[0].classList.add('active');
+
+            fetchSessions();
+        }
+
+        function showFeedback() {
+            document.getElementById('sessionsView').style.display = 'none';
+            document.getElementById('feedbackView').style.display = 'block';
+
+            // Update active menu item
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+            menuItems[1].classList.add('active');
+
+            fetchFeedback();
+        }
+
+        async function fetchFeedback() {
+            try {
+                const res = await fetch(`${API_URL}/admin/feedback?token=${adminToken}`);
+
+                if (!res.ok) {
+                    console.error('Failed to fetch feedback:', res.status);
+                    return;
+                }
+
+                if (res.ok) {
+                    const feedback = await res.json();
+                    renderFeedback(feedback);
+                }
+            } catch (e) {
+                console.error('Error fetching feedback:', e);
+            }
+        }
+
+        function renderFeedback(feedbackList) {
+            const tbody = document.getElementById('feedbackTable');
+            tbody.innerHTML = '';
+
+            if (feedbackList.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888; padding:40px;">No feedback yet</td></tr>';
+                return;
+            }
+
+            feedbackList.forEach(f => {
+                const tr = document.createElement('tr');
+                const date = new Date(f.created_at).toLocaleString();
+                const messagePreview = (f.message_content || '').substring(0, 50) + (f.message_content && f.message_content.length > 50 ? '...' : '');
+                const ratingIcon = f.rating === 'up' ? '👍' : '👎';
+                const ratingColor = f.rating === 'up' ? '#4caf50' : '#f44336';
+                const sessionTitle = (f.session_title || 'Untitled').substring(0, 30);
+
+                tr.innerHTML = `
+                    <td style="font-size: 20px; color: ${ratingColor};">${ratingIcon}</td>
+                    <td title="${f.session_id}">${sessionTitle}</td>
+                    <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">${messagePreview}</td>
+                    <td style="max-width: 250px;">${f.comment || '<span style="color:#999;">—</span>'}</td>
+                    <td style="font-size: 13px; color: #666;">${date}</td>
+                    <td>
+                        <button class="btn-sm" onclick="viewFeedbackDetails(${f.id}, '${f.session_id}', ${f.message_id})">View</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function viewFeedbackDetails(feedbackId, sessionId, messageId) {
+            const modal = document.getElementById('chatModal');
+            const content = document.getElementById('modalContent');
+            const title = document.getElementById('modalTitle');
+
+            modal.style.display = 'flex';
+            content.innerHTML = '<div style="text-align:center; padding:20px;">Loading...</div>';
+            title.textContent = "Feedback Details";
+
+            try {
+                // Fetch the full session messages
+                const res = await fetch(`${API_URL}/admin/messages?token=${adminToken}&session_id=${sessionId}`);
+
+                if (res.ok) {
+                    const messages = await res.json();
+                    content.innerHTML = '';
+
+                    if (messages.length === 0) {
+                        content.innerHTML = '<p style="text-align:center; color:#888;">No messages found.</p>';
+                        return;
+                    }
+
+                    messages.forEach(m => {
+                        const div = document.createElement('div');
+                        div.style.padding = '12px 16px';
+                        div.style.marginBottom = '12px';
+                        div.style.borderRadius = '8px';
+                        div.style.maxWidth = '85%';
+                        div.style.lineHeight = '1.5';
+
+                        // Highlight the message that received feedback
+                        if (m.id === messageId) {
+                            div.style.border = '2px solid #00766c';
+                            div.style.boxShadow = '0 0 10px rgba(0, 118, 108, 0.2)';
+                        }
+
+                        if (m.role === 'user') {
+                            div.style.background = '#e2e8f0';
+                            div.style.color = '#2d3748';
+                            div.style.alignSelf = 'flex-end';
+                            div.style.marginLeft = 'auto';
+                        } else {
+                            div.style.background = '#f0f9f9';
+                            div.style.color = '#2d3748';
+                        }
+
+                        div.textContent = m.content;
+                        content.appendChild(div);
+                    });
+                } else {
+                    content.innerHTML = '<p style="color:red; text-align:center;">Error loading messages</p>';
+                }
+            } catch (e) {
+                console.error(e);
+                content.innerHTML = '<p style="color:red; text-align:center;">Error loading details.</p>';
+            }
         }
 
         // Init
