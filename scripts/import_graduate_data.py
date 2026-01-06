@@ -5,10 +5,10 @@ import re
 from pathlib import Path
 
 # Config
-BASE_DIR = Path("/home/shared_dir/vercel_app")
+BASE_DIR = Path(__file__).parent.parent
 DB_PATH = BASE_DIR / "api/data/SQL/kfupm_relational.db"
-JSON_PATH = Path("/home/shared_dir/data/processed_graduate_courses.json")
-CSV_PATH = Path("/home/shared_dir/data/SQL/graduate_program_plans.csv")
+JSON_PATH = BASE_DIR / "api/data/SQL/processed_graduate_courses.json"
+CSV_PATH = BASE_DIR / "api/data/SQL/graduate_program_plans.csv"
 
 def main():
     print(f"Connecting to database at {DB_PATH}...")

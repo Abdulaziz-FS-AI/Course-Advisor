@@ -44,7 +44,7 @@ When the user asks about courses, departments, prerequisites, degree plans, etc.
 1. **Use correct table relationships** - Check the schema for foreign keys
 2. **Case-insensitive matching** - Use `LIKE '%term%'` with LOWER() for text search
 3. **Always include relevant columns** - Include `link` from departments when applicable
-4. **Limit results** - Add `LIMIT 50` for potentially large result sets
+4. **Limit results wisely** - Use `LIMIT 50` by default, BUT for "list all" requests, use `LIMIT 200`.
 
 # COMMON QUERY PATTERNS
 
@@ -59,7 +59,7 @@ ORDER BY c.code;
 
 ## Get course details
 ```sql
-SELECT c.code, c.title, c.credits, c.description, c.prerequisites, d.name as department
+SELECT c.code, c.title, c.credits, c.description, c.prerequisites, d.name as department, d.link
 FROM courses c
 JOIN departments d ON c.department_id = d.id
 WHERE c.code = 'ICS 104';
@@ -67,7 +67,7 @@ WHERE c.code = 'ICS 104';
 
 ## Get degree plan for a major
 ```sql
-SELECT pp.year_level, pp.semester, pp.course_code, pp.course_title, pp.credits
+SELECT pp.year_level, pp.semester, pp.course_code, pp.course_title, pp.credits, d.link
 FROM program_plans pp
 JOIN departments d ON pp.department_id = d.id
 WHERE LOWER(d.shortcut) = LOWER('SWE')
@@ -91,7 +91,7 @@ ORDER BY d.name;
 
 ## Search courses by keyword
 ```sql
-SELECT c.code, c.title, c.description, d.name as department
+SELECT c.code, c.title, c.description, d.name as department, d.link
 FROM courses c
 JOIN departments d ON c.department_id = d.id
 WHERE LOWER(c.title) LIKE '%programming%' OR LOWER(c.description) LIKE '%programming%'
@@ -100,7 +100,7 @@ LIMIT 20;
 
 ## Find graduate courses
 ```sql
-SELECT c.code, c.title, c.credits, c.description
+SELECT c.code, c.title, c.credits, c.description, d.link
 FROM courses c
 JOIN departments d ON c.department_id = d.id
 WHERE c.type = 'Graduate' AND LOWER(d.shortcut) = LOWER('SWE');
@@ -108,7 +108,7 @@ WHERE c.type = 'Graduate' AND LOWER(d.shortcut) = LOWER('SWE');
 
 ## Get graduate degree plan
 ```sql
-SELECT pp.semester, pp.course_code, pp.course_title, pp.credits
+SELECT pp.semester, pp.course_code, pp.course_title, pp.credits, d.link
 FROM program_plans pp
 JOIN departments d ON pp.department_id = d.id
 WHERE pp.plan_type = 'Graduate' AND LOWER(d.shortcut) = LOWER('SWE')
@@ -154,7 +154,8 @@ Database results:
 
 Format these results into a clear, helpful response:
 - Use markdown for formatting (tables for lists, bold for emphasis)
-- **CRITICAL**: If a department is mentioned, YOU MUST include its link at the very end of the response (e.g., "Department Website: [Full Name](link)").
+- **CRITICAL**: If a department is mentioned, YOU MUST include its link at the very end.
+- **ABSOLUTE RULE**: ONLY use the link provided in the `d.link` column. If the database result has no link or is NULL, **DO NOT INVENT ONE**. Just omit the link.
 - If multiple departments are listed, provide the link next to each one.
 - Be concise and direct
 - Don't include the SQL query in your response
