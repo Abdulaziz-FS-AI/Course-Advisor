@@ -1,6 +1,7 @@
 
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 import sys
@@ -10,6 +11,7 @@ import uuid
 # Add current directory to path so imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
+parent_dir = os.path.dirname(current_dir)
 
 from agent.agent import get_agent
 from agent.config import VLLM_BASE_URL
@@ -26,6 +28,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Static file routes for local development
+@app.get("/")
+def serve_index():
+    return FileResponse(os.path.join(parent_dir, "index.html"))
+
+@app.get("/admin")
+def serve_admin():
+    return FileResponse(os.path.join(parent_dir, "admin.html"))
+
+@app.get("/admin.html")
+def serve_admin_html():
+    return FileResponse(os.path.join(parent_dir, "admin.html"))
 
 # Models
 class UserLogin(BaseModel):
@@ -80,37 +95,30 @@ def login(user: UserLogin):
 
 @app.post("/api/auth/guest")
 def guest_login(user: GuestLogin):
-    """
-    Allow users to login with just a username.
-    If user doesn't exist, create them with dummy password.
-    Security: Prevents login as 'admin' role via this method.
+    """Guest login – only a username is required.
+    - If the username already exists (and is not admin) return an error indicating the name is taken.
+    - If the username does not exist, create a new guest user with a dummy password hash.
     """
     db = get_database()
     username = user.username.strip()
-    
     if not username:
         raise HTTPException(status_code=400, detail="Username required")
 
+    # Check for existing user
     db_user = db.get_user_by_username(username)
-    
     if db_user:
-        # If user exists, check if they are an admin
         if db_user["role"] == "admin":
             raise HTTPException(status_code=403, detail="Admins must use password login")
-        
-        # Log them in (auto-access for non-admins as per 'free to use' requirement)
-        token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": "user"})
-        return {"token": token, "username": db_user["username"], "role": "user"}
-    else:
-        # Create new guest user
-        try:
-            # Use specific prefix to ensure it can't accidentally match a real hash
-            dummy_hash = get_password_hash("guest_user_no_password") 
-            new_user = db.create_user(username, dummy_hash, role='user')
-            token = create_access_token({"sub": new_user["username"], "id": new_user["id"], "role": "user"})
-            return {"token": token, "username": new_user["username"], "role": "user"}
-        except ValueError as e:
-            raise HTTPException(status_code=400, detail=str(e))
+        else:
+            raise HTTPException(status_code=400, detail="Name already taken. Choose another.")
+
+    # Create new guest user with a short dummy password (bcrypt limit 72 bytes)
+    dummy_password = "guest_user_no_password"[:72]
+    dummy_hash = get_password_hash(dummy_password)
+    new_user = db.create_user(username, dummy_hash, role='user')
+    token = create_access_token({"sub": new_user["username"], "id": new_user["id"], "role": "user"})
+    return {"token": token, "username": new_user["username"], "role": "user"}
+
 
 @app.get("/api/health")
 def health_check():
