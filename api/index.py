@@ -273,3 +273,41 @@ def get_all_feedback_admin(token: str):
 
     return db.get_all_feedback()
 
+@app.get("/api/debug/auth")
+def debug_auth():
+    """Debug endpoint to check Auth and DB status on Vercel."""
+    results = {
+        "vercel_env": os.getenv("VERCEL"),
+        "cwd": os.getcwd(),
+        "files_in_cwd": os.listdir("."),
+        "db_path_config": str(DB_PATH),
+        "db_exists": DB_PATH.exists(),
+        "parent_of_db": str(DB_PATH.parent) if DB_PATH.parent.exists() else "Parent not found",
+        "auth_import": "pending",
+        "hashing_test": "pending",
+        "error": None
+    }
+    
+    try:
+        # Check DB Directory
+        if DB_PATH.parent.exists():
+            results["files_in_db_dir"] = os.listdir(DB_PATH.parent)
+            
+        # Check Auth
+        from api.agent.auth import get_password_hash, verify_password
+        results["auth_import"] = "success"
+        
+        # Test Hash
+        h = get_password_hash("test")
+        results["hashing_test"] = f"success: {h[:10]}..."
+        
+        # Test Verify
+        v = verify_password("test", h)
+        results["verify_test"] = v
+        
+    except Exception as e:
+        results["error"] = str(e)
+        import traceback
+        results["traceback"] = traceback.format_exc()
+        
+    return results
