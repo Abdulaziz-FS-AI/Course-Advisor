@@ -625,19 +625,14 @@
     <div class="username-modal" id="usernameModal">
         <div class="username-form-container">
             <div class="logo-icon">✨</div>
-            <h2 id="auth-title">Welcome Back!</h2>
-            <p>Login to access your course advisor history</p>
+            <h2 id="auth-title">Welcome!</h2>
+            <p>Enter your name to start chatting</p>
             <form id="username-form">
-                <input type="text" class="username-input" id="username-input" placeholder="Username"
+                <input type="text" class="username-input" id="username-input" placeholder="Your Name"
                     autocomplete="username" required maxlength="30">
-                <input type="password" class="username-input" id="password-input" placeholder="Password"
-                    autocomplete="current-password" required>
+                <!-- No Password Field -->
                 <div id="auth-error" style="color: #e53e3e; margin-bottom: 15px; font-size: 14px;"></div>
-                <button type="submit" class="username-submit-btn" id="auth-submit-btn">Login</button>
-                <div id="toggle-auth"
-                    style="margin-top: 20px; color: #00766c; cursor: pointer; font-size: 14px; text-decoration: underline;">
-                    Don't have an account? Sign up
-                </div>
+                <button type="submit" class="username-submit-btn" id="auth-submit-btn">Start Chatting</button>
             </form>
         </div>
     </div>
@@ -649,13 +644,13 @@
             <div class="user-info-label">Logged in as</div>
             <div class="user-info-name" id="currentUsername"></div>
 
-            <!-- Admin Link -->
+            <!-- Admin Link: HIDDEN FOR NORMAL USERS -->
             <a href="/admin.html" id="admin-link"
                 style="display: none; align-items: center; gap: 8px; color: #e53e3e; font-size: 13px; margin-bottom: 10px; font-weight: 600; cursor: pointer; text-decoration: none;">
                 <span>🛡️</span> Admin Dashboard
             </a>
 
-            <button class="logout-btn" onclick="logout()">Logout</button>
+            <button class="logout-btn" onclick="logout()">Exit</button>
         </div>
 
         <button class="new-chat-btn" onclick="startNewChat()">
@@ -729,10 +724,7 @@
         const currentUsernameDisplay = document.getElementById('currentUsername');
 
         // New Elements
-        const passwordInput = document.getElementById('password-input');
-        const authTitle = document.getElementById('auth-title');
         const authSubmitBtn = document.getElementById('auth-submit-btn');
-        const toggleAuthBtn = document.getElementById('toggle-auth');
         const authError = document.getElementById('auth-error');
         const adminLink = document.getElementById('admin-link');
 
@@ -740,8 +732,6 @@
         let token = localStorage.getItem('kfupm_token');
         let currentUsername = localStorage.getItem('kfupm_username');
         let userRole = localStorage.getItem('kfupm_role');
-
-        let isLoginMode = true; // Forced Login Mode
 
         // Chat State
         let currentChatId = null;
@@ -769,6 +759,7 @@
 
         function updateUIForUser() {
             currentUsernameDisplay.textContent = currentUsername;
+            // Only show admin link if actually admin, though typical users won't be logging in as admin here anymore
             if (userRole === 'admin') {
                 adminLink.style.display = 'flex';
             } else {
@@ -776,19 +767,17 @@
             }
         }
 
-        // Auth Logic - Sign Up Toggle REMOVED
-
         async function loadHistoryFromServer() {
             try {
                 const res = await fetch('/api/history?token=' + token);
                 if (res.ok) {
                     const data = await res.json();
-                    chats = {}; // Reset local cache
+                    chats = {};
                     data.sessions.forEach(s => {
                         chats[s.id] = {
                             id: s.id,
                             title: s.title,
-                            messages: [], // We load messages on demand
+                            messages: [],
                             timestamp: new Date(s.created_at).getTime()
                         };
                     });
@@ -797,7 +786,6 @@
                         startNewChat();
                     }
                 } else {
-                    // Token might be expired
                     logout();
                 }
             } catch (e) {
@@ -824,20 +812,11 @@
         }
 
         function logout() {
-            if (confirm('Are you sure you want to logout?')) {
+            if (confirm('Are you sure you want to exit?')) {
                 localStorage.removeItem('kfupm_token');
                 localStorage.removeItem('kfupm_username');
                 localStorage.removeItem('kfupm_role');
-                token = null;
-                currentUsername = null;
-                userRole = null;
-
-                chats = {};
-                currentChatId = null;
-                clearMessages();
-                resetUI();
-                chatList.innerHTML = '';
-                showUsernameModal();
+                location.reload();
             }
         }
 
@@ -845,22 +824,19 @@
         usernameForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = usernameInput.value.trim();
-            const password = passwordInput.value.trim();
 
-            if (!username || !password) return;
+            if (!username) return;
 
             authSubmitBtn.disabled = true;
-            authSubmitBtn.textContent = 'Processing...';
+            authSubmitBtn.textContent = 'Joining...';
             authError.textContent = '';
 
-            // STRICT LOGIN ONLY
-            const endpoint = '/api/auth/login';
-
             try {
-                const res = await fetch(endpoint, {
+                // Use new Guest Login Endpoint
+                const res = await fetch('/api/auth/guest', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({ username })
                 });
 
                 const data = await res.json().catch(() => ({}));
@@ -878,14 +854,18 @@
                     updateUIForUser();
                     loadHistoryFromServer();
                 } else {
-                    authError.textContent = data.detail || `Authentication failed (${res.status})`;
+                    if (res.status === 403) {
+                        authError.textContent = "This name is reserved for Admin. Please choose another.";
+                    } else {
+                        authError.textContent = data.detail || `Login failed (${res.status})`;
+                    }
                 }
             } catch (err) {
                 console.error(err);
-                authError.textContent = 'Network or Server Error. Please check console.';
+                authError.textContent = 'Server Error. please try again.';
             } finally {
                 authSubmitBtn.disabled = false;
-                authSubmitBtn.textContent = 'Login';
+                authSubmitBtn.textContent = 'Start Chatting';
             }
         });
 

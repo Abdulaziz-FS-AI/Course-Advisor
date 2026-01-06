@@ -32,6 +32,9 @@ class UserLogin(BaseModel):
     username: str
     password: str
 
+class GuestLogin(BaseModel):
+    username: str
+
 class UserRegister(BaseModel):
     username: str
     password: str
@@ -74,6 +77,40 @@ def login(user: UserLogin):
     
     token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": db_user["role"]})
     return {"token": token, "username": db_user["username"], "role": db_user["role"]}
+
+@app.post("/api/auth/guest")
+def guest_login(user: GuestLogin):
+    """
+    Allow users to login with just a username.
+    If user doesn't exist, create them with dummy password.
+    Security: Prevents login as 'admin' role via this method.
+    """
+    db = get_database()
+    username = user.username.strip()
+    
+    if not username:
+        raise HTTPException(status_code=400, detail="Username required")
+
+    db_user = db.get_user_by_username(username)
+    
+    if db_user:
+        # If user exists, check if they are an admin
+        if db_user["role"] == "admin":
+            raise HTTPException(status_code=403, detail="Admins must use password login")
+        
+        # Log them in (auto-access for non-admins as per 'free to use' requirement)
+        token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": "user"})
+        return {"token": token, "username": db_user["username"], "role": "user"}
+    else:
+        # Create new guest user
+        try:
+            # Use specific prefix to ensure it can't accidentally match a real hash
+            dummy_hash = get_password_hash("guest_user_no_password") 
+            new_user = db.create_user(username, dummy_hash, role='user')
+            token = create_access_token({"sub": new_user["username"], "id": new_user["id"], "role": "user"})
+            return {"token": token, "username": new_user["username"], "role": "user"}
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/api/health")
 def health_check():
