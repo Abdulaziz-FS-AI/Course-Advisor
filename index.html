@@ -198,7 +198,7 @@
 
         .main-container.chat-active {
             justify-content: flex-start;
-            padding-top: 40px;
+            padding-top: 20px;
         }
 
         /* Header logic remains same */
@@ -210,9 +210,7 @@
         }
 
         .main-container.chat-active .header-section {
-            margin-bottom: 20px;
-            transform: scale(0.8);
-            margin-top: -20px;
+            display: none;
         }
 
         .logo-icon {
@@ -716,13 +714,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- User Info -->
-        <!-- User Info Removed for Anonymous Mode -->
-        <a href="/admin"
-            style="font-size:12px; color:#cbd5e0; text-decoration:none; display:block; margin-bottom: 20px; padding-left:10px;">Admin
-            Login</a>
-
-
         <button class="new-chat-btn" onclick="startNewChat()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12h14" />
