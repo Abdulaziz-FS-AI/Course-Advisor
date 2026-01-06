@@ -19,29 +19,48 @@ class DatabaseManager:
     def __init__(self, db_path: Path = DB_PATH):
         # Vercel Read-Only Fix: Copy DB to /tmp if running on Vercel (or if we can't write to source)
         # Check if VERCEL env var is set
-        if os.getenv("VERCEL") == "1":
+        is_vercel = os.getenv("VERCEL") == "1"
+        print(f"DatabaseManager init - VERCEL env: {is_vercel}, db_path: {db_path}")
+
+        if is_vercel:
             tmp_path = Path("/tmp") / db_path.name
+            print(f"Vercel mode - tmp_path: {tmp_path}, exists: {tmp_path.exists()}")
+            print(f"Source db_path exists: {db_path.exists()}")
+
             if not tmp_path.exists() and db_path.exists():
                 try:
                     shutil.copy2(db_path, tmp_path)
-                    print(f"Copied DB to {tmp_path}")
+                    print(f"✓ Copied DB to {tmp_path} (size: {tmp_path.stat().st_size} bytes)")
                 except Exception as e:
-                    print(f"Failed to copy DB to tmp: {e}")
-            
+                    print(f"✗ Failed to copy DB to tmp: {e}")
+                    import traceback
+                    traceback.print_exc()
+
             # Use tmp path if it exists now
             if tmp_path.exists():
                 self.db_path = tmp_path
+                print(f"✓ Using tmp DB path: {self.db_path}")
             else:
                 self.db_path = db_path
+                print(f"⚠ Falling back to source DB path: {self.db_path}")
         else:
             self.db_path = db_path
-            
+            print(f"Local mode - using db_path: {self.db_path}")
+
         self._validate_database()
     
     def _validate_database(self):
         """Ensure database file exists."""
         if not self.db_path.exists():
-            raise FileNotFoundError(f"Database not found: {self.db_path}")
+            error_msg = f"Database not found: {self.db_path}"
+            print(f"✗ Database validation failed: {error_msg}")
+            # List parent directory contents for debugging
+            if self.db_path.parent.exists():
+                print(f"Parent dir exists. Contents: {list(self.db_path.parent.iterdir())}")
+            else:
+                print(f"Parent dir does not exist: {self.db_path.parent}")
+            raise FileNotFoundError(error_msg)
+        print(f"✓ Database validated: {self.db_path} (size: {self.db_path.stat().st_size} bytes)")
     
     @contextmanager
     def get_connection(self):

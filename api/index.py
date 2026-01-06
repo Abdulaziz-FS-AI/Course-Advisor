@@ -69,16 +69,24 @@ class FeedbackRequest(BaseModel):
 # Auth Endpoints - Register removed (Admin usage only/seeded), Login kept for Admin
 @app.post("/api/auth/login")
 def login(user: UserLogin):
-    db = get_database()
     try:
+        db = get_database()
         db_user = db.get_user_by_username(user.username)
-        if not db_user or not verify_password(user.password, db_user["password_hash"]):
+        if not db_user:
+            raise HTTPException(status_code=401, detail="Invalid username or password")
+        if not verify_password(user.password, db_user["password_hash"]):
             raise HTTPException(status_code=401, detail="Invalid username or password")
         token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": db_user["role"]})
         return {"token": token, "username": db_user["username"], "role": db_user["role"]}
+    except HTTPException:
+        # Re-raise HTTP exceptions (like 401)
+        raise
     except Exception as e:
-        print("Login error:", e)
-        raise HTTPException(status_code=500, detail="Server error")
+        # Log detailed error for debugging
+        import traceback
+        print("Login error:", str(e))
+        print("Traceback:", traceback.format_exc())
+        raise HTTPException(status_code=500, detail=f"Server error: {str(e)}")
 
 # Chat Endpoints
 @app.post("/api/chat/sessions")
