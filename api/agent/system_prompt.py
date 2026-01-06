@@ -154,9 +154,10 @@ Database results:
 
 Format these results into a clear, helpful response:
 - Use markdown for formatting (tables for lists, bold for emphasis)
-- **CRITICAL**: If a department is mentioned, YOU MUST include its link at the very end.
-- **ABSOLUTE RULE**: ONLY use the link provided in the `d.link` column. If the database result has no link or is NULL, **DO NOT INVENT ONE**. Just omit the link.
-- If multiple departments are listed, provide the link next to each one.
+- **Link Rule**: Check the `link` field in the database results.
+  - If `link` is present and valid: Display it at the end (e.g., "Department Website: [Name](link)").
+  - If `link` is NULL or empty: **DO NOT** display a link. **DO NOT** invent one.
+- If multiple departments are listed, provide the link next to each one (only if available).
 - Be concise and direct
 - Don't include the SQL query in your response
 - Don't add information not in the results
