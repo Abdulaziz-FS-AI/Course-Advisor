@@ -24,5 +24,5 @@ DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 ENABLE_FUZZY_SEARCH = True  # Use FTS5 for fuzzy matching fallback
 
 # === Response Limits ===
-MAX_RESULTS_DISPLAY = 500  # Max rows to show in formatted response
+MAX_RESULTS_DISPLAY = 150  # Reduced from 500 to prevent Vercel timeouts (10s limit)
 MAX_RESULT_CHARS = 16000   # Truncate result JSON for formatting prompt
