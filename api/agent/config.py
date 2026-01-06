@@ -15,7 +15,7 @@ MODEL_NAME = os.getenv("MODEL_NAME", "/home/shared_dir/Qwen3-30B-A3B-Instruct-25
 # === LLM Parameters ===
 # Temperature: 0.1 for SQL generation (very deterministic), 0.4 for formatting
 LLM_TEMPERATURE = 0.1  # Low for accurate SQL generation
-LLM_MAX_TOKENS = 8192  # Increased for larger responses
+LLM_MAX_TOKENS = 4096  # Reduced from 8192 to allow space for prompt (TotalCtx=8192)
 LLM_TOP_P = 0.95       # Slightly higher for better token selection
 
 # === Agent Settings ===
