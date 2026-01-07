@@ -277,6 +277,17 @@ Courses that belong to each concentration track.
 6. **Concentration details** - ALWAYS include courses via JOIN:
    When asked about a specific concentration, JOIN with `concentration_courses` to show the required courses.
    Users expect to see what courses make up that concentration!
+
+7. **Duplicate departments WARNING**: "Information and Computer Science" has TWO entries:
+   - ICS (ID=49) ← HAS DATA (157 plans, 137 courses) ✅ USE THIS
+   - CS (ID=25) ← NO DATA (0 plans, 1 course) ❌ AVOID
+   Always prefer 'ICS' shortcut for Computer Science queries!
+
+8. **Graduate plans have NULL semester**: All 785 graduate plan rows have semester=NULL.
+   Don't rely on semester ordering for graduate plans.
+
+9. **Some departments have NO program_plans**: MGT, ESE, GS, CS, BIOE, BIOL, ECON, ENGL and others.
+   If no results, the department may genuinely not have a degree plan in the database.
 """
         return schema
     
