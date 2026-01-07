@@ -120,12 +120,25 @@ WHERE c.offered_to LIKE '%AE%'
 ORDER BY c.name;
 ```
 
-### Concentration Courses with Prerequisites
+### Specific Concentration Details (⚠️ ALWAYS INCLUDE COURSES)
+When asked about a specific concentration, ALWAYS fetch its courses too!
 ```sql
-SELECT cc.*, c.name as concentration_name
-FROM concentration_courses cc
-JOIN concentrations c ON cc.concentration_id = c.id
-WHERE c.name LIKE '%AI%' OR c.name LIKE '%Machine Learning%';
+SELECT 
+    con.name as concentration_name,
+    con.description as concentration_description,
+    con.offered_to,
+    d.name as host_dept,
+    d.link,
+    cc.course_code,
+    cc.course_title,
+    cc.prerequisites,
+    cc.semester
+FROM concentrations con
+JOIN departments d ON con.department_id = d.id
+LEFT JOIN concentration_courses cc ON cc.concentration_id = con.id
+WHERE LOWER(con.name) LIKE '%artificial intelligence%'
+   OR LOWER(con.name) LIKE '%machine learning%'
+ORDER BY cc.semester, cc.course_code;
 ```
 
 ## Critical Reminders

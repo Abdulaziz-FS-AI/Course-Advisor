@@ -273,6 +273,10 @@ Courses that belong to each concentration track.
    `WHERE offered_to LIKE '%SWE%'` (finds all concentrations SWE students can take)
 
 5. **Prerequisites** - prefer concentration_courses over courses table (97% populated vs 3%)
+
+6. **Concentration details** - ALWAYS include courses via JOIN:
+   When asked about a specific concentration, JOIN with `concentration_courses` to show the required courses.
+   Users expect to see what courses make up that concentration!
 """
         return schema
     
