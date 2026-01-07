@@ -472,7 +472,7 @@
             padding: 0;
             background: transparent;
             box-shadow: none;
-            margin: 0 0 8px 10px;
+            margin: 0 0 8px 25px;
             align-self: flex-start;
             align-items: center;
             gap: 10px;
@@ -480,7 +480,7 @@
 
         .thinking-text {
             color: #718096;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 500;
             font-style: italic;
         }
@@ -804,16 +804,15 @@
             </div>
 
             <!-- Input Area -->
-            <div class="typing-indicator" id="typing">
-                <span class="thinking-text">Thinking...</span>
-                <div class="dots">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-            </div>
-
             <div class="input-container">
+                <div class="typing-indicator" id="typing">
+                    <span class="thinking-text">Thinking...</span>
+                    <div class="dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
                 <form id="chat-form">
                     <input type="text" class="input-box" id="user-input" placeholder="Ask anything about courses..."
                         autocomplete="off">
