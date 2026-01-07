@@ -215,13 +215,15 @@ def health_check():
         vllm_status = "connected" if client.health_check() else "disconnected"
     except:
         vllm_status = "error"
-        
+
     status = {
         "status": "active",
         "agent": "ready" if agent else "not_ready",
         "vllm": vllm_status,
         "database": "connected" if agent.db else "disconnected",
-        "llm_url": VLLM_BASE_URL
+        "llm_url": VLLM_BASE_URL,
+        "has_password_fix": True,  # Marker to verify this version is deployed
+        "version": "2.0-bcrypt-fix"
     }
     return status
 
