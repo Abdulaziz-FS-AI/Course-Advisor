@@ -235,6 +235,12 @@ class DatabaseManager:
 
 5. **Course codes**: Format is "DEPT XXX" where DEPT = department.shortcut
    Examples: "ICS 104", "SWE 205", "MATH 101"
+
+6. **Concentrations for a major**: Use `offered_to LIKE '%MAJOR%'`, NOT `department_id`!
+   - department_id = who HOSTS the concentration
+   - offered_to = which majors CAN TAKE it (comma-separated list like "AE, ME, EE")
+   - Example: "What concentrations can Aerospace students take?"
+     → WHERE offered_to LIKE '%AE%'  (NOT WHERE department_id = AE_id)
 """
         return schema
     

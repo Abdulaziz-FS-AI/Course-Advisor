@@ -137,16 +137,27 @@ FROM departments d
 ORDER BY d.name;
 ```
 
-### Pattern 8: "Concentrations in [DEPT]"
-Intent: Find specialization tracks
+### Pattern 8: "Concentrations hosted BY [DEPT]"
+Intent: Find concentrations that a department RUNS/HOSTS
 ```sql
-SELECT c.*, d.name as department, d.link
+SELECT c.*, d.name as host_department, d.link
 FROM concentrations c
 JOIN departments d ON c.department_id = d.id
 WHERE LOWER(d.shortcut) = LOWER('COE') OR LOWER(d.name) LIKE LOWER('%computer engineering%')
 ORDER BY c.name;
 ```
 
+### Pattern 9: "Concentrations FOR/AVAILABLE TO [MAJOR] students" ⚠️ CRITICAL
+Intent: Find all concentrations a student from that major can take
+**Use `offered_to LIKE`, NOT `department_id`!**
+```sql
+SELECT c.*, d.name as host_department, d.link
+FROM concentrations c
+JOIN departments d ON c.department_id = d.id
+WHERE c.offered_to LIKE '%AE%'
+ORDER BY c.name;
+```
+*Note*: `offered_to` contains majors like "AE, ME, CIE, EE". Use LIKE to match.
 ## Advanced Query Strategies
 
 ### Handle Ambiguous Queries
