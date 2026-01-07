@@ -210,7 +210,7 @@ All undergraduate and graduate courses offered at KFUPM.
 | department_id | INTEGER | FK → departments.id |
 | type | TEXT | "Undergraduate" or "Graduate" |
 | description | TEXT | Full course description |
-| prerequisites | TEXT | ⚠️ MOSTLY EMPTY - prefer concentration_courses for prereqs |
+| prerequisites | TEXT | ~58% populated - check this field first for prerequisite queries |
 
 ### program_plans
 Degree curriculum for each major (semester-by-semester course sequence).
@@ -218,7 +218,7 @@ Degree curriculum for each major (semester-by-semester course sequence).
 |--------|------|-------------|
 | id | INTEGER | Primary key |
 | department_id | INTEGER | FK → departments.id (which major this plan is for) |
-| year_level | INTEGER | 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior, 5=Graduate |
+| year_level | INTEGER | 1=Freshman (387), 2=Sophomore (404), 3=Junior (383), 4=Senior (171), 5=Graduate (785) |
 | semester | INTEGER | 1 or 2 (Fall/Spring) |
 | course_id | INTEGER | FK → courses.id |
 | course_code | TEXT | Course code (denormalized for convenience) |
@@ -226,7 +226,7 @@ Degree curriculum for each major (semester-by-semester course sequence).
 | lecture_hours | INTEGER | Weekly lecture hours for this course |
 | lab_hours | INTEGER | Weekly lab hours for this course |
 | credits | INTEGER | Credit hours |
-| plan_option | TEXT | "0"=Core, "1"=Co-op, "2"=Summer Training. ⚠️ DO NOT filter by this - many depts only have 1 or 2! |
+| plan_option | TEXT | "0"=Core (1298 rows), "1"=Co-op (314 rows), "2"=Summer (518 rows). Usually use "0" for standard plan. |
 | plan_type | TEXT | ⚠️ CRITICAL: "Undergraduate" or "Graduate" - ALWAYS filter by this! |
 
 ### concentrations
@@ -255,7 +255,7 @@ Courses that belong to each concentration track.
 | course_code | TEXT | Course code |
 | course_title | TEXT | Course title |
 | description | TEXT | Course description |
-| prerequisites | TEXT | ✅ COMPLETE prerequisite data - use this for prereq queries! |
+| prerequisites | TEXT | Complete for concentration courses (168 rows total) |
 | semester | INTEGER | Suggested semester to take |
 
 ## KEY RULES
@@ -272,7 +272,7 @@ Courses that belong to each concentration track.
 4. **Concentrations for a major** - use offered_to, NOT department_id:
    `WHERE offered_to LIKE '%SWE%'` (finds all concentrations SWE students can take)
 
-5. **Prerequisites** - prefer concentration_courses over courses table (97% populated vs 3%)
+5. **Prerequisites** - use courses.prerequisites (58% populated); concentration_courses only has 168 rows
 
 6. **Concentration details** - ALWAYS include courses via JOIN:
    When asked about a specific concentration, JOIN with `concentration_courses` to show the required courses.
@@ -286,8 +286,10 @@ Courses that belong to each concentration track.
 8. **Graduate plans have NULL semester**: All 785 graduate plan rows have semester=NULL.
    Don't rely on semester ordering for graduate plans.
 
-9. **Some departments have NO program_plans**: MGT, ESE, GS, CS, BIOE, BIOL, ECON, ENGL and others.
-   If no results, the department may genuinely not have a degree plan in the database.
+9. **22 departments have NO program_plans**: SE (130 courses), BIOE (65), MGT (54), STAT (54), CP (38),
+   OM (37), ECON (32), GS (24), HRM (24), IAS (20), DATA (14), ESE (9), PE (7), BIOL (6), BUS (6),
+   CPG (5), ENTR (5), ENGL (4), GEO (3), CS (1), CGS (1), MM (0).
+   If no plan results, inform the user that this department's degree plan is not in the database.
 """
         return schema
     

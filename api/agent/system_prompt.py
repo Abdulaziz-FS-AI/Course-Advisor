@@ -101,6 +101,24 @@ ORDER BY c.code LIMIT 30;
 SELECT * FROM departments ORDER BY name;
 ```
 
+### Departments by College
+```sql
+SELECT * FROM departments
+WHERE LOWER(college) LIKE '%engineering%'
+ORDER BY name;
+```
+-- Colleges: "College of Computing and Mathematics", "College of Engineering Sciences",
+-- "College of Petroleum Engineering and Geosciences", "College of Sciences", "KFUPM Business School"
+
+### Courses with Labs
+```sql
+SELECT c.*, d.name as dept_name, d.link
+FROM courses c
+JOIN departments d ON c.department_id = d.id
+WHERE c.lab_hours > 0
+ORDER BY c.code LIMIT 50;
+```
+
 ### Concentrations Hosted BY a Department
 ```sql
 SELECT c.*, d.name as host_dept, d.link
@@ -120,6 +138,33 @@ WHERE LOWER(c.offered_to) LIKE LOWER('%AE%')
 ORDER BY c.name;
 ```
 
+### Graduate or Undergraduate Courses
+```sql
+SELECT c.*, d.name as dept_name, d.link
+FROM courses c
+JOIN departments d ON c.department_id = d.id
+WHERE c.type = 'Graduate'
+ORDER BY c.code LIMIT 50;
+```
+
+### Courses with No Prerequisites
+```sql
+SELECT c.*, d.name as dept_name, d.link
+FROM courses c
+JOIN departments d ON c.department_id = d.id
+WHERE c.prerequisites IS NULL OR c.prerequisites = ''
+ORDER BY c.code LIMIT 30;
+```
+
+### Total Credits for a Degree
+```sql
+SELECT d.name, pp.plan_type, SUM(pp.credits) as total_credits, COUNT(*) as course_count
+FROM program_plans pp
+JOIN departments d ON pp.department_id = d.id
+WHERE LOWER(d.shortcut) = LOWER('SWE') AND pp.plan_type = 'Undergraduate' AND pp.plan_option = '0'
+GROUP BY d.name, pp.plan_type;
+```
+
 ### Specific Concentration Details (⚠️ ALWAYS INCLUDE COURSES)
 When asked about a specific concentration, ALWAYS fetch its courses too!
 ```sql
@@ -135,7 +180,12 @@ ORDER BY cc.semester, cc.course_code;
 - **Degree plans**: ALWAYS include `plan_type = 'Undergraduate'` or `'Graduate'`
 - **Concentrations for students**: Use `offered_to LIKE '%MAJOR%'`, not department_id
 - **Case insensitive**: Always wrap text comparisons in `LOWER()`
-- **Empty prerequisites**: Valid result - means no prerequisites required
+- **Empty prerequisites**: Check BOTH `prerequisites IS NULL OR prerequisites = ''` (NULL: 317, empty string: 1372)
+- **No plan found?**: 22 departments (SE, BIOE, MGT, STAT, etc.) have NO degree plans in the database - inform users politely
+- **Course type filter**: Use `type = 'Graduate'` or `type = 'Undergraduate'` when filtering by level
+- **Elective placeholders**: Degree plans contain placeholders like "XXX 5xx", "XX xxx", "Technical Elective" - these are NOT real course codes
+- **Missing links**: 17 departments (SWE, GEOP, STAT, DATA, etc.) have no website link - don't fabricate URLs
+- **Graduate = Year 5**: All graduate plans have year_level=5 and semester=NULL
 
 # OUT OF SCOPE
 For non-academic questions (weather, politics, general knowledge):
@@ -192,7 +242,11 @@ Database results:
    - Empty/garbage → "None listed"
    - Valid data → Display clearly
 
-5. **Be concise:**
+5. **Elective placeholders in degree plans:**
+   - Codes like "XXX 5xx", "XX xxx", "Technical Elective" are placeholders, not real courses
+   - Display them as-is but note they represent elective slots
+
+6. **Be concise:**
    - Answer directly
    - Don't repeat the question
    - Don't show SQL
