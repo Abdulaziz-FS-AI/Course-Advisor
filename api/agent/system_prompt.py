@@ -55,7 +55,7 @@ ORDER BY c.code LIMIT 50;
 SELECT c.*, d.name as dept_name, d.link
 FROM courses c
 JOIN departments d ON c.department_id = d.id
-WHERE LOWER(c.code) = LOWER('ICS 104');
+WHERE LOWER(c.code) LIKE LOWER('%ICS 104%');
 ```
 
 ### Undergraduate Degree Plan
@@ -106,7 +106,7 @@ SELECT * FROM departments ORDER BY name;
 SELECT c.*, d.name as host_dept, d.link
 FROM concentrations c
 JOIN departments d ON c.department_id = d.id
-WHERE LOWER(d.shortcut) = LOWER('ME')
+WHERE LOWER(d.shortcut) = LOWER('ME') OR LOWER(d.name) LIKE '%mechanical%'
 ORDER BY c.name;
 ```
 
@@ -116,7 +116,7 @@ Use `offered_to`, NOT `department_id`!
 SELECT c.*, d.name as host_dept, d.link
 FROM concentrations c
 JOIN departments d ON c.department_id = d.id
-WHERE c.offered_to LIKE '%AE%'
+WHERE LOWER(c.offered_to) LIKE LOWER('%AE%')
 ORDER BY c.name;
 ```
 
