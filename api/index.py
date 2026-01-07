@@ -70,21 +70,17 @@ class FeedbackRequest(BaseModel):
 @app.post("/api/auth/login")
 def login(user: UserLogin):
     try:
-        # Debug logging
-        print(f"Login attempt - username: {user.username}, password length: {len(user.password)}, password bytes: {len(user.password.encode('utf-8'))}")
+        # Simplified Hardcoded Login
+        print(f"Login attempt - username: {user.username}")
 
-        db = get_database()
-        db_user = db.get_user_by_username(user.username)
-        if not db_user:
-            raise HTTPException(status_code=401, detail="Invalid username or password")
+        if user.username == "Kfupmsdaia" and user.password == "aerospace":
+            # Hardcoded admin user
+            token = create_access_token({"sub": "Kfupmsdaia", "id": 1, "role": "admin"})
+            return {"token": token, "username": "Kfupmsdaia", "role": "admin"}
+        
+        # If not admin/admin
+        raise HTTPException(status_code=401, detail="Invalid username or password")
 
-        print(f"User found - hash preview: {db_user['password_hash'][:20]}...")
-
-        # Password truncation is handled in verify_password (bcrypt 72-byte limit)
-        if not verify_password(user.password, db_user["password_hash"]):
-            raise HTTPException(status_code=401, detail="Invalid username or password")
-        token = create_access_token({"sub": db_user["username"], "id": db_user["id"], "role": db_user["role"]})
-        return {"token": token, "username": db_user["username"], "role": db_user["role"]}
     except HTTPException:
         # Re-raise HTTP exceptions (like 401)
         raise

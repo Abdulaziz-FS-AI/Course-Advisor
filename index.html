@@ -469,13 +469,20 @@
 
         .typing-indicator {
             display: none;
-            padding: 12px 18px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 18px 18px 18px 4px;
-            margin: 10px 0;
-            max-width: 120px;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            margin: 0 0 8px 10px;
             align-self: flex-start;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thinking-text {
+            color: #718096;
+            font-size: 13px;
+            font-weight: 500;
+            font-style: italic;
         }
 
         .typing-indicator .dots {
@@ -505,10 +512,14 @@
         }
 
         @keyframes typing-bounce {
-            0%, 60%, 100% {
+
+            0%,
+            60%,
+            100% {
                 transform: translateY(0);
                 opacity: 0.6;
             }
+
             30% {
                 transform: translateY(-10px);
                 opacity: 1;
@@ -793,6 +804,15 @@
             </div>
 
             <!-- Input Area -->
+            <div class="typing-indicator" id="typing">
+                <span class="thinking-text">Thinking...</span>
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
             <div class="input-container">
                 <form id="chat-form">
                     <input type="text" class="input-box" id="user-input" placeholder="Ask anything about courses..."
@@ -805,13 +825,6 @@
                         </svg>
                     </button>
                 </form>
-                <div class="typing-indicator" id="typing">
-                    <div class="dots">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -959,7 +972,7 @@
                 addMessage(query, 'user-msg');
                 input.value = '';
                 input.disabled = true;
-                typing.style.display = 'block';
+                typing.style.display = 'flex';
 
                 try {
                     // 1. If new chat, create session first
