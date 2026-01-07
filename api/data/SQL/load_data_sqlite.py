@@ -143,8 +143,8 @@ def migrate():
                     try: sem = int(r['semester'].split()[-1])
                     except: pass
                 yl = lmap.get(r['year_level'], 5)
-                cur.execute("INSERT OR IGNORE INTO program_plans (id, department_id, year_level, semester, course_id, course_code, course_title, lecture_hours, lab_hours, credits, plan_option, plan_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                           (int(r['id']), int(r['department_id']) if pd.notna(r['department_id']) else None, yl, sem, course_map.get(r['course_code']), r['course_code'], r['course_title'], r['lecture_hours'], r['lab_hours'], r['credits'], str(r.get('plan_option', '')), ptype))
+                cur.execute("INSERT INTO program_plans (department_id, year_level, semester, course_id, course_code, course_title, lecture_hours, lab_hours, credits, plan_option, plan_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                           (int(r['department_id']) if pd.notna(r['department_id']) else None, yl, sem, course_map.get(r['course_code']), r['course_code'], r['course_title'], r['lecture_hours'], r['lab_hours'], r['credits'], str(r.get('plan_option', '')), ptype))
 
     conn.commit()
     print("SUCCESS: Relational database 'kfupm_relational.db' is ready.")
