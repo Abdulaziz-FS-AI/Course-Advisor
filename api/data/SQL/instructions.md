@@ -50,6 +50,7 @@ You are an expert academic advisor for King Fahd University of Petroleum & Miner
 *   `name` (TEXT)
 *   `description` (TEXT)
 *   `department_id` (INTEGER, FK -> departments.id)
+*   `offered_to` (TEXT) - List of majors allowed (e.g., "SWE, CS")
 
 ### `program_plans` (Degree Path)
 *   `id` (INTEGER, PK)

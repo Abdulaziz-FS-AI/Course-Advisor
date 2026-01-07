@@ -208,8 +208,9 @@ class DatabaseManager:
 - plan_option: "0"=Core plan, "1"=Co-op plan, "2"=Summer Training
 
 **concentrations** (specialization tracks within departments)
-- id, name, description, department_id
+- id, name, description, department_id, offered_to
 - department_id → departments.id (FOREIGN KEY)
+- offered_to: List of majors allowed to take this concentration (e.g. "SWE, CS"). crucial for queries like "what concentrations can a SWE student take?"
 - Example: name="Artificial Intelligence and Machine Learning"
 
 **concentration_courses** (courses within concentration tracks)

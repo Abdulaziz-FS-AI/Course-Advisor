@@ -63,12 +63,11 @@ def migrate():
 
     print("Creating tables...")
     cur.executescript("""
-    DROP TABLE IF EXISTS program_plans; DROP TABLE IF EXISTS concentration_courses; DROP TABLE IF EXISTS concentration_departments;
+    DROP TABLE IF EXISTS program_plans; DROP TABLE IF EXISTS concentration_courses;
     DROP TABLE IF EXISTS concentrations; DROP TABLE IF EXISTS courses; DROP TABLE IF EXISTS departments;
     CREATE TABLE departments (id INTEGER PRIMARY KEY, name TEXT, shortcut TEXT UNIQUE, college TEXT, other_info TEXT, link TEXT);
     CREATE TABLE courses (id INTEGER PRIMARY KEY, code TEXT UNIQUE, title TEXT, lecture_hours INTEGER, lab_hours INTEGER, credits INTEGER, department_id INTEGER, type TEXT, description TEXT, prerequisites TEXT);
-    CREATE TABLE concentrations (id INTEGER PRIMARY KEY, name TEXT, description TEXT, department_id INTEGER);
-    CREATE TABLE concentration_departments (concentration_id INTEGER, department_id INTEGER, PRIMARY KEY (concentration_id, department_id));
+    CREATE TABLE concentrations (id INTEGER PRIMARY KEY, name TEXT, description TEXT, department_id INTEGER, offered_to TEXT);
     CREATE TABLE program_plans (id INTEGER PRIMARY KEY, department_id INTEGER, year_level INTEGER, semester INTEGER, course_id INTEGER, course_code TEXT, course_title TEXT, lecture_hours INTEGER, lab_hours INTEGER, credits INTEGER, plan_option TEXT, plan_type TEXT);
     CREATE TABLE concentration_courses (id INTEGER PRIMARY KEY, concentration_id INTEGER, course_id INTEGER, course_code TEXT, course_title TEXT, description TEXT, prerequisites TEXT, semester INTEGER);
     """)
@@ -122,11 +121,8 @@ def migrate():
     if df is not None:
         for _, r in df.iterrows():
             did = int(r['department_id']) if pd.notna(r['department_id']) and int(r['department_id']) in dept_map.values() else None
-            cur.execute("INSERT OR IGNORE INTO concentrations (id, name, description, department_id) VALUES (?, ?, ?, ?)", (int(r['id']), r['name'], r['description'], did))
-            if pd.notna(r['offered_to']):
-                for s in str(r['offered_to']).split(','):
-                    if s.strip() in dept_map: cur.execute("INSERT OR IGNORE INTO concentration_departments (concentration_id, department_id) VALUES (?, ?)", (int(r['id']), dept_map[s.strip()]))
-
+            offered_to = str(r['offered_to']) if pd.notna(r['offered_to']) else None
+            cur.execute("INSERT OR IGNORE INTO concentrations (id, name, description, department_id, offered_to) VALUES (?, ?, ?, ?, ?)", (int(r['id']), r['name'], r['description'], did, offered_to))
     print("Loading concentration_courses...")
     if df_cc is not None:
         for _, r in df_cc.iterrows():
