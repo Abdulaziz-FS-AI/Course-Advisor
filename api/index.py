@@ -70,10 +70,16 @@ class FeedbackRequest(BaseModel):
 @app.post("/api/auth/login")
 def login(user: UserLogin):
     try:
+        # Debug logging
+        print(f"Login attempt - username: {user.username}, password length: {len(user.password)}, password bytes: {len(user.password.encode('utf-8'))}")
+
         db = get_database()
         db_user = db.get_user_by_username(user.username)
         if not db_user:
             raise HTTPException(status_code=401, detail="Invalid username or password")
+
+        print(f"User found - hash preview: {db_user['password_hash'][:20]}...")
+
         # Password truncation is handled in verify_password (bcrypt 72-byte limit)
         if not verify_password(user.password, db_user["password_hash"]):
             raise HTTPException(status_code=401, detail="Invalid username or password")
