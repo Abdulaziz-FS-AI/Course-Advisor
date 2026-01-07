@@ -123,21 +123,11 @@ ORDER BY c.name;
 ### Specific Concentration Details (⚠️ ALWAYS INCLUDE COURSES)
 When asked about a specific concentration, ALWAYS fetch its courses too!
 ```sql
-SELECT 
-    con.name as concentration_name,
-    con.description as concentration_description,
-    con.offered_to,
-    d.name as host_dept,
-    d.link,
-    cc.course_code,
-    cc.course_title,
-    cc.prerequisites,
-    cc.semester
+SELECT con.*, d.name as host_dept, d.link, cc.*
 FROM concentrations con
 JOIN departments d ON con.department_id = d.id
 LEFT JOIN concentration_courses cc ON cc.concentration_id = con.id
 WHERE LOWER(con.name) LIKE '%artificial intelligence%'
-   OR LOWER(con.name) LIKE '%machine learning%'
 ORDER BY cc.semester, cc.course_code;
 ```
 
