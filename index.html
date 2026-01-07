@@ -469,11 +469,50 @@
 
         .typing-indicator {
             display: none;
-            font-style: italic;
-            color: #888;
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: center;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 18px 18px 18px 4px;
+            margin: 10px 0;
+            max-width: 120px;
+            align-self: flex-start;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .typing-indicator .dots {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .typing-indicator .dot {
+            width: 8px;
+            height: 8px;
+            background: #00766c;
+            border-radius: 50%;
+            animation: typing-bounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-indicator .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing-bounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
         }
 
         /* Markdown */
@@ -766,7 +805,13 @@
                         </svg>
                     </button>
                 </form>
-                <div class="typing-indicator" id="typing">Thinking...</div>
+                <div class="typing-indicator" id="typing">
+                    <div class="dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
