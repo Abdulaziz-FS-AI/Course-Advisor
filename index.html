@@ -918,10 +918,29 @@
         let chats = {}; // { id: { title: "", messages: [], timestamp: 0 } }
         let currentChatId = null;
 
+        // Helper to get clean session ID from URL
+        function getUrlSessionId() {
+            const path = window.location.pathname;
+            // Remove leading/trailing slashes and filter empty segments
+            const segments = path.split('/').filter(p => p.length > 0);
+            return segments.length > 0 ? segments[0] : null;
+        }
+
         // Init
         async function init() {
             await loadHistoryFromServer();
-            startNewChat();
+            const pathId = getUrlSessionId();
+            if (pathId && chats[pathId]) {
+                await loadChat(pathId);
+            } else {
+                startNewChat();
+            }
+
+            window.addEventListener('popstate', (e) => {
+                const id = getUrlSessionId();
+                if (id && chats[id]) loadChat(id);
+                else startNewChat();
+            });
         }
 
         async function loadHistoryFromServer() {
@@ -953,7 +972,7 @@
                     // data is list of {role, content, id, ...}
                     chats[sessionId].messages = data.map(m => ({
                         role: m.role,
-                        content: m.content,
+                        content: m.role === 'assistant' ? marked.parse(m.content) : m.content,
                         isHtml: m.role === 'assistant',
                         message_id: m.id
                     }));
@@ -969,13 +988,30 @@
             currentChatId = null;
             clearMessages();
             resetUI();
+            if (input) {
+                input.value = '';
+                input.disabled = false;
+            }
+            if (typing) typing.style.display = 'none';
             document.querySelectorAll('.chat-item').forEach(el => el.classList.remove('active'));
+
+            if (window.location.pathname !== '/' && window.location.pathname !== '') {
+                window.history.pushState({}, '', '/');
+            }
         }
 
         async function loadChat(id) {
             if (!chats[id]) return;
             currentChatId = id;
+            if (window.location.pathname.substring(1) !== id) {
+                window.history.pushState({ id }, '', '/' + id);
+            }
             clearMessages();
+            if (input) {
+                input.value = '';
+                input.disabled = false;
+            }
+            if (typing) typing.style.display = 'none';
 
             if (!chats[id].messages || chats[id].messages.length === 0) {
                 await loadChatMessages(id);
@@ -1031,6 +1067,9 @@
                 const query = input.value.trim();
                 if (!query) return;
 
+                // Capture current state to handle race conditions
+                let activeSessionId = currentChatId;
+
                 mainContainer.classList.add('chat-active');
                 addMessage(query, 'user-msg');
                 input.value = '';
@@ -1039,7 +1078,7 @@
 
                 try {
                     // 1. If new chat, create session first
-                    if (!currentChatId) {
+                    if (!activeSessionId) {
                         const sessionRes = await fetch('/api/chat/sessions', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -1049,10 +1088,12 @@
                             })
                         });
                         const sessionData = await sessionRes.json();
-                        currentChatId = sessionData.id;
+                        activeSessionId = sessionData.id;
+                        currentChatId = activeSessionId; // Update global state
+                        window.history.pushState({ id: activeSessionId }, '', '/' + activeSessionId);
 
-                        chats[currentChatId] = {
-                            id: currentChatId,
+                        chats[activeSessionId] = {
+                            id: activeSessionId,
                             title: sessionData.title,
                             messages: [],
                             timestamp: Date.now()
@@ -1061,8 +1102,8 @@
                     }
 
                     // 2. Optimistic update
-                    if (chats[currentChatId]) {
-                        chats[currentChatId].messages.push({ role: 'user', content: query });
+                    if (chats[activeSessionId]) {
+                        chats[activeSessionId].messages.push({ role: 'user', content: query });
                     }
 
                     // 3. Send Message
@@ -1071,15 +1112,13 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             message: query,
-                            session_id: currentChatId,
+                            session_id: activeSessionId,
                             device_id: deviceId
                         })
                     });
 
                     // Check if response is OK
-                    if (!res.ok) {
-                        throw new Error(`Server error: ${res.status}`);
-                    }
+                    if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
                     // Parse JSON safely
                     let data;
@@ -1089,31 +1128,38 @@
                         throw new Error('Invalid response from server');
                     }
 
-                    // Check if response field exists
-                    if (!data || !data.response) {
-                        throw new Error('Empty response from server');
-                    }
+                    if (!data || !data.response) throw new Error('Empty response from server');
 
-                    const botResponse = marked.parse(data.response);
+                    const parsedResponse = marked.parse(data.response);
 
-                    addMessage(botResponse, 'bot-msg', true, data.message_id);
-
-                    if (chats[currentChatId]) {
-                        chats[currentChatId].messages.push({
+                    // Update History Data
+                    if (chats[activeSessionId]) {
+                        chats[activeSessionId].messages.push({
                             role: 'assistant',
-                            content: data.response,
+                            content: parsedResponse,
                             isHtml: true,
                             message_id: data.message_id
                         });
                     }
 
+                    // Only update DOM if we are still on the same chat
+                    if (currentChatId === activeSessionId) {
+                        addMessage(parsedResponse, 'bot-msg', true, data.message_id);
+                    }
+
                 } catch (error) {
                     console.error('Chat error:', error);
-                    addMessage("⚠️ Error: " + (error.message || 'Something went wrong. Please try again.'), 'bot-msg');
+                    // Only show error if we are still on the relevant chat
+                    if (currentChatId === activeSessionId || (!activeSessionId && !currentChatId)) {
+                        addMessage("⚠️ Error: " + (error.message || 'Something went wrong.'), 'bot-msg');
+                    }
                 } finally {
-                    input.disabled = false;
-                    typing.style.display = 'none';
-                    input.focus();
+                    // Start cleanup
+                    if (currentChatId === activeSessionId) {
+                        input.disabled = false;
+                        typing.style.display = 'none';
+                        input.focus();
+                    }
                 }
             });
         } else {
