@@ -184,63 +184,92 @@ class DatabaseManager:
     def get_schema_info(self) -> str:
         """Get database schema description for LLM context."""
         schema = """
-# DATABASE SCHEMA
+## TABLES & COLUMNS
 
-## TABLES & KEY COLUMNS
+### departments
+The central reference table. All other tables link here via department_id.
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key |
+| name | TEXT | Full department name (e.g., "Information and Computer Science") |
+| shortcut | TEXT | 2-4 letter code used in course codes (e.g., "ICS", "SWE") |
+| college | TEXT | Parent college name |
+| link | TEXT | Official department website URL |
 
-**departments** (central hub - all other tables reference this)
-- id, name, shortcut, college, link
-- Example: name="Information and Computer Science", shortcut="ICS", link="https://ics.kfupm.edu.sa/"
-- Note: shortcut is used in course codes (e.g., "ICS 104")
+### courses
+All undergraduate and graduate courses offered at KFUPM.
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key |
+| code | TEXT | Course code like "ICS 104", "SWE 205" |
+| title | TEXT | Course name |
+| lecture_hours | INTEGER | Weekly lecture hours |
+| lab_hours | INTEGER | Weekly lab hours |
+| credits | INTEGER | Credit hours |
+| department_id | INTEGER | FK → departments.id |
+| type | TEXT | "Undergraduate" or "Graduate" |
+| description | TEXT | Full course description |
+| prerequisites | TEXT | ⚠️ MOSTLY EMPTY - prefer concentration_courses for prereqs |
 
-**courses** (all undergraduate & graduate courses)
-- id, code, title, lecture_hours, lab_hours, credits, department_id, type, description, prerequisites
-- department_id → departments.id (FOREIGN KEY - use JOIN to get department name/link)
-- type: "Undergraduate" or "Graduate"
-- ⚠️ prerequisites field is MOSTLY EMPTY (only 2.7% populated) - use concentration_courses instead
+### program_plans
+Degree curriculum for each major (semester-by-semester course sequence).
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key |
+| department_id | INTEGER | FK → departments.id (which major this plan is for) |
+| year_level | INTEGER | 1=Freshman, 2=Sophomore, 3=Junior, 4=Senior, 5=Graduate |
+| semester | INTEGER | 1 or 2 (Fall/Spring) |
+| course_id | INTEGER | FK → courses.id |
+| course_code | TEXT | Course code (denormalized for convenience) |
+| course_title | TEXT | Course title (denormalized) |
+| credits | INTEGER | Credit hours |
+| plan_option | TEXT | "0"=Core, "1"=Co-op, "2"=Summer Training |
+| plan_type | TEXT | ⚠️ CRITICAL: "Undergraduate" or "Graduate" - ALWAYS filter by this! |
 
-**program_plans** (degree plans for both undergrad & graduate)
-- id, department_id, year_level, semester, course_id, course_code, course_title, credits, plan_option, plan_type
-- department_id → departments.id (FOREIGN KEY)
-- plan_type: "Undergraduate" or "Graduate" (CRITICAL - always filter by this!)
-- year_level: "1"=Freshman, "2"=Sophomore, "3"=Junior, "4"=Senior, "Graduate"=Grad courses
-- semester: "1", "2", or other string values
-- plan_option: "0"=Core plan, "1"=Co-op plan, "2"=Summer Training
+### concentrations
+Interdisciplinary specialization tracks students can pursue.
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key |
+| name | TEXT | Concentration name (e.g., "Artificial Intelligence and Machine Learning") |
+| description | TEXT | Full description of the concentration |
+| department_id | INTEGER | FK → departments.id (who HOSTS/RUNS this concentration) |
+| offered_to | TEXT | ⚠️ CRITICAL: Comma-separated majors who CAN TAKE it (e.g., "COE, CS, SWE") |
 
-**concentrations** (specialization tracks within departments)
-- id, name, description, department_id, offered_to
-- department_id → departments.id (FOREIGN KEY)
-- offered_to: List of majors allowed to take this concentration (e.g. "SWE, CS"). crucial for queries like "what concentrations can a SWE student take?"
-- Example: name="Artificial Intelligence and Machine Learning"
+**⚠️ IMPORTANT DISTINCTION:**
+- `department_id` = Which department HOSTS the concentration
+- `offered_to` = Which majors are ELIGIBLE to enroll
+- Query "concentrations for AE students" → `WHERE offered_to LIKE '%AE%'`
+- Query "concentrations run by AE dept" → `WHERE department_id = AE_id`
 
-**concentration_courses** (courses within concentration tracks)
-- id, concentration_id, course_id, course_code, course_title, description, prerequisites, semester
-- concentration_id → concentrations.id (FOREIGN KEY)
-- course_id → courses.id (FOREIGN KEY)
-- ✅ prerequisites field here is COMPLETE - use THIS table for prerequisite queries!
+### concentration_courses
+Courses that belong to each concentration track.
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Primary key |
+| concentration_id | INTEGER | FK → concentrations.id |
+| course_id | INTEGER | FK → courses.id |
+| course_code | TEXT | Course code |
+| course_title | TEXT | Course title |
+| description | TEXT | Course description |
+| prerequisites | TEXT | ✅ COMPLETE prerequisite data - use this for prereq queries! |
+| semester | INTEGER | Suggested semester to take |
 
-## CRITICAL RELATIONSHIPS & RULES
+## KEY RULES
 
-1. **Always JOIN with departments** to get the `link` field for department websites
-   Example: FROM courses c JOIN departments d ON c.department_id = d.id
+1. **Always JOIN departments** to get the website link:
+   `SELECT c.*, d.name as dept_name, d.link FROM courses c JOIN departments d ON c.department_id = d.id`
 
-2. **For prerequisites**: Query concentration_courses table, NOT courses table
-   Why? courses.prerequisites is 97% empty, concentration_courses has complete data
+2. **Department matching** - be flexible with both shortcut and name:
+   `WHERE LOWER(d.shortcut) = LOWER('ICS') OR LOWER(d.name) LIKE '%computer%'`
 
-3. **For degree plans**: Always filter by plan_type ("Undergraduate" or "Graduate")
-   Example: WHERE plan_type = 'Graduate' AND department_id = X
+3. **Degree plans** - ALWAYS filter by plan_type:
+   `WHERE plan_type = 'Undergraduate'` or `WHERE plan_type = 'Graduate'`
 
-4. **Department matching**: Match both shortcut AND name for flexibility
-   Example: WHERE LOWER(d.shortcut) = LOWER('ICS') OR LOWER(d.name) LIKE '%computer%'
+4. **Concentrations for a major** - use offered_to, NOT department_id:
+   `WHERE offered_to LIKE '%SWE%'` (finds all concentrations SWE students can take)
 
-5. **Course codes**: Format is "DEPT XXX" where DEPT = department.shortcut
-   Examples: "ICS 104", "SWE 205", "MATH 101"
-
-6. **Concentrations for a major**: Use `offered_to LIKE '%MAJOR%'`, NOT `department_id`!
-   - department_id = who HOSTS the concentration
-   - offered_to = which majors CAN TAKE it (comma-separated list like "AE, ME, EE")
-   - Example: "What concentrations can Aerospace students take?"
-     → WHERE offered_to LIKE '%AE%'  (NOT WHERE department_id = AE_id)
+5. **Prerequisites** - prefer concentration_courses over courses table (97% populated vs 3%)
 """
         return schema
     
