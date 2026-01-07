@@ -222,6 +222,42 @@
             color: var(--primary);
         }
 
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .refresh-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .refresh-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #f0fdfa;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .refresh-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
         /* Modal */
         .modal-overlay {
             position: fixed;
@@ -328,7 +364,15 @@
             <div id="sessionsView">
                 <div class="header">
                     <h2>All Chat Sessions</h2>
-                    <button class="refresh-btn" onclick="fetchSessions()">Refresh</button>
+                    <button class="refresh-btn" onclick="fetchSessions()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15">
+                            </path>
+                        </svg>
+                        Refresh
+                    </button>
                 </div>
                 <table>
                     <thead>
@@ -350,7 +394,15 @@
             <div id="feedbackView" style="display: none;">
                 <div class="header">
                     <h2>User Feedback</h2>
-                    <button class="refresh-btn" onclick="fetchFeedback()">Refresh</button>
+                    <button class="refresh-btn" onclick="fetchFeedback()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15">
+                            </path>
+                        </svg>
+                        Refresh
+                    </button>
                 </div>
                 <table>
                     <thead>
@@ -697,7 +749,12 @@
                             div.style.color = '#2d3748';
                         }
 
-                        div.textContent = m.content;
+                        // Use marked if available, else plain text
+                        const htmlContent = (typeof marked !== 'undefined' && m.role === 'assistant')
+                            ? marked.parse(m.content)
+                            : m.content;
+
+                        div.innerHTML = htmlContent;
                         content.appendChild(div);
                     });
                 } else {

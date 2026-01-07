@@ -32,7 +32,6 @@
         /* Sidebar Styles - Glassy Metal */
         .sidebar {
             width: var(--sidebar-width);
-            /* Light greenish gradient */
             background: linear-gradient(180deg, #f0fff4 0%, #f7fef9 100%);
             border-right: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
@@ -40,8 +39,58 @@
             flex-direction: column;
             padding: 24px;
             box-sizing: border-box;
-            transition: transform 0.3s ease;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, opacity 0.3s ease;
             z-index: 10;
+            position: relative;
+            overflow: visible;
+        }
+
+        .sidebar.collapsed {
+            width: 60px;
+            padding: 24px 10px;
+        }
+
+        .sidebar.collapsed .new-chat-btn span,
+        .sidebar.collapsed .chat-list-label,
+        .sidebar.collapsed .chat-list,
+        .sidebar.collapsed .user-info {
+            display: none;
+        }
+
+        .sidebar.collapsed .new-chat-btn {
+            padding: 14px 0;
+            justify-content: center;
+            width: 40px;
+            margin: 0 auto 30px auto;
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            right: -12px;
+            top: 24px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+            transition: all 0.3s ease;
+            color: var(--accent-color);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .sidebar.collapsed .sidebar-toggle {
+            transform: rotate(180deg);
         }
 
         .new-chat-btn {
@@ -537,6 +586,15 @@
             overflow: hidden;
         }
 
+        /* Responsive Table Container */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
         th,
         td {
             padding: 12px 15px;
@@ -762,12 +820,18 @@
 
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </div>
         <button class="new-chat-btn" onclick="startNewChat()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12h14" />
             </svg>
-            New Chat
+            <span>New Chat</span>
         </button>
         <div class="chat-list-label">History</div>
         <div class="chat-list" id="chatList">
@@ -1183,6 +1247,37 @@
         }
 
         init();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('collapsed');
+            localStorage.setItem('sidebar_collapsed', sidebar.classList.contains('collapsed'));
+        }
+
+        // Restore sidebar state
+        if (localStorage.getItem('sidebar_collapsed') === 'true') {
+            document.getElementById('sidebar').classList.add('collapsed');
+        }
+
+        // Wrap tables for scrollability
+        function wrapTables() {
+            document.querySelectorAll('.bot-msg table').forEach(table => {
+                if (!table.parentElement.classList.contains('table-wrapper')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'table-wrapper';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+        }
+
+        // Call wrapTables after adding message
+        const originalAddMessage = addMessage;
+        addMessage = function (...args) {
+            originalAddMessage.apply(this, args);
+            wrapTables();
+        };
+
         // Remove Auth Modal from DOM
         (function removeAuthModal() {
             const m = document.querySelector('.username-modal');
