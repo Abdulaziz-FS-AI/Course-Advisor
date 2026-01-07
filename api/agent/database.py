@@ -194,6 +194,7 @@ The central reference table. All other tables link here via department_id.
 | name | TEXT | Full department name (e.g., "Information and Computer Science") |
 | shortcut | TEXT | 2-4 letter code used in course codes (e.g., "ICS", "SWE") |
 | college | TEXT | Parent college name |
+| other_info | TEXT | Additional department information (may be empty) |
 | link | TEXT | Official department website URL |
 
 ### courses
@@ -222,6 +223,8 @@ Degree curriculum for each major (semester-by-semester course sequence).
 | course_id | INTEGER | FK → courses.id |
 | course_code | TEXT | Course code (denormalized for convenience) |
 | course_title | TEXT | Course title (denormalized) |
+| lecture_hours | INTEGER | Weekly lecture hours for this course |
+| lab_hours | INTEGER | Weekly lab hours for this course |
 | credits | INTEGER | Credit hours |
 | plan_option | TEXT | "0"=Core, "1"=Co-op, "2"=Summer Training |
 | plan_type | TEXT | ⚠️ CRITICAL: "Undergraduate" or "Graduate" - ALWAYS filter by this! |
