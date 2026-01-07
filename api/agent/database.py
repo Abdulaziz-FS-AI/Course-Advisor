@@ -226,7 +226,7 @@ Degree curriculum for each major (semester-by-semester course sequence).
 | lecture_hours | INTEGER | Weekly lecture hours for this course |
 | lab_hours | INTEGER | Weekly lab hours for this course |
 | credits | INTEGER | Credit hours |
-| plan_option | TEXT | "0"=Core, "1"=Co-op, "2"=Summer Training |
+| plan_option | TEXT | "0"=Core, "1"=Co-op, "2"=Summer Training. ⚠️ DO NOT filter by this - many depts only have 1 or 2! |
 | plan_type | TEXT | ⚠️ CRITICAL: "Undergraduate" or "Graduate" - ALWAYS filter by this! |
 
 ### concentrations

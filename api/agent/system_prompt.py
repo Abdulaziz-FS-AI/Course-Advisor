@@ -64,7 +64,7 @@ SELECT pp.*, d.name as dept_name, d.link
 FROM program_plans pp
 JOIN departments d ON pp.department_id = d.id
 WHERE (LOWER(d.shortcut) = LOWER('SWE') OR LOWER(d.name) LIKE '%software%')
-  AND pp.plan_type = 'Undergraduate' AND pp.plan_option = '0'
+  AND pp.plan_type = 'Undergraduate'
 ORDER BY pp.year_level, pp.semester;
 ```
 
