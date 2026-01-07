@@ -3,6 +3,7 @@ import psycopg2
 from psycopg2 import extras
 import os
 import re
+import json
 
 # --- Configuration ---
 DB_CONFIG = {
@@ -16,12 +17,16 @@ DB_CONFIG = {
 }
 
 CSV_PATHS = {
-    "departments": "/home/shared_dir/data/SQL/departments.csv",
-    "courses": "/home/shared_dir/data/SQL/courses.csv",
-    "concentrations": "/home/shared_dir/data/SQL/concentrations.csv",
-    "concentration_courses": "/home/shared_dir/data/SQL/concentration_courses.csv",
-    "program_plans": "/home/shared_dir/data/SQL/program_plans_organized.csv",
-    "graduate_program_plans": "/home/shared_dir/data/SQL/graduate_program_plans.csv"
+    "departments": "/home/shared_dir/vercel_app/api/data/SQL/departments.csv",
+    "concentrations": "/home/shared_dir/vercel_app/api/data/SQL/concentrations.csv",
+    "concentration_courses": "/home/shared_dir/vercel_app/api/data/SQL/concentration_courses.csv",
+    "program_plans": "/home/shared_dir/vercel_app/api/data/SQL/program_plans_organized.csv",
+    "graduate_program_plans": "/home/shared_dir/vercel_app/api/data/SQL/graduate_program_plans.csv"
+}
+
+JSON_PATHS = {
+    "undergraduate_courses": "/home/shared_dir/vercel_app/api/data/SQL/processed_undergraduate_courses.json",
+    "graduate_courses": "/home/shared_dir/vercel_app/api/data/SQL/processed_graduate_courses.json"
 }
 
 def get_connection():
@@ -119,24 +124,40 @@ def migrate():
     cur.execute("SELECT shortcut, id FROM departments")
     dept_map = dict(cur.fetchall())
 
-    # 2. Courses (Initial load from catalog)
-    print("Loading courses from catalog...")
-    df_catalog = load_csv(CSV_PATHS["courses"])
-    if df_catalog is not None:
+    # 2. Courses (Load from processed JSON files)
+    print("Loading courses from JSON...")
+    all_courses_data = []
+    
+    # Load Undergraduate
+    if os.path.exists(JSON_PATHS["undergraduate_courses"]):
+        with open(JSON_PATHS["undergraduate_courses"], 'r') as f:
+            all_courses_data.extend([{"type": "Undergraduate", **c} for c in json.load(f)])
+    
+    # Load Graduate
+    if os.path.exists(JSON_PATHS["graduate_courses"]):
+        with open(JSON_PATHS["graduate_courses"], 'r') as f:
+            all_courses_data.extend([{"type": "Graduate", **c} for c in json.load(f)])
+            
+    if all_courses_data:
         values = []
-        for _, row in df_catalog.iterrows():
+        for i, course in enumerate(all_courses_data, 1):
+            code = course.get('code')
+            shortcut = extract_department_shortcut(code)
+            dept_id = dept_map.get(shortcut)
+            
             values.append((
-                int(row['id']),
-                row['code'],
-                row['title'],
-                int(row['lecture_hours']) if pd.notna(row['lecture_hours']) else None,
-                int(row['lab_hours']) if pd.notna(row['lab_hours']) else None,
-                int(row['credits']) if pd.notna(row['credits']) else None,
-                int(row['department_id']) if pd.notna(row['department_id']) else None,
-                row['type'],
-                row['description'],
-                row['prerequisites']
+                i, # Generate a simple sequence ID
+                code,
+                course.get('title'),
+                course.get('lecture_hours'),
+                course.get('lab_hours'),
+                course.get('credits'),
+                dept_id,
+                course.get('type'),
+                course.get('description'),
+                course.get('prerequisites')
             ))
+            
         extras.execute_values(cur, """
             INSERT INTO courses (id, code, title, lecture_hours, lab_hours, credits, department_id, type, description, prerequisites) 
             VALUES %s ON CONFLICT (id) DO NOTHING

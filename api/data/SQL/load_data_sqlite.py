@@ -3,17 +3,22 @@ import sqlite3
 import os
 import re
 import csv
+import json
 
 # --- Configuration ---
-DB_FILE = "/home/shared_dir/data/SQL/kfupm_relational.db"
+DB_FILE = "/home/shared_dir/vercel_app/api/data/SQL/kfupm_relational.db"
 
 CSV_PATHS = {
-    "departments": "/home/shared_dir/data/SQL/departments.csv",
-    "courses": "/home/shared_dir/data/SQL/courses.csv",
-    "concentrations": "/home/shared_dir/data/SQL/concentrations.csv",
-    "concentration_courses": "/home/shared_dir/data/SQL/concentration_courses.csv",
-    "program_plans": "/home/shared_dir/data/SQL/program_plans_organized.csv",
-    "graduate_program_plans": "/home/shared_dir/data/SQL/graduate_program_plans.csv"
+    "departments": "/home/shared_dir/vercel_app/api/data/SQL/departments.csv",
+    "concentrations": "/home/shared_dir/vercel_app/api/data/SQL/concentrations.csv",
+    "concentration_courses": "/home/shared_dir/vercel_app/api/data/SQL/concentration_courses.csv",
+    "program_plans": "/home/shared_dir/vercel_app/api/data/SQL/program_plans_organized.csv",
+    "graduate_program_plans": "/home/shared_dir/vercel_app/api/data/SQL/graduate_program_plans.csv"
+}
+
+JSON_PATHS = {
+    "undergraduate_courses": "/home/shared_dir/vercel_app/api/data/SQL/processed_undergraduate_courses.json",
+    "graduate_courses": "/home/shared_dir/vercel_app/api/data/SQL/processed_graduate_courses.json"
 }
 
 def load_csv_robust(path, expected_cols, headers=None):
@@ -73,9 +78,30 @@ def migrate():
     if df is not None: df.to_sql('departments', conn, if_exists='append', index=False)
     cur.execute("SELECT shortcut, id FROM departments"); dept_map = dict(cur.fetchall())
 
-    print("Loading Courses...")
-    df = load_csv_robust(CSV_PATHS["courses"], 10)
-    if df is not None: df.to_sql('courses', conn, if_exists='append', index=False)
+    print("Loading Courses from JSON...")
+    all_courses_data = []
+    if os.path.exists(JSON_PATHS["undergraduate_courses"]):
+        with open(JSON_PATHS["undergraduate_courses"], 'r') as f:
+            all_courses_data.extend([{"type": "Undergraduate", **c} for c in json.load(f)])
+    if os.path.exists(JSON_PATHS["graduate_courses"]):
+        with open(JSON_PATHS["graduate_courses"], 'r') as f:
+            all_courses_data.extend([{"type": "Graduate", **c} for c in json.load(f)])
+            
+    if all_courses_data:
+        values = []
+        for i, course in enumerate(all_courses_data, 1):
+            code = course.get('code')
+            shortcut = extract_shortcut(code)
+            dept_id = dept_map.get(shortcut)
+            values.append((
+                i, code, course.get('title'), course.get('lecture_hours'), 
+                course.get('lab_hours'), course.get('credits'), dept_id, 
+                course.get('type'), course.get('description'), course.get('prerequisites')
+            ))
+        cur.executemany("""
+            INSERT INTO courses (id, code, title, lecture_hours, lab_hours, credits, department_id, type, description, prerequisites)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, values)
 
     print("Auto-repairing missing data...")
     codes = set()
