@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env.local
+scripts/
+api/data/SQL/scrape_*.py
+api/data/SQL/process_*.py
+api/data/SQL/load_data*.py
+api/data/SQL/inspect_db.py
+api/data/SQL/rebuild_indexes.py
+api/data/SQL/generate_*.py
+api/data/SQL/update_*.py
+api/data/SQL/*.csv
+api/agent/migration.py
