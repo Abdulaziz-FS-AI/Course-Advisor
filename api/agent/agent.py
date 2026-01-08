@@ -42,7 +42,8 @@ class CourseAdvisorAgent:
 
     def _extract_sql(self, llm_response: str) -> Optional[str]:
         """Extract SQL query from LLM response if present."""
-        # Try JSON format first (preferred)
+
+        # 1. Try JSON in code block (preferred format)
         json_match = re.search(r'```json\s*(.*?)\s*```', llm_response, re.DOTALL)
         if json_match:
             try:
@@ -52,15 +53,30 @@ class CourseAdvisorAgent:
             except json.JSONDecodeError:
                 pass
 
-        # Try SQL code block
+        # 2. Try JSON without code block: {"sql": "..."}
+        json_raw = re.search(r'\{\s*"sql"\s*:\s*"(.+?)"\s*\}', llm_response, re.DOTALL)
+        if json_raw:
+            # Unescape the SQL string
+            sql = json_raw.group(1).replace('\\"', '"').replace('\\n', ' ')
+            return sql.strip()
+
+        # 3. Try SQL code block
         sql_match = re.search(r'```sql\s*(.*?)\s*```', llm_response, re.DOTALL)
         if sql_match:
             return sql_match.group(1).strip()
 
-        # Try raw SELECT statement (must end with semicolon for safety)
-        select_match = re.search(r'(SELECT\s+.+?;)', llm_response, re.DOTALL | re.IGNORECASE)
+        # 4. Try generic code block containing SELECT
+        code_match = re.search(r'```\s*(SELECT.+?)\s*```', llm_response, re.DOTALL | re.IGNORECASE)
+        if code_match:
+            return code_match.group(1).strip()
+
+        # 5. Try raw SELECT statement (with or without semicolon)
+        select_match = re.search(r'(SELECT\s+.+?(?:;|$))', llm_response, re.DOTALL | re.IGNORECASE)
         if select_match:
-            return select_match.group(1).strip()
+            sql = select_match.group(1).strip()
+            # Ensure it looks like a complete query (has FROM)
+            if re.search(r'\bFROM\b', sql, re.IGNORECASE):
+                return sql.rstrip(';') + ';'
 
         return None
 
@@ -71,10 +87,18 @@ class CourseAdvisorAgent:
 
     def _clean_direct_response(self, response: str) -> str:
         """Clean up a direct response from LLM."""
-        # Remove any JSON blocks that might have slipped through
+        # Remove any code blocks that might have slipped through
         response = re.sub(r'```json\s*.*?\s*```', '', response, flags=re.DOTALL)
         response = re.sub(r'```sql\s*.*?\s*```', '', response, flags=re.DOTALL)
+        response = re.sub(r'```\s*.*?\s*```', '', response, flags=re.DOTALL)
+        # Remove raw JSON objects
+        response = re.sub(r'\{\s*"sql"\s*:\s*".*?"\s*\}', '', response, flags=re.DOTALL)
         return response.strip()
+
+    def _response_contains_sql(self, response: str) -> bool:
+        """Check if response accidentally contains SQL that should have been extracted."""
+        # If response contains SELECT...FROM pattern, it likely has unextracted SQL
+        return bool(re.search(r'SELECT\s+.+?\s+FROM\s+', response, re.IGNORECASE | re.DOTALL))
 
     def _execute_sql(self, sql: str) -> Tuple[List[Dict], Optional[str]]:
         """Execute SQL query and return results."""
@@ -176,8 +200,30 @@ class CourseAdvisorAgent:
         if not sql:
             # Direct response from LLM (greeting, clarification, out of scope)
             clean_response = self._clean_direct_response(llm_response)
+
+            # Safety check: if response still contains SQL, extraction failed
+            if self._response_contains_sql(clean_response):
+                if DEBUG_MODE:
+                    print(f"[DEBUG] SQL leaked into response, retrying extraction...")
+                # Try one more aggressive extraction attempt
+                sql = self._extract_sql(clean_response)
+                if sql:
+                    # Found it - continue to execution below
+                    pass
+                else:
+                    # Still couldn't extract - return error instead of leaking SQL
+                    return AgentResponse(
+                        message="I found relevant information but had trouble processing it. Please try rephrasing your question.",
+                        error="SQL extraction failed"
+                    )
+            else:
+                return AgentResponse(
+                    message=clean_response if clean_response else "I'm not sure how to help with that. Try asking about KFUPM courses, departments, or degree plans."
+                )
+
+        if not sql:
             return AgentResponse(
-                message=clean_response if clean_response else "I'm not sure how to help with that. Try asking about KFUPM courses, departments, or degree plans."
+                message="I'm not sure how to help with that. Try asking about KFUPM courses, departments, or degree plans."
             )
 
         # Step 3: Execute SQL with retries
