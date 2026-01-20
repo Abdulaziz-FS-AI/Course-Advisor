@@ -42,6 +42,22 @@ def serve_admin():
 def serve_admin_html():
     return FileResponse(os.path.join(parent_dir, "admin.html"))
 
+@app.get("/api/health")
+def health_check():
+    """Health check endpoint showing database status."""
+    db = get_database()
+    supabase_url = os.getenv("SUPABASE_URL", "NOT SET")
+    supabase_key = os.getenv("SUPABASE_KEY", "NOT SET")
+    return {
+        "status": "ok",
+        "database": {
+            "using_supabase": db.use_supabase,
+            "supabase_url_set": supabase_url != "NOT SET",
+            "supabase_key_set": supabase_key != "NOT SET" and len(supabase_key) > 10,
+            "supabase_url_preview": supabase_url[:30] + "..." if len(supabase_url) > 30 else supabase_url
+        }
+    }
+
 from agent.system_prompt import get_system_prompt
 from agent.llm_client import get_llm_client
 
