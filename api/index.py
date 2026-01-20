@@ -111,8 +111,15 @@ def create_session(request: CreateSessionRequest):
 @app.get("/api/chat/sessions")
 def get_sessions(device_id: str):
     """Get all sessions for a specific device."""
-    db = get_database()
-    return db.get_device_sessions(device_id)
+    try:
+        db = get_database()
+        sessions = db.get_device_sessions(device_id)
+        return sessions
+    except Exception as e:
+        print(f"Error getting sessions: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Failed to get sessions: {str(e)}")
 
 @app.post("/api/chat")
 def chat(request: ChatRequest):

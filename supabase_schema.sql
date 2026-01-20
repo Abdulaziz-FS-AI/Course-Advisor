@@ -56,6 +56,35 @@ CREATE TABLE IF NOT EXISTS feedback (
 CREATE INDEX IF NOT EXISTS idx_feedback_session ON feedback(session_id);
 CREATE INDEX IF NOT EXISTS idx_feedback_created ON feedback(created_at DESC);
 
+-- Database function to get sessions with message count
+CREATE OR REPLACE FUNCTION get_device_sessions_with_count(p_device_id TEXT)
+RETURNS TABLE (
+    id TEXT,
+    user_id BIGINT,
+    device_id TEXT,
+    title TEXT,
+    created_at TIMESTAMPTZ,
+    updated_at TIMESTAMPTZ,
+    message_count BIGINT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        s.id,
+        s.user_id,
+        s.device_id,
+        s.title,
+        s.created_at,
+        s.updated_at,
+        COUNT(m.id) as message_count
+    FROM chat_sessions s
+    LEFT JOIN chat_messages m ON s.id = m.session_id
+    WHERE s.device_id = p_device_id
+    GROUP BY s.id, s.user_id, s.device_id, s.title, s.created_at, s.updated_at
+    ORDER BY s.updated_at DESC;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Verify tables were created
 SELECT
     table_name,
