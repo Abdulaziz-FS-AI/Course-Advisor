@@ -430,3 +430,6 @@ def get_database() -> HybridDatabaseManager:
     if _db_manager is None:
         _db_manager = HybridDatabaseManager()
     return _db_manager
+
+# Alias for backward compatibility
+DatabaseManager = HybridDatabaseManager
