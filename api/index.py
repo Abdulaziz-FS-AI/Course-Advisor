@@ -54,7 +54,8 @@ def health_check():
             "using_supabase": db.use_supabase,
             "supabase_url_set": supabase_url != "NOT SET",
             "supabase_key_set": supabase_key != "NOT SET" and len(supabase_key) > 10,
-            "supabase_url_preview": supabase_url[:30] + "..." if len(supabase_url) > 30 else supabase_url
+            "supabase_url_preview": supabase_url[:30] + "..." if len(supabase_url) > 30 else supabase_url,
+            "supabase_error": getattr(db, 'supabase_error', None)
         }
     }
 

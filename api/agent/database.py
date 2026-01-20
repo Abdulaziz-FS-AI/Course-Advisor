@@ -58,6 +58,7 @@ class HybridDatabaseManager:
         """Initialize Supabase client for chat/feedback."""
         supabase_url = os.getenv("SUPABASE_URL")
         supabase_key = os.getenv("SUPABASE_KEY")
+        self.supabase_error = None  # Track initialization errors
 
         if supabase_url and supabase_key:
             try:
@@ -65,15 +66,20 @@ class HybridDatabaseManager:
                 self.supabase = create_client(supabase_url, supabase_key)
                 print(f"✓ Using Supabase for chat/feedback: {supabase_url}")
                 self.use_supabase = True
-            except ImportError:
-                print("⚠️ supabase-py not installed. Install: pip install supabase")
+            except ImportError as e:
+                self.supabase_error = f"ImportError: {e}"
+                print(f"⚠️ supabase-py not installed: {e}")
                 self.supabase = None
                 self.use_supabase = False
             except Exception as e:
+                self.supabase_error = f"ConnectionError: {e}"
                 print(f"⚠️ Failed to connect to Supabase: {e}")
+                import traceback
+                traceback.print_exc()
                 self.supabase = None
                 self.use_supabase = False
         else:
+            self.supabase_error = "Missing credentials"
             print("ℹ️ No Supabase credentials - using SQLite for everything")
             self.supabase = None
             self.use_supabase = False
