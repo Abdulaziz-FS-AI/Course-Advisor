@@ -253,12 +253,18 @@
         .header-section {
             text-align: center;
             margin-bottom: 40px;
-            transition: all 0.5s ease;
+            transition: opacity 0.4s ease, max-height 0.4s ease, margin 0.4s ease;
             flex-shrink: 0;
+            opacity: 1;
+            max-height: 200px;
+            overflow: hidden;
         }
 
         .main-container.chat-active .header-section {
-            display: none;
+            opacity: 0;
+            max-height: 0;
+            margin-bottom: 0;
+            pointer-events: none;
         }
 
         .logo-icon {
@@ -423,6 +429,10 @@
             width: 100%;
             max-width: 800px;
             flex-shrink: 0;
+            transition: opacity 0.4s ease, max-height 0.4s ease;
+            opacity: 1;
+            max-height: 50px;
+            overflow: hidden;
         }
 
         .suggestions-row {
@@ -434,11 +444,18 @@
             justify-content: center;
             flex-wrap: wrap;
             flex-shrink: 0;
+            transition: opacity 0.4s ease, max-height 0.4s ease, margin 0.4s ease;
+            opacity: 1;
+            max-height: 500px;
+            overflow: hidden;
         }
 
         .main-container.chat-active .suggestions-row,
         .main-container.chat-active .suggestions-label {
-            display: none;
+            opacity: 0;
+            max-height: 0;
+            margin-bottom: 0;
+            pointer-events: none;
         }
 
         .suggestion-chip {
@@ -917,6 +934,19 @@
 
         let chats = {}; // { id: { title: "", messages: [], timestamp: 0 } }
         let currentChatId = null;
+        let isSubmitting = false; // Prevent double submissions
+
+        // Helper to clean up loading/input state
+        function cleanupLoadingState() {
+            if (input) {
+                input.disabled = false;
+                input.value = '';
+            }
+            if (typing) {
+                typing.style.display = 'none';
+            }
+            isSubmitting = false;
+        }
 
         // Helper to get clean session ID from URL
         function getUrlSessionId() {
@@ -988,11 +1018,7 @@
             currentChatId = null;
             clearMessages();
             resetUI();
-            if (input) {
-                input.value = '';
-                input.disabled = false;
-            }
-            if (typing) typing.style.display = 'none';
+            cleanupLoadingState();
             document.querySelectorAll('.chat-item').forEach(el => el.classList.remove('active'));
 
             if (window.location.pathname !== '/' && window.location.pathname !== '') {
@@ -1007,11 +1033,7 @@
                 window.history.pushState({ id }, '', '/' + id);
             }
             clearMessages();
-            if (input) {
-                input.value = '';
-                input.disabled = false;
-            }
-            if (typing) typing.style.display = 'none';
+            cleanupLoadingState();
 
             if (!chats[id].messages || chats[id].messages.length === 0) {
                 await loadChatMessages(id);
@@ -1066,6 +1088,10 @@
                 e.preventDefault();
                 const query = input.value.trim();
                 if (!query) return;
+
+                // Prevent double submissions
+                if (isSubmitting) return;
+                isSubmitting = true;
 
                 // Capture current state to handle race conditions
                 let activeSessionId = currentChatId;
@@ -1160,6 +1186,7 @@
                         typing.style.display = 'none';
                         input.focus();
                     }
+                    isSubmitting = false; // Always reset submission lock
                 }
             });
         } else {
@@ -1283,11 +1310,23 @@
                     });
                 } else {
                     console.error('Failed to submit feedback');
+                    // Show user-visible error
+                    const errorMsg = document.createElement('div');
+                    errorMsg.textContent = '⚠️ Failed to submit feedback. Please try again.';
+                    errorMsg.style.cssText = 'color: #e53e3e; font-size: 12px; margin-top: 8px; font-style: italic;';
+                    feedbackDiv.appendChild(errorMsg);
+                    setTimeout(() => errorMsg.remove(), 3000);
                     buttons.forEach(btn => btn.disabled = false);
                 }
             } catch (error) {
                 console.error('Feedback error:', error);
                 const buttons = feedbackDiv.querySelectorAll('.thumb');
+                // Show user-visible error
+                const errorMsg = document.createElement('div');
+                errorMsg.textContent = '⚠️ Network error. Please check your connection.';
+                errorMsg.style.cssText = 'color: #e53e3e; font-size: 12px; margin-top: 8px; font-style: italic;';
+                feedbackDiv.appendChild(errorMsg);
+                setTimeout(() => errorMsg.remove(), 3000);
                 buttons.forEach(btn => btn.disabled = false);
             }
         }

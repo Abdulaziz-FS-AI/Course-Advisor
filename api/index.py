@@ -172,8 +172,9 @@ def chat(request: ChatRequest):
 
     except Exception as e:
         print(f"Chat error: {e}")
-        # In case of error, try to return a friendly message
-        return {"response": "I encountered an error connecting to my brain. Please try again."}
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail="Failed to process message")
 
 
 @app.get("/api/admin/sessions")
