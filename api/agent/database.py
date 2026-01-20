@@ -1,5 +1,6 @@
 """
 Hybrid Database Manager: SQLite for courses + Supabase for chat/feedback
+Uses direct REST API calls to avoid supabase-py dependency issues.
 """
 
 import sqlite3
@@ -8,6 +9,7 @@ from contextlib import contextmanager
 from pathlib import Path
 import os
 import shutil
+import requests
 
 from .config import DB_PATH, ENABLE_FUZZY_SEARCH
 
@@ -55,34 +57,73 @@ class HybridDatabaseManager:
         print(f"✓ Course database ready: {self.db_path.stat().st_size} bytes")
 
     def _init_supabase(self):
-        """Initialize Supabase client for chat/feedback."""
-        supabase_url = os.getenv("SUPABASE_URL")
-        supabase_key = os.getenv("SUPABASE_KEY")
+        """Initialize Supabase REST API for chat/feedback."""
+        self.supabase_url = os.getenv("SUPABASE_URL")
+        self.supabase_key = os.getenv("SUPABASE_KEY")
         self.supabase_error = None  # Track initialization errors
 
-        if supabase_url and supabase_key:
+        if self.supabase_url and self.supabase_key:
+            # Test connection with a simple query
             try:
-                from supabase import create_client
-                self.supabase = create_client(supabase_url, supabase_key)
-                print(f"✓ Using Supabase for chat/feedback: {supabase_url}")
-                self.use_supabase = True
-            except ImportError as e:
-                self.supabase_error = f"ImportError: {e}"
-                print(f"⚠️ supabase-py not installed: {e}")
-                self.supabase = None
-                self.use_supabase = False
+                headers = {
+                    "apikey": self.supabase_key,
+                    "Authorization": f"Bearer {self.supabase_key}",
+                    "Content-Type": "application/json",
+                    "Prefer": "return=representation"
+                }
+                # Test by querying users table
+                response = requests.get(
+                    f"{self.supabase_url}/rest/v1/users?select=id&limit=1",
+                    headers=headers,
+                    timeout=5
+                )
+                if response.status_code == 200:
+                    print(f"✓ Supabase REST API connected: {self.supabase_url}")
+                    self.use_supabase = True
+                else:
+                    self.supabase_error = f"API test failed: {response.status_code} - {response.text}"
+                    print(f"⚠️ Supabase API test failed: {response.status_code}")
+                    self.use_supabase = False
             except Exception as e:
                 self.supabase_error = f"ConnectionError: {e}"
                 print(f"⚠️ Failed to connect to Supabase: {e}")
-                import traceback
-                traceback.print_exc()
-                self.supabase = None
                 self.use_supabase = False
         else:
             self.supabase_error = "Missing credentials"
             print("ℹ️ No Supabase credentials - using SQLite for everything")
-            self.supabase = None
             self.use_supabase = False
+
+    def _supabase_headers(self):
+        """Get headers for Supabase REST API calls."""
+        return {
+            "apikey": self.supabase_key,
+            "Authorization": f"Bearer {self.supabase_key}",
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+        }
+
+    def _supabase_get(self, table: str, params: str = "") -> List[Dict]:
+        """GET request to Supabase REST API."""
+        url = f"{self.supabase_url}/rest/v1/{table}{params}"
+        response = requests.get(url, headers=self._supabase_headers(), timeout=10)
+        response.raise_for_status()
+        return response.json()
+
+    def _supabase_post(self, table: str, data: Dict) -> Dict:
+        """POST request to Supabase REST API (insert)."""
+        url = f"{self.supabase_url}/rest/v1/{table}"
+        response = requests.post(url, headers=self._supabase_headers(), json=data, timeout=10)
+        response.raise_for_status()
+        result = response.json()
+        return result[0] if result else {}
+
+    def _supabase_patch(self, table: str, params: str, data: Dict) -> Dict:
+        """PATCH request to Supabase REST API (update)."""
+        url = f"{self.supabase_url}/rest/v1/{table}{params}"
+        response = requests.patch(url, headers=self._supabase_headers(), json=data, timeout=10)
+        response.raise_for_status()
+        result = response.json()
+        return result[0] if result else {}
 
     @contextmanager
     def get_connection(self):
@@ -226,13 +267,13 @@ The central reference table. All other tables link here via department_id.
         # Chat tables from Supabase (if available)
         if self.use_supabase:
             try:
-                users_count = len(self.supabase.table('users').select('id').execute().data)
-                sessions_count = len(self.supabase.table('chat_sessions').select('id').execute().data)
-                messages_count = len(self.supabase.table('chat_messages').select('id').execute().data)
+                users = self._supabase_get('users', '?select=id')
+                sessions = self._supabase_get('chat_sessions', '?select=id')
+                messages = self._supabase_get('chat_messages', '?select=id')
 
-                stats['users'] = users_count
-                stats['chat_sessions'] = sessions_count
-                stats['chat_messages'] = messages_count
+                stats['users'] = len(users)
+                stats['chat_sessions'] = len(sessions)
+                stats['chat_messages'] = len(messages)
             except Exception as e:
                 print(f"Warning: Could not get Supabase stats: {e}")
                 stats.update({'users': 0, 'chat_sessions': 0, 'chat_messages': 0})
@@ -252,26 +293,23 @@ The central reference table. All other tables link here via department_id.
         if self.use_supabase:
             try:
                 # Get anonymous user ID
-                anon_user = self.supabase.table('users').select('id').eq('username', 'anonymous_user').execute()
-                user_id = anon_user.data[0]['id'] if anon_user.data else 1
+                anon_users = self._supabase_get('users', '?select=id&username=eq.anonymous_user&limit=1')
+                user_id = anon_users[0]['id'] if anon_users else 1
 
-                result = self.supabase.table('chat_sessions').insert({
+                result = self._supabase_post('chat_sessions', {
                     'id': session_id,
                     'device_id': device_id,
                     'title': title,
                     'user_id': user_id
-                }).execute()
+                })
 
                 print(f"[Supabase] Session created: {session_id}")
-                return result.data[0]
+                return result
             except Exception as e:
                 print(f"[Supabase ERROR] Failed to create session: {e}")
                 raise RuntimeError(f"Failed to create session: {e}")
         else:
-            # Fallback to SQLite (local dev)
             print("[SQLite] Creating session locally")
-            # Use original SQLite implementation...
-            # (Keep existing SQLite code as fallback)
             return {"id": session_id, "title": title, "device_id": device_id}
 
     def add_message(self, session_id: str, role: str, content: str) -> Dict[str, Any]:
@@ -281,26 +319,25 @@ The central reference table. All other tables link here via department_id.
         if self.use_supabase:
             try:
                 # Insert message
-                result = self.supabase.table('chat_messages').insert({
+                result = self._supabase_post('chat_messages', {
                     'session_id': session_id,
                     'role': role,
                     'content': content
-                }).execute()
+                })
 
-                message_id = result.data[0]['id']
+                message_id = result['id']
                 print(f"[Supabase] Message saved with ID: {message_id}")
 
                 # Update session timestamp
-                self.supabase.table('chat_sessions').update({
+                self._supabase_patch('chat_sessions', f'?id=eq.{session_id}', {
                     'updated_at': 'now()'
-                }).eq('id', session_id).execute()
+                })
 
                 return {"status": "success", "message_id": message_id}
             except Exception as e:
                 print(f"[Supabase ERROR] Failed to add message: {e}")
                 raise RuntimeError(f"Failed to add message: {e}")
         else:
-            # Fallback to SQLite
             print("[SQLite] Saving message locally")
             return {"status": "success", "message_id": 0}
 
@@ -308,39 +345,23 @@ The central reference table. All other tables link here via department_id.
         """Get all messages for a session."""
         if self.use_supabase:
             try:
-                result = self.supabase.table('chat_messages')\
-                    .select('id, role, content, timestamp')\
-                    .eq('session_id', session_id)\
-                    .order('id')\
-                    .execute()
-                return result.data
+                return self._supabase_get('chat_messages', f'?select=id,role,content,timestamp&session_id=eq.{session_id}&order=id')
             except Exception as e:
                 print(f"[Supabase ERROR] Failed to get messages: {e}")
                 return []
         else:
-            # Fallback to SQLite
             return []
 
     def get_device_sessions(self, device_id: str) -> List[Dict[str, Any]]:
         """Get all sessions for a device."""
         if self.use_supabase:
             try:
-                result = self.supabase.rpc('get_device_sessions_with_count', {
-                    'p_device_id': device_id
-                }).execute()
-                return result.data if result.data else []
+                # Simple query - get sessions for device
+                sessions = self._supabase_get('chat_sessions', f'?select=*&device_id=eq.{device_id}&order=updated_at.desc')
+                return sessions
             except Exception as e:
-                # Fallback to simple query
-                try:
-                    sessions = self.supabase.table('chat_sessions')\
-                        .select('*')\
-                        .eq('device_id', device_id)\
-                        .order('updated_at', desc=True)\
-                        .execute()
-                    return sessions.data
-                except:
-                    print(f"[Supabase ERROR] Failed to get sessions: {e}")
-                    return []
+                print(f"[Supabase ERROR] Failed to get sessions: {e}")
+                return []
         else:
             return []
 
@@ -348,18 +369,10 @@ The central reference table. All other tables link here via department_id.
         """Get all sessions (admin view)."""
         if self.use_supabase:
             try:
-                result = self.supabase.table('chat_sessions')\
-                    .select('*, message_count:chat_messages(count)')\
-                    .order('updated_at', desc=True)\
-                    .execute()
-                return result.data
-            except:
-                # Simpler fallback
-                result = self.supabase.table('chat_sessions')\
-                    .select('*')\
-                    .order('updated_at', desc=True)\
-                    .execute()
-                return result.data
+                return self._supabase_get('chat_sessions', '?select=*&order=updated_at.desc')
+            except Exception as e:
+                print(f"[Supabase ERROR] Failed to get admin sessions: {e}")
+                return []
         else:
             return []
 
@@ -369,16 +382,16 @@ The central reference table. All other tables link here via department_id.
 
         if self.use_supabase:
             try:
-                result = self.supabase.table('feedback').insert({
+                result = self._supabase_post('feedback', {
                     'user_id': user_id,
                     'session_id': session_id,
                     'message_id': message_id,
                     'rating': rating,
                     'comment': comment
-                }).execute()
+                })
 
-                print(f"[Supabase] Feedback created: {result.data[0]['id']}")
-                return result.data[0]
+                print(f"[Supabase] Feedback created: {result['id']}")
+                return result
             except Exception as e:
                 print(f"[Supabase ERROR] Failed to create feedback: {e}")
                 raise RuntimeError(f"Failed to create feedback: {e}")
@@ -389,24 +402,42 @@ The central reference table. All other tables link here via department_id.
         """Get all feedback (admin view)."""
         if self.use_supabase:
             try:
-                result = self.supabase.table('feedback')\
-                    .select('*, users(username), chat_sessions(title), chat_messages(content)')\
-                    .order('created_at', desc=True)\
-                    .execute()
+                # Get feedback with related data
+                feedback_list = self._supabase_get('feedback', '?select=*&order=created_at.desc')
 
-                # Format the response to match expected structure
+                # Format the response
                 formatted = []
-                for item in result.data:
+                for item in feedback_list:
+                    # Get related session title
+                    session_title = 'Untitled'
+                    if item.get('session_id'):
+                        try:
+                            sessions = self._supabase_get('chat_sessions', f'?select=title&id=eq.{item["session_id"]}&limit=1')
+                            if sessions:
+                                session_title = sessions[0].get('title', 'Untitled')
+                        except:
+                            pass
+
+                    # Get related message content
+                    message_content = ''
+                    if item.get('message_id'):
+                        try:
+                            messages = self._supabase_get('chat_messages', f'?select=content&id=eq.{item["message_id"]}&limit=1')
+                            if messages:
+                                message_content = messages[0].get('content', '')
+                        except:
+                            pass
+
                     formatted.append({
                         'id': item['id'],
                         'rating': item['rating'],
                         'comment': item.get('comment'),
                         'created_at': item['created_at'],
-                        'user_name': item['users']['username'] if item.get('users') else 'Unknown',
+                        'user_name': 'Anonymous',
                         'session_id': item['session_id'],
-                        'session_title': item['chat_sessions']['title'] if item.get('chat_sessions') else 'Untitled',
+                        'session_title': session_title,
                         'message_id': item['message_id'],
-                        'message_content': item['chat_messages']['content'] if item.get('chat_messages') else ''
+                        'message_content': message_content
                     })
                 return formatted
             except Exception as e:
@@ -419,8 +450,8 @@ The central reference table. All other tables link here via department_id.
         """Get user by username."""
         if self.use_supabase:
             try:
-                result = self.supabase.table('users').select('*').eq('username', username).execute()
-                return result.data[0] if result.data else None
+                users = self._supabase_get('users', f'?select=*&username=eq.{username}&limit=1')
+                return users[0] if users else None
             except:
                 return None
         else:

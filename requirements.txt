@@ -4,4 +4,3 @@ requests
 pydantic
 passlib[bcrypt]
 python-jose[cryptography]
-supabase==2.2.0
